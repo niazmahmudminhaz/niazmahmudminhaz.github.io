@@ -38,8 +38,8 @@ h1 em,h2 span{font-style:normal;color:var(--accent)}
 .hero-note{font-size:12px;color:var(--muted);max-width:610px}
 .hero-card{background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:28px;box-shadow:var(--shadow);position:relative;overflow:hidden}
 .hero-card:before{content:"";position:absolute;inset:-40% 20% auto -20%;height:240px;background:radial-gradient(circle,var(--accent) 0,transparent 65%);opacity:.12}
-.profile-photo{display:block;width:100%;aspect-ratio:16/10;border-radius:20px;overflow:hidden;margin-bottom:28px;background:var(--surface2)}
-.profile-photo img{width:100%;height:100%;object-fit:cover;object-position:70% 15%;display:block}
+.profile-photo{display:block;width:100%;aspect-ratio:1/1;border-radius:20px;overflow:hidden;margin-bottom:28px;background:var(--surface2)}
+.profile-photo img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
 .mini-label{font-size:11px;letter-spacing:.15em;color:var(--muted);font-weight:700}.hero-card h2{font-size:28px;margin:6px 0 10px}.hero-card p{color:var(--muted)}
 .hero-grid{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);margin-top:25px;padding-top:20px;gap:20px}.hero-grid div{display:flex;flex-direction:column}.hero-grid strong{font:700 26px "Space Grotesk"}.hero-grid span{font-size:11px;color:var(--muted)}
 .trust-strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface)}
