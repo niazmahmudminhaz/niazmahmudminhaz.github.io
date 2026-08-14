@@ -26,6 +26,26 @@ document.querySelectorAll(".nav-links a").forEach(link => {
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
+// Certifications: rendered dynamically so a real verification link only
+// appears once verificationUrl is actually filled in. Never invent URLs here.
+const certifications = [
+  { title: "Google Analytics / GA4", issuer: "Google Skillshop", description: "Verified certification or course credential.", verificationUrl: "" },
+  { title: "SEO / Search Certification", issuer: "", description: "Add the exact certification name and issuing organization.", verificationUrl: "" },
+  { title: "AI / Data Certification", issuer: "", description: "Add only a legitimate completed credential.", verificationUrl: "" }
+];
+
+const certGrid = document.getElementById("certGrid");
+if (certGrid) {
+  certGrid.innerHTML = certifications.map((cert, i) => {
+    const num = String(i + 1).padStart(2, "0");
+    const hasLink = typeof cert.verificationUrl === "string" && cert.verificationUrl.trim().length > 0;
+    const linkHtml = hasLink
+      ? `<a href="${cert.verificationUrl}" target="_blank" rel="noopener noreferrer">View verification link →</a>`
+      : `<span class="cert-pending">Verification link coming soon</span>`;
+    return `<article class="cert"><span>${num}</span><h3>${cert.title}</h3><p>${cert.description}</p>${linkHtml}</article>`;
+  }).join("");
+}
+
 // Contact form submission via Web3Forms (static-site friendly form backend)
 const contactForm = document.getElementById("contactForm");
 const formStatus = document.getElementById("formStatus");
@@ -33,9 +53,11 @@ const formStatus = document.getElementById("formStatus");
 contactForm?.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const accessKey = contactForm.querySelector('input[name="access_key"]').value;
-  if (!accessKey || accessKey === "YOUR_WEB3FORMS_ACCESS_KEY") {
-    formStatus.textContent = "Form isn't fully set up yet. Add your Web3Forms access key in index.html.";
+  // hCaptcha renders a hidden textarea named h-captcha-response inside the
+  // .h-captcha div once the visitor completes the checkbox challenge.
+  const hcaptchaField = contactForm.querySelector('textarea[name="h-captcha-response"]');
+  if (!hcaptchaField || !hcaptchaField.value) {
+    formStatus.textContent = "Please complete the captcha check before submitting.";
     formStatus.className = "form-status error";
     return;
   }
