@@ -234,13 +234,17 @@
           <h2>Have an SEO problem?<br><span>Let's find the opportunity.</span></h2>
           <p>Tell me what you're trying to improve, and we can start with the highest-impact SEO questions.</p>
         </div>
-        <form class="contact-form" action="mailto:niazmahmud4368@gmail.com" method="post" enctype="text/plain">
-          <label>Name<input name="Name" type="text" required></label>
-          <label>Email<input name="Email" type="email" required></label>
-          <label>Website URL<input name="Website" type="url" placeholder="https://"></label>
-          <label>Primary SEO challenge<textarea name="Challenge" rows="4"></textarea></label>
+        <form class="contact-form" id="contactForm">
+          <input type="hidden" name="access_key" value="19a50e51-5273-4cb7-a41c-5b6ab2cd1ec2">
+          <input type="hidden" name="subject" value="New SEO Audit Request from Portfolio Site">
+          <input type="text" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+          <label>Name<input name="name" type="text" required></label>
+          <label>Email<input name="email" type="email" required></label>
+          <label>Website URL<input name="website" type="url" placeholder="https://"></label>
+          <label>Primary SEO challenge<textarea name="challenge" rows="4"></textarea></label>
           <button class="btn btn-primary" type="submit">Request an SEO Consultation ↗</button>
-          <small>This starter form opens your email client. For a production website, connect it to a secure form service or backend.</small>
+          <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
+          <small>Submissions are sent directly to my email via a secure form service.</small>
         </form>
       </div>
     </section>
