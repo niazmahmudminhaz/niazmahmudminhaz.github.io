@@ -1,0 +1,25 @@
+# Niaz Mahmud Minhaz
+
+SEO Consultant | Technical SEO | Local SEO | AI-Driven SEO Audits & Strategy
+
+## Purpose
+This website presents Niaz Mahmud Minhaz's SEO consulting services, process, certifications, research and AI-search visibility work.
+
+## Key pages
+- Home: https://niazmahmudminhaz.github.io/
+- Services: https://niazmahmudminhaz.github.io/services/
+- How I Work: https://niazmahmudminhaz.github.io/how-i-work/
+- SEO Audit Demo: https://niazmahmudminhaz.github.io/seo-audit-demo/
+- Insights: https://niazmahmudminhaz.github.io/insights/
+- FAQ: https://niazmahmudminhaz.github.io/faq/
+- Certifications: https://niazmahmudminhaz.github.io/certifications/
+- Contact: https://niazmahmudminhaz.github.io/contact/
+
+## Core topics
+Technical SEO, On-Page SEO, Local SEO, SEO audits, Off-Page SEO, backlink analysis, content SEO, keyword research, AEO, GEO, AI Search SEO, structured data, search intent and information architecture.
+
+## AI visibility note
+The site's AI-search work is intended to make information easier to understand, extract and cite accurately. It does not claim or guarantee rankings or inclusion in AI-generated answers.
+
+## Status
+This file is an experimental, emerging convention and is not an official universal standard.
