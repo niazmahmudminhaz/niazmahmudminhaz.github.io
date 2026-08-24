@@ -1,0 +1,59 @@
+name: Fix Global Footer Layout
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  footer-layout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply footer layout fix
+        shell: bash
+        run: |
+          set -euo pipefail
+          MARKER='/* MINHAZ FOOTER LAYOUT FIX v1 */'
+          if ! grep -Fq "$MARKER" style.css; then
+            cat >> style.css <<'CSS'
+
+/* MINHAZ FOOTER LAYOUT FIX v1 */
+html,body{min-height:100%}
+body{min-height:100vh;display:flex;flex-direction:column}
+main{flex:1 0 auto;min-width:0}
+.site-footer{flex:0 0 auto;width:100%;margin-top:auto;position:relative;z-index:3}
+.site-footer>.container{width:min(1120px,calc(100% - 36px));margin-inline:auto}
+.site-footer .footer-grid{align-items:start}
+.site-footer .footer-brand,.site-footer .footer-grid>div{min-width:0}
+.site-footer .footer-links a{display:block;line-height:1.45;padding-block:2px}
+.site-footer .footer-heading{line-height:1.3}
+.site-footer:after{content:'';display:block;width:min(1120px,calc(100% - 36px));height:1px;margin:28px auto 0;background:linear-gradient(90deg,transparent,var(--navyLine),transparent);opacity:.9}
+@media(max-width:800px){
+  .site-footer{padding:38px 0 18px}
+  .site-footer .footer-grid{grid-template-columns:1fr 1fr;gap:26px 22px}
+  .site-footer .footer-brand{grid-column:1/-1;padding-bottom:8px;border-bottom:1px solid var(--navyLine)}
+}
+@media(max-width:520px){
+  .site-footer .footer-grid{grid-template-columns:1fr}
+  .site-footer .footer-brand{grid-column:auto}
+}
+CSS
+          fi
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add style.css
+          if git diff --cached --quiet; then
+            echo 'Footer layout already fixed.'
+          else
+            git commit -m 'Fix global footer layout and responsive containment'
+            git push
+          fi
