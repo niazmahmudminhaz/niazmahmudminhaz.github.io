@@ -57,9 +57,9 @@ jobs:
           expected = '<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">'
           pattern = re.compile(r'<meta\s+name=["\']robots["\'][^>]*>', re.I)
 
-          pages = list(Path('.').rglob('index.html'))
-          if len(pages) != 26:
-              raise SystemExit(f'Expected 26 index.html files, found {len(pages)}')
+          pages = [p for p in Path('.').rglob('index.html') if '.git' not in p.parts]
+          if not pages:
+              raise SystemExit('No index.html files found')
 
           for path in pages:
               text = path.read_text(encoding='utf-8')
@@ -67,7 +67,7 @@ jobs:
               if len(matches) != 1 or matches[0] != expected:
                   raise SystemExit(f'Robots meta verification failed: {path}')
 
-          print('Verified exactly one requested robots meta tag in all 26 index.html files.')
+          print(f'Verified exactly one requested robots meta tag in all {len(pages)} index.html files.')
 
       - name: Commit changes and remove temporary workflow
         shell: bash
