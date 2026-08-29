@@ -1,0 +1,14 @@
+# Jekyll configuration for niazmahmudminhaz.github.io
+# Jekyll is used only as a generation layer; existing HTML remains page-owned.
+title: "Niaz Mahmud Minhaz | SEO Consultant"
+url: "https://niazmahmudminhaz.github.io"
+markdown: kramdown
+include:
+  - .well-known
+exclude:
+  - README.md
+  - MIGRATION_NOTES.md
+  - TOPICAL_AUTHORITY_NOTES.md
+  - Gemfile
+  - Gemfile.lock
+plugins: []
