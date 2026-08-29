@@ -1,0 +1,39 @@
+# Navigation map for topical authority work. URLs point only to existing pages.
+# Intentionally not rendered into public HTML.
+clusters:
+  technical-seo:
+    - /services/technical-seo/
+    - /services/seo-audits/
+    - /blog/technical-seo-checklist-2026/
+    - /blog/internal-links-crawlability/
+    - /blog/google-search-console-advanced/
+  on-page-content:
+    - /services/on-page-seo/
+    - /services/content-writing/
+    - /blog/people-first-seo-content/
+    - /blog/on-page-seo-techniques-2026/
+  local-search:
+    - /services/local-seo/
+    - /services/hyperlocal-seo/
+    - /blog/bangladesh-business-ecommerce-seo/
+    - /blog/professional-services-seo/
+  authority-evidence:
+    - /services/off-page-seo/
+    - /services/backlink-building/
+    - /services/personal-authority-seo/
+    - /reviews/
+    - /blog/seo-case-studies-roi-business-results/
+    - /blog/seo-statistics/
+  ai-search:
+    - /services/ai-search-seo/
+    - /services/aeo/
+    - /services/geo/
+    - /blog/ai-search-seo-2026/
+    - /blog/ai-search-business-visibility/
+  ecommerce-platforms:
+    - /services/ecommerce-seo/
+    - /services/shopify-seo/
+    - /services/woocommerce-d2c-seo/
+  cross-market:
+    - /services/international-seo/
+    - /seo-strategy-lab/
