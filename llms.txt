@@ -1,0 +1,34 @@
+# Niaz Mahmud Minhaz
+
+> SEO Consultant in Bangladesh helping businesses improve Technical SEO, Local SEO and AI search visibility. Focused on Technical SEO, On-Page SEO, Local SEO, Off-Page SEO, SEO audits, AEO and GEO, built around evidence and measurable decisions.
+
+## Core pages
+
+- [About](https://niazmahmudminhaz.github.io/about/)
+- [Services](https://niazmahmudminhaz.github.io/services/)
+- [Case Studies](https://niazmahmudminhaz.github.io/case-studies/)
+- [FAQ](https://niazmahmudminhaz.github.io/faq/)
+- [Contact](https://niazmahmudminhaz.github.io/contact/)
+- [Certifications](https://niazmahmudminhaz.github.io/about/#certifications)
+
+## Services
+
+- [Technical SEO](https://niazmahmudminhaz.github.io/services/technical-seo/)
+- [On-Page SEO](https://niazmahmudminhaz.github.io/services/on-page-seo/)
+- [Local SEO](https://niazmahmudminhaz.github.io/services/local-seo/)
+- [SEO Audits](https://niazmahmudminhaz.github.io/services/seo-audits/)
+- [Off-Page SEO](https://niazmahmudminhaz.github.io/services/off-page-seo/)
+- [AI Search SEO](https://niazmahmudminhaz.github.io/services/ai-search-seo/)
+- [AEO](https://niazmahmudminhaz.github.io/services/aeo/)
+- [GEO](https://niazmahmudminhaz.github.io/services/geo/)
+- [E-commerce SEO](https://niazmahmudminhaz.github.io/services/ecommerce-seo/)
+
+## Research
+
+- [Blog](https://niazmahmudminhaz.github.io/blog/)
+- [Insights](https://niazmahmudminhaz.github.io/insights/)
+- [SEO Strategy Lab](https://niazmahmudminhaz.github.io/seo-strategy-lab/)
+
+## Topic map
+
+The site covers connected topic clusters around technical SEO, on-page and content SEO, local search, authority and evidence, AI search, and e-commerce/platform SEO. Supporting pages should be used together as a coherent research path rather than as isolated keyword targets.
