@@ -11,4 +11,5 @@ exclude:
   - TOPICAL_AUTHORITY_NOTES.md
   - Gemfile
   - Gemfile.lock
-plugins: []
+plugins:
+  - jekyll-redirect-from
