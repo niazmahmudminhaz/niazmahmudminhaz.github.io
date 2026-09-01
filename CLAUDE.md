@@ -54,32 +54,52 @@ Never run a blind bulk find/replace across pages. **Page templates differ** — 
 service-page generations exist, and navigation / conversion-CTA structures vary between
 pages. Always compare page types before editing any shared block.
 
-## Batches (STOP for approval after each; never auto-continue)
-1. Homepage, About, Services hub
-2. Technical SEO, SEO Audits, On-Page SEO, Local SEO
-3. Off-Page SEO, AI Search SEO, AEO, GEO, Hyperlocal SEO
-4. Remaining service pages
-5. Case Studies, Reviews, FAQ, SEO Strategy Lab
-6. Insights hub + insight articles
-7. Blog articles
+## Current approved information architecture
+Primary navigation: Home → Services → About → Case Studies → Contact.
+Certifications are a section of About at `/about/#certifications` and are not a primary-nav item.
+FAQ remains `/faq/` as a supporting resource and is not a primary-nav item.
+Use **Blog**, not Insights, for the main educational content concept.
+Do not present SEO Mentorship as an offered service. The owner is not an SEO mentor.
+The owner genuinely works with Webflow, Wix, and Squarespace CMS-based websites; these are
+legitimate platform-specific SEO services alongside WordPress, WooCommerce, and Shopify.
+White-Hat SEO may be a service/methodology page when it provides distinct value.
 
-## Validation after each batch
+## Existing-site preservation rule
+Do NOT rebuild or redesign the website from scratch. Preserve the homepage structure,
+main introduction image, current visual assets, fonts, typography, colors, CSS language,
+existing animations/transitions, buttons, cards, layout patterns, theme system, responsive
+behavior, navigation behavior, forms, and overall visual identity. Improve by keeping,
+refining, reorganizing, and adding around what already works. Prefer:
+**Keep → Improve → Expand → Reorganize → Enhance**.
+When uncertain whether an existing element should be removed, preserve it and ask first.
+
+## Batches
+When a user explicitly authorizes completion of the full approved scope, you may proceed
+through all necessary batches after inspection. Otherwise use the normal staged plan:
+1. Services architecture and platform pages
+2. Core service pages
+3. Authority/evidence pages
+4. Blog structure and articles
+
+Always stop and ask before any destructive or ambiguous change, especially anything that
+could alter URLs, redirects, schema, sitemap, robots, forms, functionality or compatibility.
+
+## Validation before push
 - HTML: valid structure, no missing/duplicated tags, no malformed markup
-- SEO: titles, meta descriptions, canonicals, meta robots, and schema all unchanged
-- Links: no broken internal links, no URL changes, no references to nonexistent pages
-- Forms: Web3Forms works; captcha structure unchanged
-- JavaScript: existing interactions intact, no console errors
-- Responsive: mobile no overflow, desktop layout intact, cards/tables usable
-- Content: no duplicate paragraphs, keyword stuffing, fabricated evidence, or filler
+- Content: useful, intent-satisfying, no filler, no fabricated evidence
+- Links: no broken internal links or nonexistent destinations
+- Responsive: no overflow; mobile and desktop remain usable
+- Functionality: navigation, theme toggle, forms and CAPTCHA remain intact
+- Protected systems: robots, sitemap, schema, canonicals, meta robots, Web3Forms, CAPTCHA,
+  published URLs, redirects, functional JS and CSS remain unchanged unless separately authorized
+- Review the complete Git diff before push
 
-## Changelog (report per modified page)
-file path · page topic · main content changes · word count before → after · primary search
-intent · primary topic · internal links added · design/CSS modified? (should be "no") ·
-protected systems line: `robots.txt / sitemap.xml / schema / canonical / Web3Forms / captcha: unchanged`.
+## GitHub publishing rule
+Changes may be pushed to `main` only after they have been inspected, validated, tested,
+and reviewed in full. Never push a partially completed or unverified implementation.
+If anything is uncertain or potentially risky, STOP and ask the owner.
 
 ## Internal-linking model
-Home → service hubs → individual services → supporting articles → related services →
-contact. Use meaningful anchor text and clear topical clusters/silos; avoid linking
-everything to everything. Priority: connect deep-but-orphaned pages (tier-2 service pages
-and long blog articles) into their clusters, and route link equity toward conversion pages.
-The cluster map lives in `_data/topic-map.yml` (not rendered to HTML).
+Home → Services hub → individual services → relevant Blog resources → related Case Studies → Contact.
+Use meaningful anchor text and genuine topical relationships. Avoid linking everything to everything.
+The cluster map lives in `_data/topic-map.yml` (not rendered into public HTML).
