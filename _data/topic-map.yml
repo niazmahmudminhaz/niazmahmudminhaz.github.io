@@ -1,4 +1,4 @@
-# Navigation map for topical authority work. URLs point only to existing pages.
+# Navigation map for topical authority work. URLs point only to existing or approved new pages.
 # Intentionally not rendered into public HTML.
 clusters:
   technical-seo:
@@ -21,6 +21,7 @@ clusters:
     - /services/off-page-seo/
     - /services/backlink-building/
     - /services/personal-authority-seo/
+    - /services/white-hat-seo/
     - /reviews/
     - /blog/seo-case-studies-roi-business-results/
     - /blog/seo-statistics/
@@ -34,6 +35,11 @@ clusters:
     - /services/ecommerce-seo/
     - /services/shopify-seo/
     - /services/woocommerce-d2c-seo/
+    - /services/wordpress-seo/
+  cms-platforms:
+    - /services/webflow-seo/
+    - /services/wix-seo/
+    - /services/squarespace-seo/
   cross-market:
     - /services/international-seo/
     - /seo-strategy-lab/
