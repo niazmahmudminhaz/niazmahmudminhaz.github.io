@@ -31,6 +31,27 @@ jobs:
           source: ./
           destination: ./_site
 
+      - name: Normalize sitewide primary navigation
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          nav = '''<nav class="nav-links"><a href="/">Home</a><a href="/services/">Services</a><a href="/case-studies/">Case Studies</a><a href="/about/">About</a><a href="/insights/">Blogs</a><a href="/faq/">FAQ</a><a href="/contact/">Contacts</a><button id="themeToggle" class="theme-toggle" type="button">Dark / Light</button></nav>'''
+          root = Path("_site")
+          pattern = re.compile(r'<nav\s+class=["\']nav-links["\']>.*?</nav>', re.IGNORECASE | re.DOTALL)
+          changed = 0
+          for path in root.rglob("*.html"):
+              text = path.read_text(encoding="utf-8")
+              updated, count = pattern.subn(nav, text, count=1)
+              if count:
+                  if updated != text:
+                      path.write_text(updated, encoding="utf-8")
+                      changed += 1
+              else:
+                  raise SystemExit(f"Primary navigation block not found: {path}")
+          print(f"Normalized primary navigation on {changed} HTML pages.")
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
