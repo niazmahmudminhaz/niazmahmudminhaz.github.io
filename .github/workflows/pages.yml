@@ -46,9 +46,9 @@ jobs:
           </script>'''
 
           root = Path("_site")
-          head_pattern = re.compile(r"<head\\b[^>]*>", re.IGNORECASE)
-          existing_tag_pattern = re.compile(r"googletagmanager\\.com/gtag/js\\?id=G-DBXYK9VD3N", re.IGNORECASE)
-          csp_pattern = re.compile(r'(<meta\\s+http-equiv=["\\']Content-Security-Policy["\\']\\s+content=["\\'])(.*?)(["\\'])', re.IGNORECASE | re.DOTALL)
+          head_pattern = re.compile(r"<head\b[^>]*>", re.IGNORECASE)
+          existing_tag_pattern = re.compile(r"googletagmanager\.com/gtag/js\?id=G-DBXYK9VD3N", re.IGNORECASE)
+          csp_pattern = re.compile(r'(<meta\s+http-equiv=["\']Content-Security-Policy["\']\s+content=["\'])(.*?)(["\'])', re.IGNORECASE | re.DOTALL)
 
           changed = 0
           for path in root.rglob("*.html"):
@@ -69,7 +69,7 @@ jobs:
                       "connect-src": "https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com",
                   }
                   for directive, values in additions.items():
-                      pattern = re.compile(rf"(^|\\s){re.escape(directive)}\\s+([^;]*)", re.IGNORECASE)
+                      pattern = re.compile(rf"(^|\s){re.escape(directive)}\s+([^;]*)", re.IGNORECASE)
                       dm = pattern.search(policy)
                       if dm:
                           current = dm.group(2)
