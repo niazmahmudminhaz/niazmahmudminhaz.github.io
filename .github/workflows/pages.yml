@@ -25,13 +25,10 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./
-          destination: ./_site
-
-      - name: Install Google Analytics 4 sitewide
+      # Prepare the writable source tree before Jekyll builds it. The previous
+      # workflow rewrote generated _site files after the build, which could
+      # fail with PermissionError and prevent the Pages artifact from uploading.
+      - name: Prepare source HTML for Google Analytics 4
         shell: python
         run: |
           from pathlib import Path
@@ -45,69 +42,84 @@ jobs:
             gtag('config', 'G-DBXYK9VD3N');
           </script>'''
 
-          root = Path("_site")
+          root = Path('.')
           head_pattern = re.compile(r"<head\b[^>]*>", re.IGNORECASE)
-          existing_tag_pattern = re.compile(r"googletagmanager\.com/gtag/js\?id=G-DBXYK9VD3N", re.IGNORECASE)
-          csp_pattern = re.compile(r'(<meta\s+http-equiv=["\']Content-Security-Policy["\']\s+content=["\'])(.*?)(["\'])', re.IGNORECASE | re.DOTALL)
+          existing_tag_pattern = re.compile(
+              r"googletagmanager\.com/gtag/js\?id=G-DBXYK9VD3N",
+              re.IGNORECASE,
+          )
+          csp_pattern = re.compile(
+              r'(<meta\s+http-equiv=["\']Content-Security-Policy["\']\s+content=["\'])(.*?)(["\'])',
+              re.IGNORECASE | re.DOTALL,
+          )
+
+          def update_csp(match):
+              prefix, policy, suffix = match.groups()
+              additions = {
+                  "script-src": ["https://www.googletagmanager.com"],
+                  "connect-src": [
+                      "https://www.google-analytics.com",
+                      "https://*.google-analytics.com",
+                      "https://*.googletagmanager.com",
+                  ],
+              }
+
+              for directive, values in additions.items():
+                  pattern = re.compile(
+                      rf"(^|\s){re.escape(directive)}\s+([^;]*)",
+                      re.IGNORECASE,
+                  )
+                  dm = pattern.search(policy)
+                  if dm:
+                      current = dm.group(2)
+                      tokens = current.split()
+                      for value in values:
+                          if value not in tokens:
+                              tokens.append(value)
+                      updated = " ".join(tokens)
+                      policy = policy[:dm.start(2)] + updated + policy[dm.end(2):]
+                  else:
+                      policy += f"; {directive} 'self' {' '.join(values)}"
+
+              return prefix + policy + suffix
 
           changed = 0
-          for path in root.rglob("*.html"):
-              text = path.read_text(encoding="utf-8")
+          files_checked = 0
 
-              # Add the GA4 Google tag once, immediately after <head>.
+          for path in root.rglob("*.html"):
+              if any(part in {".git", "_site", "vendor"} for part in path.parts):
+                  continue
+
+              files_checked += 1
+              text = path.read_text(encoding="utf-8")
+              original = text
+
               if not existing_tag_pattern.search(text):
                   match = head_pattern.search(text)
                   if not match:
-                      raise SystemExit(f"<head> not found: {path}")
+                      raise SystemExit(f"<head> not found in source HTML: {path}")
                   text = text[:match.end()] + "\n" + GA_TAG + text[match.end():]
 
-              # Allow the GA4 script and collection endpoints through the site's CSP.
-              def update_csp(match):
-                  prefix, policy, suffix = match.groups()
-                  additions = {
-                      "script-src": "https://www.googletagmanager.com",
-                      "connect-src": "https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com",
-                  }
-                  for directive, values in additions.items():
-                      pattern = re.compile(rf"(^|\s){re.escape(directive)}\s+([^;]*)", re.IGNORECASE)
-                      dm = pattern.search(policy)
-                      if dm:
-                          current = dm.group(2)
-                          for value in values.split():
-                              if value not in current.split():
-                                  current += " " + value
-                          policy = policy[:dm.start(2)] + current + policy[dm.end(2):]
-                      else:
-                          policy += f"; {directive} 'self' {values}"
-                  return prefix + policy + suffix
+              if "Content-Security-Policy" in text:
+                  text = csp_pattern.sub(update_csp, text, count=1)
 
-              text = csp_pattern.sub(update_csp, text, count=1)
-              path.write_text(text, encoding="utf-8")
-              changed += 1
+              if text != original:
+                  path.write_text(text, encoding="utf-8")
+                  changed += 1
 
-          print(f"Installed Google Analytics 4 (G-DBXYK9VD3N) on {changed} HTML pages in the production build.")
+          print(
+              f"Prepared {files_checked} source HTML files; "
+              f"updated {changed} files for GA4 (G-DBXYK9VD3N)."
+          )
 
-      - name: Normalize sitewide primary navigation
-        shell: python
-        run: |
-          from pathlib import Path
-          import re
+      - name: Build with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
 
-          nav = '''<nav class="nav-links"><a href="/">Home</a><a href="/services/">Services</a><a href="/case-studies/">Case Studies</a><a href="/about/">About</a><a href="/insights/">Blogs</a><a href="/faq/">FAQ</a><a href="/contact/">Contacts</a><button id="themeToggle" class="theme-toggle" type="button">Dark / Light</button></nav>'''
-          root = Path("_site")
-          pattern = re.compile(r'<nav\s+class=["\']nav-links["\']>.*?</nav>', re.IGNORECASE | re.DOTALL)
-          changed = 0
-          for path in root.rglob("*.html"):
-              text = path.read_text(encoding="utf-8")
-              updated, count = pattern.subn(nav, text, count=1)
-              if count:
-                  if updated != text:
-                      path.write_text(updated, encoding="utf-8")
-                      changed += 1
-              else:
-                  raise SystemExit(f"Primary navigation block not found: {path}")
-          print(f"Normalized primary navigation on {changed} HTML pages.")
-
+      # Navigation is owned by the source pages/templates. Do not rewrite
+      # generated _site HTML in the deployment pipeline.
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
