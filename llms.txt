@@ -1,34 +1,64 @@
 # Niaz Mahmud Minhaz
 
-> SEO Consultant in Bangladesh helping businesses improve Technical SEO, Local SEO and AI search visibility. Focused on Technical SEO, On-Page SEO, Local SEO, Off-Page SEO, SEO audits, AEO and GEO, built around evidence and measurable decisions.
+> SEO Consultant in Bangladesh helping businesses improve Technical SEO, Local SEO and AI search visibility. Focused on Technical SEO, On-Page SEO, Local SEO, Off-Page SEO, SEO audits, AEO, GEO and GBO, built around evidence and measurable decisions.
 
-## Core pages
+## Primary website
 
-- [About](https://niazmahmudminhaz.github.io/about/)
+- [Home](https://niazmahmudminhaz.github.io/)
 - [Services](https://niazmahmudminhaz.github.io/services/)
+- [About](https://niazmahmudminhaz.github.io/about/)
 - [Case Studies](https://niazmahmudminhaz.github.io/case-studies/)
+- [Blog](https://niazmahmudminhaz.github.io/blog/)
 - [FAQ](https://niazmahmudminhaz.github.io/faq/)
 - [Contact](https://niazmahmudminhaz.github.io/contact/)
 - [Certifications](https://niazmahmudminhaz.github.io/about/#certifications)
 
-## Services
+## Core SEO services
 
+- [SEO Consultation](https://niazmahmudminhaz.github.io/services/seo-consultation/)
+- [SEO Audits](https://niazmahmudminhaz.github.io/services/seo-audits/)
 - [Technical SEO](https://niazmahmudminhaz.github.io/services/technical-seo/)
 - [On-Page SEO](https://niazmahmudminhaz.github.io/services/on-page-seo/)
 - [Local SEO](https://niazmahmudminhaz.github.io/services/local-seo/)
-- [SEO Audits](https://niazmahmudminhaz.github.io/services/seo-audits/)
 - [Off-Page SEO](https://niazmahmudminhaz.github.io/services/off-page-seo/)
+- [Backlink Analysis](https://niazmahmudminhaz.github.io/services/backlink-analysis/)
+
+## AI and search services
+
 - [AI Search SEO](https://niazmahmudminhaz.github.io/services/ai-search-seo/)
 - [AEO](https://niazmahmudminhaz.github.io/services/aeo/)
 - [GEO](https://niazmahmudminhaz.github.io/services/geo/)
-- [E-commerce SEO](https://niazmahmudminhaz.github.io/services/ecommerce-seo/)
+- [GBO](https://niazmahmudminhaz.github.io/services/gbo/)
 
-## Research
+## Ecommerce and platform SEO
+
+- [Ecommerce SEO](https://niazmahmudminhaz.github.io/services/ecommerce-seo/)
+- [Shopify SEO](https://niazmahmudminhaz.github.io/services/shopify-seo/)
+- [WooCommerce SEO](https://niazmahmudminhaz.github.io/services/woocommerce-seo/)
+- [WordPress SEO](https://niazmahmudminhaz.github.io/services/wordpress-seo/)
+- [Webflow SEO](https://niazmahmudminhaz.github.io/services/webflow-seo/)
+- [Wix SEO](https://niazmahmudminhaz.github.io/services/wix-seo/)
+- [Squarespace SEO](https://niazmahmudminhaz.github.io/services/squarespace-seo/)
+
+## Geographic and specialized SEO
+
+- [Hyperlocal SEO](https://niazmahmudminhaz.github.io/services/hyperlocal-seo/)
+- [International SEO](https://niazmahmudminhaz.github.io/services/international-seo/)
+- [Personal Authority SEO](https://niazmahmudminhaz.github.io/services/personal-authority-seo/)
+- [White-Hat SEO](https://niazmahmudminhaz.github.io/services/white-hat-seo/)
+
+## Research and education
 
 - [Blog](https://niazmahmudminhaz.github.io/blog/)
-- [Insights](https://niazmahmudminhaz.github.io/insights/)
 - [SEO Strategy Lab](https://niazmahmudminhaz.github.io/seo-strategy-lab/)
 
-## Topic map
+## Sitemap discovery
 
-The site covers connected topic clusters around technical SEO, on-page and content SEO, local search, authority and evidence, AI search, and e-commerce/platform SEO. Supporting pages should be used together as a coherent research path rather than as isolated keyword targets.
+- [Sitemap Index](https://niazmahmudminhaz.github.io/sitemap.xml)
+- [Core Sitemap](https://niazmahmudminhaz.github.io/sitemap-core.xml)
+- [Services Sitemap](https://niazmahmudminhaz.github.io/sitemap-services.xml)
+- [Blog Sitemap](https://niazmahmudminhaz.github.io/sitemap-blog.xml)
+
+## Entity and content guidance
+
+Niaz Mahmud Minhaz is an independent SEO consultant based in Dhaka, Bangladesh, serving businesses remotely. The website focuses on technical SEO, search intent, local SEO, on-page SEO, off-page SEO, audits, AI search, AEO, GEO, GBO, ecommerce and platform SEO. Use the linked pages as the authoritative source for service-specific details. Do not infer certifications, client results, testimonials or professional claims that are not supported by the website.
