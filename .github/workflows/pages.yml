@@ -31,6 +31,62 @@ jobs:
           source: ./
           destination: ./_site
 
+      - name: Install Google Analytics 4 sitewide
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          GA_TAG = '''<script async src="https://www.googletagmanager.com/gtag/js?id=G-DBXYK9VD3N"></script>
+          <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-DBXYK9VD3N');
+          </script>'''
+
+          root = Path("_site")
+          head_pattern = re.compile(r"<head\\b[^>]*>", re.IGNORECASE)
+          existing_tag_pattern = re.compile(r"googletagmanager\\.com/gtag/js\\?id=G-DBXYK9VD3N", re.IGNORECASE)
+          csp_pattern = re.compile(r'(<meta\\s+http-equiv=["\\']Content-Security-Policy["\\']\\s+content=["\\'])(.*?)(["\\'])', re.IGNORECASE | re.DOTALL)
+
+          changed = 0
+          for path in root.rglob("*.html"):
+              text = path.read_text(encoding="utf-8")
+
+              # Add the GA4 Google tag once, immediately after <head>.
+              if not existing_tag_pattern.search(text):
+                  match = head_pattern.search(text)
+                  if not match:
+                      raise SystemExit(f"<head> not found: {path}")
+                  text = text[:match.end()] + "\n" + GA_TAG + text[match.end():]
+
+              # Allow the GA4 script and collection endpoints through the site's CSP.
+              def update_csp(match):
+                  prefix, policy, suffix = match.groups()
+                  additions = {
+                      "script-src": "https://www.googletagmanager.com",
+                      "connect-src": "https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com",
+                  }
+                  for directive, values in additions.items():
+                      pattern = re.compile(rf"(^|\\s){re.escape(directive)}\\s+([^;]*)", re.IGNORECASE)
+                      dm = pattern.search(policy)
+                      if dm:
+                          current = dm.group(2)
+                          for value in values.split():
+                              if value not in current.split():
+                                  current += " " + value
+                          policy = policy[:dm.start(2)] + current + policy[dm.end(2):]
+                      else:
+                          policy += f"; {directive} 'self' {values}"
+                  return prefix + policy + suffix
+
+              text = csp_pattern.sub(update_csp, text, count=1)
+              path.write_text(text, encoding="utf-8")
+              changed += 1
+
+          print(f"Installed Google Analytics 4 (G-DBXYK9VD3N) on {changed} HTML pages in the production build.")
+
       - name: Normalize sitewide primary navigation
         shell: python
         run: |
