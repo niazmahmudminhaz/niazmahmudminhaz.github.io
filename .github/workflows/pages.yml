@@ -26,7 +26,8 @@ jobs:
         uses: actions/configure-pages@v5
 
       # Normalize legacy hardcoded navigation in writable source files before Jekyll.
-      # This keeps every published HTML page aligned with the canonical site IA.
+      # Certifications is intentionally not a top-level navigation item; it belongs
+      # under the About silo. The Services control is rebuilt by service-silo.js.
       - name: Normalize site navigation
         shell: python
         run: |
@@ -72,6 +73,37 @@ jobs:
 
           print(f'Checked {checked} source HTML files; normalized navigation on {changed} files.')
 
+      # Inject the same canonical 22-service silo on every published page,
+      # including legacy service pages that do not use the Jekyll nav include.
+      - name: Load canonical service silo
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          root = Path('.')
+          script_tag = '<script src="/service-silo.js" defer></script>'
+          body_pattern = re.compile(r'</body>', re.IGNORECASE)
+          changed = 0
+          checked = 0
+
+          for path in root.rglob('*.html'):
+              if any(part in {'.git', '_site', 'vendor', '_includes'} for part in path.parts):
+                  continue
+
+              checked += 1
+              text = path.read_text(encoding='utf-8')
+              if '/service-silo.js' in text:
+                  continue
+              if not body_pattern.search(text):
+                  raise SystemExit(f'</body> not found in source HTML: {path}')
+
+              text = body_pattern.sub(script_tag + '\\n</body>', text, count=1)
+              path.write_text(text, encoding='utf-8')
+              changed += 1
+
+          print(f'Checked {checked} source HTML files; injected service-silo.js into {changed} files.')
+
       # Prepare the writable source tree before Jekyll builds it. The previous
       # workflow rewrote generated _site files after the build, which could
       # fail with PermissionError and prevent the Pages artifact from uploading.
@@ -90,14 +122,14 @@ jobs:
           </script>'''
 
           root = Path('.')
-          head_pattern = re.compile(r"<head\b[^>]*>", re.IGNORECASE)
+          head_pattern = re.compile(r"<head\\b[^>]*>", re.IGNORECASE)
           existing_tag_pattern = re.compile(
-              r"googletagmanager\.com/gtag/js\?id=G-DBXYK9VD3N",
+              r"googletagmanager\\.com/gtag/js\\?id=G-DBXYK9VD3N",
               re.IGNORECASE,
           )
-          ga_include_pattern = re.compile(r"\{%\s*include\s+ga4\.html\s*%\}", re.IGNORECASE)
+          ga_include_pattern = re.compile(r"\\{%\\s*include\\s+ga4\\.html\\s*%\\}", re.IGNORECASE)
           csp_pattern = re.compile(
-              r'(<meta\s+http-equiv=["\']Content-Security-Policy["\']\s+content=["\'])(.*?)(["\'])',
+              r'(<meta\\s+http-equiv=["\\']Content-Security-Policy["\\']\\s+content=["\\'])(.*?)(["\\'])',
               re.IGNORECASE | re.DOTALL,
           )
 
@@ -114,7 +146,7 @@ jobs:
 
               for directive, values in additions.items():
                   pattern = re.compile(
-                      rf"(^|\s){re.escape(directive)}\s+([^;]*)",
+                      rf"(^|\\s){re.escape(directive)}\\s+([^;]*)",
                       re.IGNORECASE,
                   )
                   dm = pattern.search(policy)
@@ -146,7 +178,7 @@ jobs:
                   match = head_pattern.search(text)
                   if not match:
                       raise SystemExit(f"<head> not found in source HTML: {path}")
-                  text = text[:match.end()] + "\n" + GA_TAG + text[match.end():]
+                  text = text[:match.end()] + "\\n" + GA_TAG + text[match.end():]
 
               if "Content-Security-Policy" in text:
                   text = csp_pattern.sub(update_csp, text, count=1)
