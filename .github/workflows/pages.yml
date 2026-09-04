@@ -98,7 +98,7 @@ jobs:
               if not body_pattern.search(text):
                   raise SystemExit(f'</body> not found in source HTML: {path}')
 
-              text = body_pattern.sub(script_tag + '\\n</body>', text, count=1)
+              text = body_pattern.sub(script_tag + '\n</body>', text, count=1)
               path.write_text(text, encoding='utf-8')
               changed += 1
 
@@ -122,14 +122,14 @@ jobs:
           </script>'''
 
           root = Path('.')
-          head_pattern = re.compile(r"<head\\b[^>]*>", re.IGNORECASE)
+          head_pattern = re.compile(r"<head\b[^>]*>", re.IGNORECASE)
           existing_tag_pattern = re.compile(
-              r"googletagmanager\\.com/gtag/js\\?id=G-DBXYK9VD3N",
+              r"googletagmanager\.com/gtag/js\?id=G-DBXYK9VD3N",
               re.IGNORECASE,
           )
-          ga_include_pattern = re.compile(r"\\{%\\s*include\\s+ga4\\.html\\s*%\\}", re.IGNORECASE)
+          ga_include_pattern = re.compile(r"\{%\s*include\s+ga4\.html\s*%\}", re.IGNORECASE)
           csp_pattern = re.compile(
-              r'(<meta\\s+http-equiv=["\\']Content-Security-Policy["\\']\\s+content=["\\'])(.*?)(["\\'])',
+              r'(<meta\s+http-equiv=["\']Content-Security-Policy["\']\s+content=["\'])(.*?)(["\'])',
               re.IGNORECASE | re.DOTALL,
           )
 
@@ -146,7 +146,7 @@ jobs:
 
               for directive, values in additions.items():
                   pattern = re.compile(
-                      rf"(^|\\s){re.escape(directive)}\\s+([^;]*)",
+                      rf"(^|\s){re.escape(directive)}\s+([^;]*)",
                       re.IGNORECASE,
                   )
                   dm = pattern.search(policy)
@@ -178,7 +178,7 @@ jobs:
                   match = head_pattern.search(text)
                   if not match:
                       raise SystemExit(f"<head> not found in source HTML: {path}")
-                  text = text[:match.end()] + "\\n" + GA_TAG + text[match.end():]
+                  text = text[:match.end()] + "\n" + GA_TAG + text[match.end():]
 
               if "Content-Security-Policy" in text:
                   text = csp_pattern.sub(update_csp, text, count=1)
