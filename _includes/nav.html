@@ -1,0 +1,8 @@
+<nav class="nav-links">
+  <a href="/"{% if page.url == '/' %} aria-current="page"{% endif %}>Home</a>
+  <a href="/services/"{% if page.url contains '/services/' %} aria-current="page"{% endif %}>Services</a>
+  <a href="/about/"{% if page.url contains '/about/' %} aria-current="page"{% endif %}>About</a>
+  <a href="/case-studies/"{% if page.url contains '/case-studies/' %} aria-current="page"{% endif %}>Case Studies</a>
+  <a href="/contact/"{% if page.url contains '/contact/' %} aria-current="page"{% endif %}>Contact</a>
+  <button id="themeToggle" class="theme-toggle" type="button">Dark / Light</button>
+</nav>
