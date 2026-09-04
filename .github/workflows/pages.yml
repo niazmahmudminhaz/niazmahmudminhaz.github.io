@@ -48,6 +48,7 @@ jobs:
               r"googletagmanager\.com/gtag/js\?id=G-DBXYK9VD3N",
               re.IGNORECASE,
           )
+          ga_include_pattern = re.compile(r"\{%\s*include\s+ga4\.html\s*%\}", re.IGNORECASE)
           csp_pattern = re.compile(
               r'(<meta\s+http-equiv=["\']Content-Security-Policy["\']\s+content=["\'])(.*?)(["\'])',
               re.IGNORECASE | re.DOTALL,
@@ -94,7 +95,9 @@ jobs:
               text = path.read_text(encoding="utf-8")
               original = text
 
-              if not existing_tag_pattern.search(text):
+              # Pages using the Jekyll GA4 include already receive the tag at
+              # render time. Do not inject a second tag into those source files.
+              if not existing_tag_pattern.search(text) and not ga_include_pattern.search(text):
                   match = head_pattern.search(text)
                   if not match:
                       raise SystemExit(f"<head> not found in source HTML: {path}")
