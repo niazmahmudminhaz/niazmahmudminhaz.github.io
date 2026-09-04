@@ -25,9 +25,8 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      # Normalize legacy hardcoded navigation in writable source files before Jekyll.
-      # Certifications is intentionally not a top-level navigation item; it belongs
-      # under the About silo. The Services control is rebuilt by service-silo.js.
+      # Canonical primary navigation for every published page.
+      # FAQ is a supporting resource, not a primary-nav item.
       - name: Normalize site navigation
         shell: python
         run: |
@@ -40,7 +39,6 @@ jobs:
             <a href="/about/">About</a>
             <a href="/case-studies/">Case Studies</a>
             <a href="/blog/">Blog</a>
-            <a href="/faq/">FAQ</a>
             <a href="/contact/">Contact</a>
             <button id="themeToggle" class="theme-toggle" type="button">Dark / Light</button>
           </nav>'''
@@ -63,8 +61,7 @@ jobs:
               original = text
 
               def replace(match):
-                  prefix = match.group(1)
-                  return prefix + NAV
+                  return match.group(1) + NAV
 
               text, count = nav_pattern.subn(replace, text, count=1)
               if count and text != original:
@@ -72,6 +69,50 @@ jobs:
                   changed += 1
 
           print(f'Checked {checked} source HTML files; normalized navigation on {changed} files.')
+
+      # One canonical footer source is kept in _includes/footer.html.
+      # Because many legacy pages are standalone HTML without front matter,
+      # this build step inlines that single canonical include into every page
+      # instead of leaving unresolved Liquid tags in static output.
+      - name: Normalize shared footer
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          root = Path('.')
+          footer_path = root / '_includes' / 'footer.html'
+          footer = footer_path.read_text(encoding='utf-8').strip()
+          footer_pattern = re.compile(
+              r'<footer\b[^>]*class=["\'][^"\']*site-footer[^"\']*["\'][^>]*>.*?</footer>',
+              re.IGNORECASE | re.DOTALL,
+          )
+          body_pattern = re.compile(r'</body>', re.IGNORECASE)
+
+          replaced = 0
+          injected = 0
+          checked = 0
+
+          for path in root.rglob('*.html'):
+              if any(part in {'.git', '_site', 'vendor', '_includes'} for part in path.parts):
+                  continue
+
+              checked += 1
+              text = path.read_text(encoding='utf-8')
+
+              if footer_pattern.search(text):
+                  text, count = footer_pattern.subn(footer, text, count=1)
+                  if count:
+                      path.write_text(text, encoding='utf-8')
+                      replaced += 1
+                  continue
+
+              if body_pattern.search(text):
+                  text = body_pattern.sub(footer + '\\n</body>', text, count=1)
+                  path.write_text(text, encoding='utf-8')
+                  injected += 1
+
+          print(f'Checked {checked} source HTML files; canonicalized {replaced} footers and injected {injected} missing footers.')
 
       # Inject the same canonical 22-service silo on every real HTML page,
       # including legacy service pages that do not use the Jekyll nav include.
