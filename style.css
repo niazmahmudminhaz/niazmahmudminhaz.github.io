@@ -54,3 +54,6 @@ body{background-image:radial-gradient(circle at 18% 8%,var(--glow),transparent 2
 @media(prefers-reduced-motion:reduce){body{background-attachment:scroll}.hero-copy,.hero-media,.section-intro,.prose,.service-grid,.cards,.article-grid,.topic-grid,.steps,.faq-list,.contact-layout,.cards article,.service-grid article,.article-card,.topic-card,.steps>div,.faq-item,.profile-card,.profile-card img,.btn,.footer-links a{animation:none!important;transition:none!important}.hero::after{animation:none!important}}
 @media(max-width:800px){.site-header{box-shadow:0 6px 22px rgba(15,23,42,.05)}.nav-links{box-shadow:0 20px 42px rgba(15,23,42,.11)}.hero::before{height:220px;background-size:24px 24px}.hero::after{width:210px;height:210px;right:-80px;top:20px}}
 @media(max-width:500px){.container{width:min(100% - 24px,1120px)}.actions .btn{width:100%}}
+
+/* Core-content safety: essential content must remain visible even when reveal JavaScript fails or is blocked. */
+[data-reveal]{opacity:1!important;transform:none!important}
