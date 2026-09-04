@@ -2,6 +2,3 @@ User-agent: *
 Allow: /
 
 Sitemap: https://niazmahmudminhaz.github.io/sitemap.xml
-Sitemap: https://niazmahmudminhaz.github.io/sitemap-core.xml
-Sitemap: https://niazmahmudminhaz.github.io/sitemap-services.xml
-Sitemap: https://niazmahmudminhaz.github.io/sitemap-blog.xml
