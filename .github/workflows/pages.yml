@@ -88,7 +88,7 @@ jobs:
           files_checked = 0
 
           for path in root.rglob("*.html"):
-              if any(part in {".git", "_site", "vendor"} for part in path.parts):
+              if any(part in {".git", "_site", "vendor", "_includes"} for part in path.parts):
                   continue
 
               files_checked += 1
