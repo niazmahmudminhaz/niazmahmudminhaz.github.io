@@ -25,6 +25,53 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      # Normalize legacy hardcoded navigation in writable source files before Jekyll.
+      # This keeps every published HTML page aligned with the canonical site IA.
+      - name: Normalize site navigation
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          NAV = '''<nav class="nav-links">
+            <a href="/">Home</a>
+            <a href="/services/">Services</a>
+            <a href="/about/">About</a>
+            <a href="/case-studies/">Case Studies</a>
+            <a href="/blog/">Blog</a>
+            <a href="/faq/">FAQ</a>
+            <a href="/contact/">Contact</a>
+            <button id="themeToggle" class="theme-toggle" type="button">Dark / Light</button>
+          </nav>'''
+
+          root = Path('.')
+          nav_pattern = re.compile(
+              r'(<header\b[^>]*class=["\'][^"\']*site-header[^"\']*["\'][^>]*>.*?<div\b[^>]*class=["\'][^"\']*nav-wrap[^"\']*["\'][^>]*>.*?)'
+              r'<nav\b[^>]*class=["\'][^"\']*nav-links[^"\']*["\'][^>]*>.*?</nav>',
+              re.IGNORECASE | re.DOTALL,
+          )
+
+          changed = 0
+          checked = 0
+
+          for path in root.rglob('*.html'):
+              if any(part in {'.git', '_site', 'vendor', '_includes'} for part in path.parts):
+                  continue
+              checked += 1
+              text = path.read_text(encoding='utf-8')
+              original = text
+
+              def replace(match):
+                  prefix = match.group(1)
+                  return prefix + NAV
+
+              text, count = nav_pattern.subn(replace, text, count=1)
+              if count and text != original:
+                  path.write_text(text, encoding='utf-8')
+                  changed += 1
+
+          print(f'Checked {checked} source HTML files; normalized navigation on {changed} files.')
+
       # Prepare the writable source tree before Jekyll builds it. The previous
       # workflow rewrote generated _site files after the build, which could
       # fail with PermissionError and prevent the Pages artifact from uploading.
@@ -95,8 +142,6 @@ jobs:
               text = path.read_text(encoding="utf-8")
               original = text
 
-              # Pages using the Jekyll GA4 include already receive the tag at
-              # render time. Do not inject a second tag into those source files.
               if not existing_tag_pattern.search(text) and not ga_include_pattern.search(text):
                   match = head_pattern.search(text)
                   if not match:
@@ -121,8 +166,6 @@ jobs:
           source: ./
           destination: ./_site
 
-      # Navigation is owned by the source pages/templates. Do not rewrite
-      # generated _site HTML in the deployment pipeline.
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
