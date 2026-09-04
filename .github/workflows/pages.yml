@@ -73,8 +73,9 @@ jobs:
 
           print(f'Checked {checked} source HTML files; normalized navigation on {changed} files.')
 
-      # Inject the same canonical 22-service silo on every published page,
+      # Inject the same canonical 22-service silo on every real HTML page,
       # including legacy service pages that do not use the Jekyll nav include.
+      # Front-matter-only redirect stubs are intentionally skipped.
       - name: Load canonical service silo
         shell: python
         run: |
@@ -86,6 +87,7 @@ jobs:
           body_pattern = re.compile(r'</body>', re.IGNORECASE)
           changed = 0
           checked = 0
+          skipped = 0
 
           for path in root.rglob('*.html'):
               if any(part in {'.git', '_site', 'vendor', '_includes'} for part in path.parts):
@@ -96,17 +98,18 @@ jobs:
               if '/service-silo.js' in text:
                   continue
               if not body_pattern.search(text):
-                  raise SystemExit(f'</body> not found in source HTML: {path}')
+                  skipped += 1
+                  continue
 
               text = body_pattern.sub(script_tag + '\n</body>', text, count=1)
               path.write_text(text, encoding='utf-8')
               changed += 1
 
-          print(f'Checked {checked} source HTML files; injected service-silo.js into {changed} files.')
+          print(f'Checked {checked} source HTML files; injected service-silo.js into {changed} files; skipped {skipped} redirect/non-page files.')
 
-      # Prepare the writable source tree before Jekyll builds it. The previous
-      # workflow rewrote generated _site files after the build, which could
-      # fail with PermissionError and prevent the Pages artifact from uploading.
+      # Prepare the writable source tree before Jekyll builds it. Keep the
+      # established GA4 measurement and CSP logic, but skip front-matter-only
+      # redirect stubs that do not contain a real HTML <head>.
       - name: Prepare source HTML for Google Analytics 4
         shell: python
         run: |
@@ -165,6 +168,7 @@ jobs:
 
           changed = 0
           files_checked = 0
+          skipped = 0
 
           for path in root.rglob("*.html"):
               if any(part in {".git", "_site", "vendor", "_includes"} for part in path.parts):
@@ -177,7 +181,8 @@ jobs:
               if not existing_tag_pattern.search(text) and not ga_include_pattern.search(text):
                   match = head_pattern.search(text)
                   if not match:
-                      raise SystemExit(f"<head> not found in source HTML: {path}")
+                      skipped += 1
+                      continue
                   text = text[:match.end()] + "\n" + GA_TAG + text[match.end():]
 
               if "Content-Security-Policy" in text:
@@ -189,7 +194,7 @@ jobs:
 
           print(
               f"Prepared {files_checked} source HTML files; "
-              f"updated {changed} files for GA4 (G-DBXYK9VD3N)."
+              f"updated {changed} files for GA4 (G-DBXYK9VD3N); skipped {skipped} files without a real <head>."
           )
 
       - name: Build with Jekyll
