@@ -12,8 +12,7 @@
         ['On-Page SEO', '/services/on-page-seo/'],
         ['Local SEO', '/services/local-seo/'],
         ['Off-Page SEO', '/services/off-page-seo/'],
-        ['Backlink Analysis', '/services/backlink-analysis/'],
-        ['All SEO Services →', '/services/']
+        ['Backlink Analysis', '/services/backlink-analysis/']
       ]
     },
     {
@@ -59,7 +58,7 @@
     <button class="silo-trigger" type="button" aria-expanded="false" aria-haspopup="true">
       SEO Services <span class="silo-arrow">▾</span>
     </button>
-    <div class="silo-panel" role="menu">
+    <div class="silo-panel" role="menu" aria-label="SEO Services">
       ${groups.map(group => `
         <div class="silo-group">
           <p class="silo-title">${group.title}</p>
