@@ -26,9 +26,9 @@ jobs:
         uses: actions/configure-pages@v5
 
       # Keep one canonical primary navigation source in _includes/nav.html.
-      # Any legacy hard-coded page navigation is replaced before the build,
-      # and the normalized source is committed back to main. This prevents
-      # future content commits from reintroducing the retired silo.
+      # Legacy hard-coded navigation is normalized in the repository before
+      # the Jekyll build and committed back to main so future page edits stay
+      # on the same navigation architecture.
       - name: Enforce canonical source navigation
         if: ${{ github.actor != 'github-actions[bot]' }}
         shell: python
@@ -43,6 +43,7 @@ jobs:
               r'<nav\b[^>]*class=["\'][^"\']*nav-links[^"\']*["\'][^>]*>.*?</nav>',
               re.IGNORECASE | re.DOTALL,
           )
+          front_matter_pattern = re.compile(r'\A---\s*\n.*?\n---\s*\n', re.DOTALL)
           changed = []
 
           for path in root.rglob('*.html'):
@@ -51,24 +52,45 @@ jobs:
 
               text = path.read_text(encoding='utf-8')
               original = text
+              has_front_matter = bool(re.match(r'\A---\s*\n', text))
+              has_legacy_nav = bool(nav_pattern.search(text))
+              has_canonical_include = include in text
 
-              # Every page using Liquid must have front matter so the shared
-              # navigation include is processed by Jekyll instead of emitted
-              # literally. Preserve any existing front matter exactly.
-              if not re.match(r'\A---\s*\n', text):
+              # Pages using the shared Liquid navigation must have Jekyll
+              # front matter. Add only the minimal empty front matter when
+              # needed, preserving any existing front matter unchanged.
+              if not has_front_matter and (has_legacy_nav or has_canonical_include):
                   text = '---\n---\n' + text
 
-              # Replace only the primary navigation block. Footer/content,
-              # schema, metadata, forms, scripts and URLs remain untouched.
+              # Replace only the primary navigation block. Footer, content,
+              # schema, metadata, forms, scripts, assets and published URLs
+              # are not touched by this normalization.
               text, count = nav_pattern.subn(include, text, count=1)
-              if count and text != original:
+
+              if text != original:
                   path.write_text(text, encoding='utf-8')
                   changed.append(str(path))
+
+          # Verify that no source HTML page outside _includes still contains
+          # a hard-coded primary navigation before committing the cleanup.
+          remaining = []
+          for path in root.rglob('*.html'):
+              if any(part in {'.git', '_site', 'vendor', '_includes'} for part in path.parts):
+                  continue
+              text = path.read_text(encoding='utf-8')
+              if nav_pattern.search(text):
+                  remaining.append(str(path))
+
+          if remaining:
+              print('Legacy hard-coded navigation remains in:')
+              for path in remaining:
+                  print(path)
+              raise SystemExit(1)
 
           if changed:
               subprocess.run(['git', 'config', 'user.name', 'github-actions[bot]'], check=True)
               subprocess.run(['git', 'config', 'user.email', '41898282+github-actions[bot]@users.noreply.github.com'], check=True)
-              subprocess.run(['git', 'add', '--', '*.html', '*/*.html', '*/*/*.html', '*/*/*/*.html'], check=False)
+              subprocess.run(['git', 'add', '-A', '--', '.'], check=True)
               subprocess.run(['git', 'diff', '--cached', '--check'], check=True)
               subprocess.run(['git', 'commit', '-m', 'Normalize all pages to canonical shared navigation'], check=True)
               subprocess.run(['git', 'push', 'origin', 'HEAD:main'], check=True)
