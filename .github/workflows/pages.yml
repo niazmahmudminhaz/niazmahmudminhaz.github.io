@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -25,13 +25,58 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      # Navigation is now taken directly from source files.
-      # Do not rewrite page navigation during deployment.
-      - name: Preserve source navigation
-        if: ${{ false }}
+      # Keep one canonical primary navigation source in _includes/nav.html.
+      # Any legacy hard-coded page navigation is replaced before the build,
+      # and the normalized source is committed back to main. This prevents
+      # future content commits from reintroducing the retired silo.
+      - name: Enforce canonical source navigation
+        if: ${{ github.actor != 'github-actions[bot]' }}
         shell: python
         run: |
-          print('Navigation rewrite intentionally disabled; preserving repository source.')
+          from pathlib import Path
+          import re
+          import subprocess
+
+          root = Path('.')
+          include = '{% include nav.html %}'
+          nav_pattern = re.compile(
+              r'<nav\b[^>]*class=["\'][^"\']*nav-links[^"\']*["\'][^>]*>.*?</nav>',
+              re.IGNORECASE | re.DOTALL,
+          )
+          changed = []
+
+          for path in root.rglob('*.html'):
+              if any(part in {'.git', '_site', 'vendor', '_includes'} for part in path.parts):
+                  continue
+
+              text = path.read_text(encoding='utf-8')
+              original = text
+
+              # Every page using Liquid must have front matter so the shared
+              # navigation include is processed by Jekyll instead of emitted
+              # literally. Preserve any existing front matter exactly.
+              if not re.match(r'\A---\s*\n', text):
+                  text = '---\n---\n' + text
+
+              # Replace only the primary navigation block. Footer/content,
+              # schema, metadata, forms, scripts and URLs remain untouched.
+              text, count = nav_pattern.subn(include, text, count=1)
+              if count and text != original:
+                  path.write_text(text, encoding='utf-8')
+                  changed.append(str(path))
+
+          if changed:
+              subprocess.run(['git', 'config', 'user.name', 'github-actions[bot]'], check=True)
+              subprocess.run(['git', 'config', 'user.email', '41898282+github-actions[bot]@users.noreply.github.com'], check=True)
+              subprocess.run(['git', 'add', '--', '*.html', '*/*.html', '*/*/*.html', '*/*/*/*.html'], check=False)
+              subprocess.run(['git', 'diff', '--cached', '--check'], check=True)
+              subprocess.run(['git', 'commit', '-m', 'Normalize all pages to canonical shared navigation'], check=True)
+              subprocess.run(['git', 'push', 'origin', 'HEAD:main'], check=True)
+              print(f'Normalized and committed {len(changed)} page(s).')
+              for path in changed:
+                  print(path)
+          else:
+              print('All source HTML pages already use the canonical shared navigation.')
 
       # One canonical footer source is kept in _includes/footer.html.
       # Public email is intentionally not rendered in the footer.
