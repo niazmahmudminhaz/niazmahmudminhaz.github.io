@@ -1,3 +1,5 @@
+---
+---
 <!doctype html>
 <html lang="en">
 <head>
@@ -57,53 +59,7 @@
   <div class="container nav-wrap">
     <a class="logo" href="/" aria-label="Niaz Mahmud Minhaz home">Niaz Mahmud Minhaz</a>
     <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
-    <nav class="nav-links" aria-label="Primary navigation">
-      <a href="/" aria-current="page">Home</a>
-      <div class="service-silo">
-        <button class="silo-trigger" type="button" aria-expanded="false" aria-haspopup="true">SEO Services <span class="silo-arrow">▾</span></button>
-        <div class="silo-panel" role="menu" aria-label="SEO Services">
-          <div class="silo-group">
-            <p class="silo-title">Core SEO</p>
-            <a href="/services/seo-consultation/" role="menuitem">SEO Consultation</a>
-            <a href="/services/seo-audits/" role="menuitem">SEO Audits</a>
-            <a href="/services/technical-seo/" role="menuitem">Technical SEO</a>
-            <a href="/services/on-page-seo/" role="menuitem">On-Page SEO</a>
-            <a href="/services/local-seo/" role="menuitem">Local SEO</a>
-            <a href="/services/off-page-seo/" role="menuitem">Off-Page SEO</a>
-            <a href="/services/backlink-analysis/" role="menuitem">Backlink Analysis</a>
-          </div>
-          <div class="silo-group">
-            <p class="silo-title">AI Search</p>
-            <a href="/services/ai-search-seo/" role="menuitem">AI Search SEO</a>
-            <a href="/services/aeo/" role="menuitem">AEO</a>
-            <a href="/services/geo/" role="menuitem">GEO</a>
-            <a href="/services/gbo/" role="menuitem">GBO</a>
-          </div>
-          <div class="silo-group">
-            <p class="silo-title">Ecommerce &amp; Platforms</p>
-            <a href="/services/ecommerce-seo/" role="menuitem">Ecommerce SEO</a>
-            <a href="/services/shopify-seo/" role="menuitem">Shopify SEO</a>
-            <a href="/services/woocommerce-seo/" role="menuitem">WooCommerce SEO</a>
-            <a href="/services/wordpress-seo/" role="menuitem">WordPress SEO</a>
-            <a href="/services/webflow-seo/" role="menuitem">Webflow SEO</a>
-            <a href="/services/wix-seo/" role="menuitem">Wix SEO</a>
-            <a href="/services/squarespace-seo/" role="menuitem">Squarespace SEO</a>
-          </div>
-          <div class="silo-group">
-            <p class="silo-title">Geographic &amp; Authority</p>
-            <a href="/services/hyperlocal-seo/" role="menuitem">Hyperlocal SEO</a>
-            <a href="/services/international-seo/" role="menuitem">International SEO</a>
-            <a href="/services/personal-authority-seo/" role="menuitem">Personal Authority SEO</a>
-            <a href="/services/white-hat-seo/" role="menuitem">White-Hat SEO</a>
-          </div>
-        </div>
-      </div>
-      <a href="/about/">About</a>
-      <a href="/case-studies/">Case Studies</a>
-      <a href="/blog/">Blog</a>
-      <a href="/contact/">Contact</a>
-      <button id="themeToggle" class="theme-toggle" type="button">Dark / Light</button>
-    </nav>
+    {% include nav.html %}
     <script src="/service-silo.js" defer></script>
   </div>
 </header>
