@@ -1,45 +1,50 @@
-# Navigation map for topical authority work. URLs point only to existing or approved new pages.
-# Intentionally not rendered into public HTML.
+# Navigation map for topical authority work.
+# Commercial service intent lives under /services/. Research-only intent lives under /insights/.
 clusters:
-  technical-seo:
-    - /services/technical-seo/
+  core-seo:
+    - /services/seo-consultation/
     - /services/seo-audits/
-    - /blog/technical-seo-checklist-2026/
-    - /blog/internal-links-crawlability/
-    - /blog/google-search-console-advanced/
-  on-page-content:
+    - /services/technical-seo/
+    - /services/computational-seo/
+    - /services/keyword-research/
+    - /services/search-intent-analysis/
     - /services/on-page-seo/
-    - /services/content-writing/
-    - /blog/people-first-seo-content/
-    - /blog/on-page-seo-techniques-2026/
-  local-search:
+    - /services/content-seo/
     - /services/local-seo/
-    - /services/hyperlocal-seo/
-    - /blog/bangladesh-business-ecommerce-seo/
-    - /blog/professional-services-seo/
-  authority-evidence:
     - /services/off-page-seo/
-    - /services/backlink-building/
-    - /services/personal-authority-seo/
-    - /services/white-hat-seo/
-    - /reviews/
-    - /blog/seo-case-studies-roi-business-results/
-    - /blog/seo-statistics/
+    - /services/backlink-analysis/
+    - /services/competitive-analysis/
   ai-search:
     - /services/ai-search-seo/
     - /services/aeo/
     - /services/geo/
-    - /blog/ai-search-seo-2026/
-    - /blog/ai-search-business-visibility/
+    - /services/gbo/
   ecommerce-platforms:
     - /services/ecommerce-seo/
     - /services/shopify-seo/
+    - /services/woocommerce-seo/
     - /services/woocommerce-d2c-seo/
     - /services/wordpress-seo/
-  cms-platforms:
     - /services/webflow-seo/
     - /services/wix-seo/
     - /services/squarespace-seo/
-  cross-market:
+  geographic-authority:
+    - /services/hyperlocal-seo/
     - /services/international-seo/
-    - /seo-strategy-lab/
+    - /services/personal-authority-seo/
+    - /services/white-hat-seo/
+  insights-experiments:
+    - /insights/seo-experimentation/
+    - /blog/seo-statistics/
+  insights-methodologies:
+    - /insights/seo-information-gain/
+    - /blog/people-first-seo-content/
+  insights-search-behavior:
+    - /insights/search-intent-analysis/
+    - /blog/internal-links-crawlability/
+  insights-technical-research:
+    - /insights/computational-seo/
+    - /blog/technical-seo-checklist-2026/
+  insights-strategy-analysis:
+    - /insights/choose-an-seo-consultant/
+    - /blog/seo-roadmap-beginners-to-advanced-2026/
