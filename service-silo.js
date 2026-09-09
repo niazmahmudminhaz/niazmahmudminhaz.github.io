@@ -44,6 +44,12 @@
         ['Personal Authority SEO', '/services/personal-authority-seo/'],
         ['White-Hat SEO', '/services/white-hat-seo/']
       ]
+    },
+    {
+      title: 'Overview',
+      items: [
+        ['All Services', '/services/']
+      ]
     }
   ];
 
