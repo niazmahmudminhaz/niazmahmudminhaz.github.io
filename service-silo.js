@@ -9,10 +9,15 @@
         ['SEO Consultation', '/services/seo-consultation/'],
         ['SEO Audits', '/services/seo-audits/'],
         ['Technical SEO', '/services/technical-seo/'],
+        ['Computational SEO', '/services/computational-seo/'],
+        ['Keyword Research', '/services/keyword-research/'],
+        ['Search Intent Analysis', '/services/search-intent-analysis/'],
         ['On-Page SEO', '/services/on-page-seo/'],
+        ['Content SEO', '/services/content-seo/'],
         ['Local SEO', '/services/local-seo/'],
         ['Off-Page SEO', '/services/off-page-seo/'],
-        ['Backlink Analysis', '/services/backlink-analysis/']
+        ['Backlink Analysis', '/services/backlink-analysis/'],
+        ['Competitive Analysis', '/services/competitive-analysis/']
       ]
     },
     {
