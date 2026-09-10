@@ -67,9 +67,9 @@
   silo.className = 'service-silo';
   silo.innerHTML = `
     <button class="silo-trigger" type="button" aria-expanded="false" aria-haspopup="true">
-      SEO Services <span class="silo-arrow">▾</span>
+      Services <span class="silo-arrow">▾</span>
     </button>
-    <div class="silo-panel" role="menu" aria-label="SEO Services">
+    <div class="silo-panel" role="menu" aria-label="Services">
       ${groups.map(group => `
         <div class="silo-group">
           <p class="silo-title">${group.title}</p>
@@ -78,8 +78,8 @@
       `).join('')}
     </div>`;
 
-  const about = nav.querySelector(':scope > a[href="/about/"]');
-  nav.insertBefore(silo, about || nav.firstChild);
+  const caseStudies = nav.querySelector(':scope > a[href="/case-studies/"]');
+  nav.insertBefore(silo, caseStudies || nav.firstChild);
 
   const trigger = silo.querySelector('.silo-trigger');
   const close = () => {
