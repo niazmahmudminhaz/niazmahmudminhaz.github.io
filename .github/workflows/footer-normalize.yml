@@ -1,0 +1,94 @@
+name: Normalize canonical footer
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: footer-normalize
+  cancel-in-progress: true
+
+jobs:
+  normalize:
+    if: ${{ github.actor != 'github-actions[bot]' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Canonicalize all source footers
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+          import subprocess
+
+          root = Path('.')
+          include = '{% include footer.html %}'
+          footer_pattern = re.compile(
+              r'<footer\b[^>]*class=["\'][^"\']*site-footer[^"\']*["\'][^>]*>.*?</footer>',
+              re.IGNORECASE | re.DOTALL,
+          )
+          body_pattern = re.compile(r'</body>', re.IGNORECASE)
+          changed = []
+
+          for path in root.rglob('*.html'):
+              if any(part in {'.git', '_site', 'vendor', '_includes'} for part in path.parts):
+                  continue
+
+              text = path.read_text(encoding='utf-8')
+              original = text
+              has_front_matter = bool(re.match(r'\A---\s*\n', text))
+
+              if footer_pattern.search(text):
+                  text, count = footer_pattern.subn(include, text, count=1)
+                  if count and not has_front_matter:
+                      text = '---\n---\n' + text
+              elif body_pattern.search(text) and include not in text:
+                  if not has_front_matter:
+                      text = '---\n---\n' + text
+                  text = body_pattern.sub(include + '\n</body>', text, count=1)
+
+              if include not in text and body_pattern.search(text):
+                  text = body_pattern.sub(include + '\n</body>', text, count=1)
+
+              if text != original:
+                  path.write_text(text, encoding='utf-8')
+                  changed.append(str(path))
+
+          # Guard: every source HTML page with a body must contain the
+          # canonical include exactly once and must not contain a hard-coded
+          # site-footer block.
+          failures = []
+          for path in root.rglob('*.html'):
+              if any(part in {'.git', '_site', 'vendor', '_includes'} for part in path.parts):
+                  continue
+              text = path.read_text(encoding='utf-8')
+              if '<body' not in text.lower():
+                  continue
+              if text.count(include) != 1 or footer_pattern.search(text):
+                  failures.append(str(path))
+
+          if failures:
+              print('Footer normalization failed for:')
+              for path in failures:
+                  print(path)
+              raise SystemExit(1)
+
+          if changed:
+              subprocess.run(['git', 'config', 'user.name', 'github-actions[bot]'], check=True)
+              subprocess.run(['git', 'config', 'user.email', '41898282+github-actions[bot]@users.noreply.github.com'], check=True)
+              subprocess.run(['git', 'add', '-A', '--', '.'], check=True)
+              subprocess.run(['git', 'diff', '--cached', '--check'], check=True)
+              subprocess.run(['git', 'commit', '-m', 'Normalize all pages to canonical shared footer'], check=True)
+              subprocess.run(['git', 'push', 'origin', 'HEAD:main'], check=True)
+              print(f'Canonicalized {len(changed)} page(s).')
+          else:
+              print('All source HTML pages already use the canonical shared footer.')
