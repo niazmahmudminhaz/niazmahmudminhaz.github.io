@@ -55,7 +55,8 @@ service-page generations exist, and navigation / conversion-CTA structures vary 
 pages. Always compare page types before editing any shared block.
 
 ## Current approved information architecture
-Primary navigation: Home → Services → About → Case Studies → Contact.
+Primary navigation: Home → Services → Case Studies → Blog → About → Contacts.
+The Services item uses the current shared service-silo navigation; do not restore a legacy flat service menu.
 Certifications are a section of About at `/about/#certifications` and are not a primary-nav item.
 FAQ remains `/faq/` as a supporting resource and is not a primary-nav item.
 Use **Blog**, not Insights, for the main educational content concept.
