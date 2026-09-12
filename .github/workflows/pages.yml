@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -24,126 +24,6 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
-
-      # Keep one canonical primary navigation source in _includes/nav.html.
-      # Legacy hard-coded navigation is normalized in the repository before
-      # the Jekyll build and committed back to main so future page edits stay
-      # on the same navigation architecture.
-      - name: Enforce canonical source navigation
-        if: ${{ github.actor != 'github-actions[bot]' }}
-        shell: python
-        run: |
-          from pathlib import Path
-          import re
-          import subprocess
-
-          root = Path('.')
-          include = '{% include nav.html %}'
-          nav_pattern = re.compile(
-              r'<nav\b[^>]*class=["\'][^"\']*nav-links[^"\']*["\'][^>]*>.*?</nav>',
-              re.IGNORECASE | re.DOTALL,
-          )
-          front_matter_pattern = re.compile(r'\A---\s*\n.*?\n---\s*\n', re.DOTALL)
-          changed = []
-
-          for path in root.rglob('*.html'):
-              if any(part in {'.git', '_site', 'vendor', '_includes'} for part in path.parts):
-                  continue
-
-              text = path.read_text(encoding='utf-8')
-              original = text
-              has_front_matter = bool(re.match(r'\A---\s*\n', text))
-              has_legacy_nav = bool(nav_pattern.search(text))
-              has_canonical_include = include in text
-
-              # Pages using the shared Liquid navigation must have Jekyll
-              # front matter. Add only the minimal empty front matter when
-              # needed, preserving any existing front matter unchanged.
-              if not has_front_matter and (has_legacy_nav or has_canonical_include):
-                  text = '---\n---\n' + text
-
-              # Replace only the primary navigation block. Footer, content,
-              # schema, metadata, forms, scripts, assets and published URLs
-              # are not touched by this normalization.
-              text, count = nav_pattern.subn(include, text, count=1)
-
-              if text != original:
-                  path.write_text(text, encoding='utf-8')
-                  changed.append(str(path))
-
-          # Verify that no source HTML page outside _includes still contains
-          # a hard-coded primary navigation before committing the cleanup.
-          remaining = []
-          for path in root.rglob('*.html'):
-              if any(part in {'.git', '_site', 'vendor', '_includes'} for part in path.parts):
-                  continue
-              text = path.read_text(encoding='utf-8')
-              if nav_pattern.search(text):
-                  remaining.append(str(path))
-
-          if remaining:
-              print('Legacy hard-coded navigation remains in:')
-              for path in remaining:
-                  print(path)
-              raise SystemExit(1)
-
-          if changed:
-              subprocess.run(['git', 'config', 'user.name', 'github-actions[bot]'], check=True)
-              subprocess.run(['git', 'config', 'user.email', '41898282+github-actions[bot]@users.noreply.github.com'], check=True)
-              subprocess.run(['git', 'add', '-A', '--', '.'], check=True)
-              subprocess.run(['git', 'diff', '--cached', '--check'], check=True)
-              subprocess.run(['git', 'commit', '-m', 'Normalize all pages to canonical shared navigation'], check=True)
-              subprocess.run(['git', 'push', 'origin', 'HEAD:main'], check=True)
-              print(f'Normalized and committed {len(changed)} page(s).')
-              for path in changed:
-                  print(path)
-          else:
-              print('All source HTML pages already use the canonical shared navigation.')
-
-      # One canonical footer source is kept in _includes/footer.html.
-      # Public email is intentionally not rendered in the footer.
-      - name: Normalize shared footer
-        shell: python
-        run: |
-          from pathlib import Path
-          import re
-
-          root = Path('.')
-          footer_path = root / '_includes' / 'footer.html'
-          footer = footer_path.read_text(encoding='utf-8').strip()
-          footer = re.sub(r'<p>[^<]*@[^<]*<br>', '<p>', footer, count=1)
-          footer_pattern = re.compile(
-              r'<footer\b[^>]*class=["\'][^"\']*site-footer[^"\']*["\'][^>]*>.*?</footer>',
-              re.IGNORECASE | re.DOTALL,
-          )
-          body_pattern = re.compile(r'</body>', re.IGNORECASE)
-
-          replaced = 0
-          injected = 0
-          checked = 0
-
-          for path in root.rglob('*.html'):
-              if any(part in {'.git', '_site', 'vendor', '_includes'} for part in path.parts):
-                  continue
-
-              checked += 1
-              text = path.read_text(encoding='utf-8')
-
-              if footer_pattern.search(text):
-                  text, count = footer_pattern.subn(footer, text, count=1)
-                  if count:
-                      text = re.sub(r'<p><strong>Email:</strong>.*?</p>', '', text, count=1, flags=re.IGNORECASE | re.DOTALL)
-                      path.write_text(text, encoding='utf-8')
-                      replaced += 1
-                  continue
-
-              if body_pattern.search(text):
-                  text = re.sub(r'<p><strong>Email:</strong>.*?</p>', '', text, count=1, flags=re.IGNORECASE | re.DOTALL)
-                  text = body_pattern.sub(footer + '\n</body>', text, count=1)
-                  path.write_text(text, encoding='utf-8')
-                  injected += 1
-
-          print(f'Checked {checked} source HTML files; canonicalized {replaced} footers and injected {injected} missing footers.')
 
       # Make the Web3Forms contact form independent of a missing Web3Forms
       # client bundle. Use the documented direct hCaptcha integration and the
