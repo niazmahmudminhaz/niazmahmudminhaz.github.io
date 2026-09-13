@@ -8,12 +8,15 @@ LOCK = json.loads((ROOT / '.github' / 'silo-lock.json').read_text(encoding='utf-
 NAV = (ROOT / '_includes' / 'nav.html').read_text(encoding='utf-8')
 FOOTER = (ROOT / '_includes' / 'footer.html').read_text(encoding='utf-8')
 
+
 def clean(value):
     return unescape(re.sub(r'<[^>]+>', '', value)).strip()
+
 
 def links(block):
     pairs = re.findall(r'<a[^>]+href="([^"]+)"[^>]*>(.*?)</a>', block, re.S)
     return [(clean(label), href) for href, label in pairs]
+
 
 def groups(text, mode):
     found = []
@@ -25,13 +28,27 @@ def groups(text, mode):
         found.append((clean(match.group(1)), links(match.group(2))))
     return found
 
-expected = [(g['name'], [tuple(x) for x in g['items']]) for g in LOCK['service_groups']]
-assert groups(NAV, 'nav') == expected, 'nav silo differs from lock manifest'
+
+def normalized_service_groups(manifest):
+    expected = [(g['name'], [tuple(x) for x in g['items']]) for g in manifest['service_groups']]
+    overview = next(group for group in expected if group[0] == 'Overview')
+    service_groups = [group for group in expected if group[0] != 'Overview']
+    return service_groups, overview[1]
+
+
+expected_services, expected_overview = normalized_service_groups(LOCK)
+
+nav_groups = groups(NAV, 'nav')
+assert nav_groups == expected_services + [('Overview', expected_overview)], 'nav silo differs from lock manifest'
+
 footer_groups = groups(FOOTER, 'footer')
-assert footer_groups[:5] == expected, 'footer service silo differs from nav/lock manifest'
+footer_services = [group for group in footer_groups if group[0] != 'Site Navigation']
+assert footer_services == expected_services, 'footer service silo differs from nav/lock manifest'
+
 expected_site = [tuple(x) for x in LOCK['site_navigation']]
 site = next(items for name, items in footer_groups if name == 'Site Navigation')
 assert site == expected_site, 'footer Site Navigation differs from lock manifest'
+assert ('All Services', '/services/') in site, 'footer Site Navigation must contain All Services'
 assert 'MIRRORS THE APPROVED PRIMARY SERVICE SILO' in FOOTER, 'footer lock marker missing'
 
 for page in ROOT.rglob('*.html'):
