@@ -1,35 +1,36 @@
 from pathlib import Path
+from html import unescape
 import json
 import re
-import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 LOCK = json.loads((ROOT / '.github' / 'silo-lock.json').read_text(encoding='utf-8'))
 NAV = (ROOT / '_includes' / 'nav.html').read_text(encoding='utf-8')
 FOOTER = (ROOT / '_includes' / 'footer.html').read_text(encoding='utf-8')
 
-def links(block):
-    return [(label.strip(), href) for href, label in re.findall(r'<a[^>]+href="([^"]+)"[^>]*>([^<]+)</a>', block)]
+def clean(value):
+    return unescape(re.sub(r'<[^>]+>', '', value)).strip()
 
-def groups(text, title_class):
+def links(block):
+    pairs = re.findall(r'<a[^>]+href="([^"]+)"[^>]*>(.*?)</a>', block, re.S)
+    return [(clean(label), href) for href, label in pairs]
+
+def groups(text, mode):
     found = []
-    pattern = rf'<div class="{title_class}">.*?</div>' if title_class == 'silo-group' else r'<p class="footer-heading">.*?</div>'
-    if title_class == 'silo-group':
-        for m in re.finditer(r'<div class="silo-group">\s*<p class="silo-title">([^<]+)</p>(.*?)</div>', text, re.S):
-            found.append((m.group(1).strip(), links(m.group(2))))
+    if mode == 'nav':
+        pattern = r'<div class="silo-group">\s*<p class="silo-title">(.*?)</p>(.*?)</div>'
     else:
-        for m in re.finditer(r'<p class="footer-heading">([^<]+)</p>\s*<div class="footer-links">(.*?)</div>', text, re.S):
-            found.append((m.group(1).strip(), links(m.group(2))))
+        pattern = r'<p class="footer-heading">(.*?)</p>\s*<div class="footer-links">(.*?)</div>'
+    for match in re.finditer(pattern, text, re.S):
+        found.append((clean(match.group(1)), links(match.group(2))))
     return found
 
 expected = [(g['name'], [tuple(x) for x in g['items']]) for g in LOCK['service_groups']]
-nav_groups = groups(NAV, 'silo-group')
-footer_groups = groups(FOOTER, 'footer-heading')
-
-assert nav_groups == expected, 'nav silo differs from lock manifest'
+assert groups(NAV, 'nav') == expected, 'nav silo differs from lock manifest'
+footer_groups = groups(FOOTER, 'footer')
 assert footer_groups[:5] == expected, 'footer service silo differs from nav/lock manifest'
 expected_site = [tuple(x) for x in LOCK['site_navigation']]
-site = next(v for n, v in footer_groups if n == 'Site Navigation')
+site = next(items for name, items in footer_groups if name == 'Site Navigation')
 assert site == expected_site, 'footer Site Navigation differs from lock manifest'
 assert 'MIRRORS THE APPROVED PRIMARY SERVICE SILO' in FOOTER, 'footer lock marker missing'
 
