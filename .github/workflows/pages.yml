@@ -170,8 +170,8 @@ jobs:
           source: ./
           destination: ./_site
 
-      # Verify only real document pages. Jekyll also generates redirect-only HTML
-      # files with no <head>/<body>; those are not content pages and do not need GTM.
+      # Verify real site document pages only. Redirect-only artifacts and the
+      # accidental Jekyll rendering of repository documentation are excluded.
       - name: Verify sitewide Google Tag Manager installation
         shell: python
         run: |
@@ -183,17 +183,20 @@ jobs:
           if not html_files:
               raise SystemExit('No generated HTML files found in _site.')
 
-          gtm_head_regex = re.compile(r"https://www\.googletagmanager\.com/gtm\.js\?id=\\?['\"]?\+?i\+?dl", re.IGNORECASE)
-          gtm_head_fallback = "https://www.googletagmanager.com/gtm.js?id="
           gtm_body_marker = 'https://www.googletagmanager.com/ns.html?id=GTM-NKHP3LS4'
           checked = 0
           failures = []
+          excluded = []
 
           for path in html_files:
               text = path.read_text(encoding='utf-8')
               head_match = re.search(r'<head\b[^>]*>(.*?)</head>', text, re.IGNORECASE | re.DOTALL)
               body_match = re.search(r'<body\b[^>]*>(.*?)</body>', text, re.IGNORECASE | re.DOTALL)
-              if not head_match or not body_match:
+
+              # Redirect-only artifacts and the Jekyll-generated repository
+              # documentation page are not website document pages.
+              if not head_match or not body_match or path.name == 'CLAUDE.html':
+                  excluded.append(str(path))
                   continue
 
               checked += 1
@@ -211,7 +214,7 @@ jobs:
               print('\n'.join(failures))
               raise SystemExit(f'GTM verification failed for {len(failures)} real document page(s).')
 
-          print(f'GTM verification passed for all {checked} real document page(s). Redirect-only generated files were excluded.')
+          print(f'GTM verification passed for all {checked} real document page(s). Excluded {len(excluded)} non-document generated artifact(s).')
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
