@@ -54,6 +54,7 @@
   ],
   "site_navigation": [
     ["Home", "/"],
+    ["All Services", "/services/"],
     ["Case Studies", "/case-studies/"],
     ["Blog", "/blog/"],
     ["About", "/about/"],
