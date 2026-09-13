@@ -37,7 +37,6 @@ jobs:
           root = Path('.')
           external = '<script src="https://js.hcaptcha.com/1/api.js" async defer></script>\n<script src="/contact-form.js" defer></script>'
           body_pattern = re.compile(r'</body>', re.IGNORECASE)
-          form_pattern = re.compile(r'<form\b[^>]*id=["\']seoContactForm["\'][^>]*>.*?</form>', re.IGNORECASE | re.DOTALL)
           old_script_pattern = re.compile(r'<script src=["\']https://web3forms\.com/client/script\.js["\'][^>]*></script>', re.IGNORECASE)
           old_inline_pattern = re.compile(r'<script>const form=document\.getElementById\(["\']seoContactForm["\']\).*?</script>', re.IGNORECASE | re.DOTALL)
           changed = 0
@@ -60,7 +59,6 @@ jobs:
                   text = body_pattern.sub(external + '\n</body>', text, count=1)
               if 'js.hcaptcha.com/1/api.js' not in text:
                   text = body_pattern.sub('<script src="https://js.hcaptcha.com/1/api.js" async defer></script>\n</body>', text, count=1)
-
               text = re.sub(r'<p><strong>Email:</strong>.*?</p>', '', text, count=1, flags=re.IGNORECASE | re.DOTALL)
 
               if text != original:
@@ -69,9 +67,8 @@ jobs:
 
           print(f"Normalized {changed} contact-form page(s).")
 
-      # Keep GA4 and Google Tag Manager working from the writable source tree
-      # before Jekyll builds. The GTM snippets are injected centrally so every
-      # HTML page receives the same container without duplicating page source.
+      # Inject analytics and GTM into the writable source tree before Jekyll builds.
+      # This preserves page-owned HTML while guaranteeing sitewide deployment.
       - name: Prepare source HTML for Google Analytics 4 and Google Tag Manager
         shell: python
         run: |
@@ -86,11 +83,13 @@ jobs:
             gtag('config', 'G-DBXYK9VD3N');
           </script>'''
 
-          GTM_HEAD = '''<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          GTM_HEAD = '''<!-- Google Tag Manager -->
+          <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
           j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','GTM-NKHP3LS4');</script>'''
+          })(window,document,'script','dataLayer','GTM-NKHP3LS4');</script>
+          <!-- End Google Tag Manager -->'''
 
           GTM_BODY = '''<!-- Google Tag Manager (noscript) -->
           <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKHP3LS4"
@@ -170,6 +169,39 @@ jobs:
         with:
           source: ./
           destination: ./_site
+
+      # Hard-fail the build if any generated HTML page is missing either GTM snippet.
+      - name: Verify sitewide Google Tag Manager installation
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          root = Path('_site')
+          html_files = sorted(root.rglob('*.html'))
+          if not html_files:
+              raise SystemExit('No generated HTML files found in _site.')
+
+          head_marker = 'https://www.googletagmanager.com/gtm.js?id=GTM-NKHP3LS4'
+          body_marker = 'https://www.googletagmanager.com/ns.html?id=GTM-NKHP3LS4'
+          failures = []
+
+          for path in html_files:
+              text = path.read_text(encoding='utf-8')
+              head_match = re.search(r'<head\b[^>]*>(.*?)</head>', text, re.IGNORECASE | re.DOTALL)
+              body_match = re.search(r'<body\b[^>]*>(.*?)</body>', text, re.IGNORECASE | re.DOTALL)
+              head_ok = bool(head_match and head_marker in head_match.group(1))
+              body_ok = bool(body_match and body_marker in body_match.group(1))
+              head_count = text.count(head_marker)
+              body_count = text.count(body_marker)
+              if not head_ok or not body_ok or head_count != 1 or body_count != 1:
+                  failures.append(f'{path}: head={head_count}, body={body_count}, head_ok={head_ok}, body_ok={body_ok}')
+
+          if failures:
+              print('\n'.join(failures))
+              raise SystemExit(f'GTM verification failed for {len(failures)} generated page(s).')
+
+          print(f'GTM verification passed for all {len(html_files)} generated HTML page(s).')
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
