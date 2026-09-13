@@ -36,12 +36,17 @@ def normalized_service_groups(manifest):
     return service_groups, overview[1]
 
 
-def is_redirect_only(text):
+def is_redirect_page(text):
     front_matter = re.match(r'^---\s*\n(.*?)\n---\s*\n', text, re.S)
-    if not front_matter:
-        return False
-    metadata = front_matter.group(1)
-    return bool(re.search(r'^redirect_to:\s*\S+\s*$', metadata, re.M)) and not re.search(r'^redirect_from:', metadata, re.M)
+    if front_matter:
+        metadata = front_matter.group(1)
+        if bool(re.search(r'^redirect_to:\s*\S+\s*$', metadata, re.M)) and not re.search(r'^redirect_from:', metadata, re.M):
+            return True
+
+    noindex = bool(re.search(r'<meta[^>]+name=["\']robots["\'][^>]+content=["\'][^"\']*noindex', text, re.I | re.S))
+    meta_refresh = bool(re.search(r'<meta[^>]+http-equiv=["\']refresh["\'][^>]*>', text, re.I | re.S))
+    location_redirect = bool(re.search(r'window\.location(?:\.replace)?\s*\(', text, re.I))
+    return noindex and (meta_refresh or location_redirect)
 
 
 expected_services, expected_overview = normalized_service_groups(LOCK)
@@ -63,7 +68,7 @@ for page in ROOT.rglob('*.html'):
     if any(x in page.parts for x in ('.git', '_site', 'vendor', '_includes')):
         continue
     text = page.read_text(encoding='utf-8')
-    if is_redirect_only(text):
+    if is_redirect_page(text):
         continue
     assert '{% include nav.html %}' in text, f'{page} missing shared nav include'
     assert '{% include footer.html %}' in text, f'{page} missing shared footer include'
