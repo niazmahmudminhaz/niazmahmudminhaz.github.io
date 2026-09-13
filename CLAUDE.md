@@ -22,10 +22,12 @@ risk, never for "more changes."
 - hCaptcha / reCAPTCHA structure
 - Published URLs and directory names — no renames or redirects without approval
 - Functional JavaScript (theme toggle, mobile nav, services "silo" menu, blog-nav injection, article CTA) — no refactor for cleanliness
-- CSS / design system (colors, typography, spacing, components, responsive behavior)
+- CSS / design system (colors, typography, spacing, components, responsive behavior) — no cleanup refactors
 - Existing SEO fundamentals (heading structure, alt text, internal links) — never remove or weaken
+- **Primary navigation silo** (`_includes/nav.html`) — approved header structure is locked; never restore a legacy flat service menu or alter the approved header categories without explicit owner approval
+- **Footer silo** (`_includes/footer.html`) — this is the single source of truth for the footer; never replace it with page-specific, duplicated, or legacy footer markup without explicit owner approval
 
-Whenever a file is touched, the changelog must report these systems as unchanged.
+Whenever a file is touched, the changelog must report these systems as unchanged unless the user explicitly authorized that system.
 
 ## Content objective
 Strengthen content quality, topical authority, search-intent coverage, semantic/entity
@@ -65,6 +67,17 @@ The owner genuinely works with Webflow, Wix, and Squarespace CMS-based websites;
 legitimate platform-specific SEO services alongside WordPress, WooCommerce, and Shopify.
 White-Hat SEO may be a service/methodology page when it provides distinct value.
 
+### Approved footer architecture
+The footer has one canonical implementation in `_includes/footer.html` and must remain shared across the site.
+It contains these groups and order:
+1. Brand block: Niaz Mahmud Minhaz + current SEO consultant positioning + Dhaka, Bangladesh.
+2. Core SEO: SEO Consultation, SEO Audits, Technical SEO, On-Page SEO, Local SEO, Off-Page SEO, Backlink Analysis.
+3. AI Search: AI Search SEO, AEO, GEO, GBO.
+4. Ecommerce & Platforms: Ecommerce SEO, Shopify SEO, WooCommerce SEO, WordPress SEO, Webflow SEO, Wix SEO, Squarespace SEO.
+5. Geographic & Authority: Hyperlocal SEO, International SEO, Personal Authority SEO, White-Hat SEO, Blog, Case Studies, FAQ, Contact.
+Do not substitute legacy footer groups such as a flat Services list, a Resources group, or page-specific service subsets.
+Every rendered page should consume the shared footer through `{% include footer.html %}` rather than duplicating footer HTML.
+
 ## Existing-site preservation rule
 Do NOT rebuild or redesign the website from scratch. Preserve the homepage structure,
 main introduction image, current visual assets, fonts, typography, colors, CSS language,
@@ -91,6 +104,8 @@ could alter URLs, redirects, schema, sitemap, robots, forms, functionality or co
 - Links: no broken internal links or nonexistent destinations
 - Responsive: no overflow; mobile and desktop remain usable
 - Functionality: navigation, theme toggle, forms and CAPTCHA remain intact
+- Header silo: exact approved shared structure remains intact; no legacy service-menu restoration
+- Footer silo: every rendered page uses the shared `_includes/footer.html`; no legacy or page-specific footer block remains
 - Protected systems: robots, sitemap, schema, canonicals, meta robots, Web3Forms, CAPTCHA,
   published URLs, redirects, functional JS and CSS remain unchanged unless separately authorized
 - Review the complete Git diff before push
