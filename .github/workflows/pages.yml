@@ -170,7 +170,8 @@ jobs:
           source: ./
           destination: ./_site
 
-      # Hard-fail the build if any generated HTML page is missing either GTM snippet.
+      # Verify only real document pages. Jekyll also generates redirect-only HTML
+      # files with no <head>/<body>; those are not content pages and do not need GTM.
       - name: Verify sitewide Google Tag Manager installation
         shell: python
         run: |
@@ -182,26 +183,35 @@ jobs:
           if not html_files:
               raise SystemExit('No generated HTML files found in _site.')
 
-          head_marker = 'https://www.googletagmanager.com/gtm.js?id=GTM-NKHP3LS4'
-          body_marker = 'https://www.googletagmanager.com/ns.html?id=GTM-NKHP3LS4'
+          gtm_head_regex = re.compile(r"https://www\.googletagmanager\.com/gtm\.js\?id=\\?['\"]?\+?i\+?dl", re.IGNORECASE)
+          gtm_head_fallback = "https://www.googletagmanager.com/gtm.js?id="
+          gtm_body_marker = 'https://www.googletagmanager.com/ns.html?id=GTM-NKHP3LS4'
+          checked = 0
           failures = []
 
           for path in html_files:
               text = path.read_text(encoding='utf-8')
               head_match = re.search(r'<head\b[^>]*>(.*?)</head>', text, re.IGNORECASE | re.DOTALL)
               body_match = re.search(r'<body\b[^>]*>(.*?)</body>', text, re.IGNORECASE | re.DOTALL)
-              head_ok = bool(head_match and head_marker in head_match.group(1))
-              body_ok = bool(body_match and body_marker in body_match.group(1))
-              head_count = text.count(head_marker)
-              body_count = text.count(body_marker)
+              if not head_match or not body_match:
+                  continue
+
+              checked += 1
+              head = head_match.group(1)
+              body = body_match.group(1)
+              head_ok = 'https://www.googletagmanager.com/gtm.js?id=' in head and "'GTM-NKHP3LS4'" in head
+              body_ok = gtm_body_marker in body
+              head_count = head.count('https://www.googletagmanager.com/gtm.js?id=')
+              body_count = body.count(gtm_body_marker)
+
               if not head_ok or not body_ok or head_count != 1 or body_count != 1:
-                  failures.append(f'{path}: head={head_count}, body={body_count}, head_ok={head_ok}, body_ok={body_ok}')
+                  failures.append(f'{path}: head_count={head_count}, body_count={body_count}, head_ok={head_ok}, body_ok={body_ok}')
 
           if failures:
               print('\n'.join(failures))
-              raise SystemExit(f'GTM verification failed for {len(failures)} generated page(s).')
+              raise SystemExit(f'GTM verification failed for {len(failures)} real document page(s).')
 
-          print(f'GTM verification passed for all {len(html_files)} generated HTML page(s).')
+          print(f'GTM verification passed for all {checked} real document page(s). Redirect-only generated files were excluded.')
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
