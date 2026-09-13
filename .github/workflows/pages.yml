@@ -67,10 +67,12 @@ jobs:
                   path.write_text(text, encoding='utf-8')
                   changed += 1
 
-          print(f'Normalized {changed} contact-form page(s).')
+          print(f"Normalized {changed} contact-form page(s).")
 
-      # Keep GA4 working from the writable source tree before Jekyll builds.
-      - name: Prepare source HTML for Google Analytics 4
+      # Keep GA4 and Google Tag Manager working from the writable source tree
+      # before Jekyll builds. The GTM snippets are injected centrally so every
+      # HTML page receives the same container without duplicating page source.
+      - name: Prepare source HTML for Google Analytics 4 and Google Tag Manager
         shell: python
         run: |
           from pathlib import Path
@@ -84,10 +86,24 @@ jobs:
             gtag('config', 'G-DBXYK9VD3N');
           </script>'''
 
+          GTM_HEAD = '''<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-NKHP3LS4');</script>'''
+
+          GTM_BODY = '''<!-- Google Tag Manager (noscript) -->
+          <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKHP3LS4"
+          height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+          <!-- End Google Tag Manager (noscript) -->'''
+
           root = Path('.')
           head_pattern = re.compile(r"<head\b[^>]*>", re.IGNORECASE)
-          existing_tag_pattern = re.compile(r"googletagmanager\.com/gtag/js\?id=G-DBXYK9VD3N", re.IGNORECASE)
+          body_pattern = re.compile(r"<body\b[^>]*>", re.IGNORECASE)
+          existing_ga_pattern = re.compile(r"googletagmanager\.com/gtag/js\?id=G-DBXYK9VD3N", re.IGNORECASE)
           ga_include_pattern = re.compile(r"\{%\s*include\s+ga4\.html\s*%\}", re.IGNORECASE)
+          existing_gtm_head_pattern = re.compile(r"googletagmanager\.com/gtm\.js\?id=GTM-NKHP3LS4", re.IGNORECASE)
+          existing_gtm_body_pattern = re.compile(r"googletagmanager\.com/ns\.html\?id=GTM-NKHP3LS4", re.IGNORECASE)
           csp_pattern = re.compile(r'(<meta\s+http-equiv=["\']Content-Security-Policy["\']\s+content=["\'])(.*?)(["\'])', re.IGNORECASE | re.DOTALL)
 
           def update_csp(match):
@@ -95,6 +111,7 @@ jobs:
               additions = {
                   "script-src": ["https://www.googletagmanager.com"],
                   "connect-src": ["https://www.google-analytics.com", "https://*.google-analytics.com", "https://*.googletagmanager.com"],
+                  "frame-src": ["https://www.googletagmanager.com"],
               }
               for directive, values in additions.items():
                   pattern = re.compile(rf"(^|\s){re.escape(directive)}\s+([^;]*)", re.IGNORECASE)
@@ -111,6 +128,8 @@ jobs:
 
           changed = 0
           files_checked = 0
+          gtm_head_injected = 0
+          gtm_body_injected = 0
 
           for path in root.rglob('*.html'):
               if any(part in {'.git', '_site', 'vendor', '_includes'} for part in path.parts):
@@ -118,17 +137,33 @@ jobs:
               files_checked += 1
               text = path.read_text(encoding='utf-8')
               original = text
-              if not existing_tag_pattern.search(text) and not ga_include_pattern.search(text):
+
+              if not existing_ga_pattern.search(text) and not ga_include_pattern.search(text):
                   match = head_pattern.search(text)
                   if match:
                       text = text[:match.end()] + '\n' + GA_TAG + text[match.end():]
+
+              if not existing_gtm_head_pattern.search(text):
+                  match = head_pattern.search(text)
+                  if match:
+                      text = text[:match.end()] + '\n' + GTM_HEAD + text[match.end():]
+                      gtm_head_injected += 1
+
+              if not existing_gtm_body_pattern.search(text):
+                  match = body_pattern.search(text)
+                  if match:
+                      text = text[:match.end()] + '\n' + GTM_BODY + text[match.end():]
+                      gtm_body_injected += 1
+
               if 'Content-Security-Policy' in text:
                   text = csp_pattern.sub(update_csp, text, count=1)
+
               if text != original:
                   path.write_text(text, encoding='utf-8')
                   changed += 1
 
-          print(f'Prepared {files_checked} source HTML files; updated {changed} files for GA4.')
+          print(f"Prepared {files_checked} source HTML files; updated {changed} files for GA4/GTM.")
+          print(f"Injected GTM head snippet into {gtm_head_injected} page(s) and GTM body fallback into {gtm_body_injected} page(s).")
 
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
