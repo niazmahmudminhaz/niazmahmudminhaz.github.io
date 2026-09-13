@@ -36,6 +36,14 @@ def normalized_service_groups(manifest):
     return service_groups, overview[1]
 
 
+def is_redirect_only(text):
+    front_matter = re.match(r'^---\s*\n(.*?)\n---\s*\n', text, re.S)
+    if not front_matter:
+        return False
+    metadata = front_matter.group(1)
+    return bool(re.search(r'^redirect_to:\s*\S+\s*$', metadata, re.M)) and not re.search(r'^redirect_from:', metadata, re.M)
+
+
 expected_services, expected_overview = normalized_service_groups(LOCK)
 
 nav_groups = groups(NAV, 'nav')
@@ -55,6 +63,8 @@ for page in ROOT.rglob('*.html'):
     if any(x in page.parts for x in ('.git', '_site', 'vendor', '_includes')):
         continue
     text = page.read_text(encoding='utf-8')
+    if is_redirect_only(text):
+        continue
     assert '{% include nav.html %}' in text, f'{page} missing shared nav include'
     assert '{% include footer.html %}' in text, f'{page} missing shared footer include'
     assert '<nav class="nav-links">' not in text, f'{page} contains hard-coded nav'
