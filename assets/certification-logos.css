@@ -1,0 +1,45 @@
+/* Certification provider logos */
+.certifications-grid .cert-card:nth-child(1) .cert-square,
+.certifications-grid .cert-card:nth-child(4) .cert-square{
+  background-image:
+    url("https://5mintuto.com/wp-content/uploads/2023/07/google-skillshop.jpg"),
+    radial-gradient(circle at 70% 25%,color-mix(in srgb,var(--accent) 15%,transparent),transparent 38%),
+    linear-gradient(145deg,color-mix(in srgb,var(--surface2) 80%,var(--accent) 20%),var(--surface));
+  background-repeat:no-repeat;
+  background-position:22px 22px,70% 25%,0 0;
+  background-size:96px 96px,auto,auto;
+}
+.certifications-grid .cert-card:nth-child(2) .cert-square{
+  background-image:
+    url("https://prowly-prod.s3.eu-west-1.amazonaws.com/uploads/60169/assets/824898/large-27d31d9f4647ad4d6a4cd71810b52bff.png"),
+    radial-gradient(circle at 70% 25%,color-mix(in srgb,var(--accent) 15%,transparent),transparent 38%),
+    linear-gradient(145deg,color-mix(in srgb,var(--surface2) 80%,var(--accent) 20%),var(--surface));
+  background-repeat:no-repeat;
+  background-position:22px 22px,70% 25%,0 0;
+  background-size:56px 56px,auto,auto;
+}
+.certifications-grid .cert-card:nth-child(3) .cert-square{
+  background-image:
+    url("https://www.hubspot.com/hs-fs/hubfs/WBZ%202025%20Rebrand/HubSpot%20Logo/Specialty%20sizes/HubSpot%20Logo%20w%20Padding%20for%20CSOL%20CTA%20Card%20Photo%20transparent%20background.png?height=394&name=HubSpot+Logo+w+Padding+for+CSOL+CTA+Card+Photo+transparent+background.png&width=567"),
+    radial-gradient(circle at 70% 25%,color-mix(in srgb,var(--accent) 15%,transparent),transparent 38%),
+    linear-gradient(145deg,color-mix(in srgb,var(--surface2) 80%,var(--accent) 20%),var(--surface));
+  background-repeat:no-repeat;
+  background-position:22px 22px,70% 25%,0 0;
+  background-size:92px auto,auto,auto;
+}
+.certifications-grid .cert-card:nth-child(5) .cert-square{
+  background-image:
+    url("https://ahrefs.com/assets/esbuild/a-blue-G6X776CO.png"),
+    radial-gradient(circle at 70% 25%,color-mix(in srgb,var(--accent) 15%,transparent),transparent 38%),
+    linear-gradient(145deg,color-mix(in srgb,var(--surface2) 80%,var(--accent) 20%),var(--surface));
+  background-repeat:no-repeat;
+  background-position:22px 22px,70% 25%,0 0;
+  background-size:50px 50px,auto,auto;
+}
+@media(max-width:640px){
+  .certifications-grid .cert-card:nth-child(1) .cert-square,
+  .certifications-grid .cert-card:nth-child(4) .cert-square{background-size:82px 82px,auto,auto}
+  .certifications-grid .cert-card:nth-child(2) .cert-square{background-size:50px 50px,auto,auto}
+  .certifications-grid .cert-card:nth-child(3) .cert-square{background-size:82px auto,auto,auto}
+  .certifications-grid .cert-card:nth-child(5) .cert-square{background-size:46px 46px,auto,auto}
+}
