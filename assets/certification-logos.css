@@ -2,12 +2,13 @@
 .certifications-grid .cert-card:nth-child(1) .cert-square,
 .certifications-grid .cert-card:nth-child(4) .cert-square{
   background-image:
-    url("/assets/google-skillshop-clean.svg"),
+    url("https://5mintuto.com/wp-content/uploads/2023/07/google-skillshop.jpg"),
     radial-gradient(circle at 70% 25%,color-mix(in srgb,var(--accent) 15%,transparent),transparent 38%),
     linear-gradient(145deg,color-mix(in srgb,var(--surface2) 80%,var(--accent) 20%),var(--surface));
   background-repeat:no-repeat;
   background-position:22px 22px,70% 25%,0 0;
   background-size:96px 96px,auto,auto;
+  background-blend-mode:multiply,normal,normal;
 }
 .certifications-grid .cert-card:nth-child(2) .cert-square{
   background-image:
