@@ -1,30 +1,13 @@
 /* Certification provider logos */
 .certifications-grid .cert-card:nth-child(1) .cert-square,
 .certifications-grid .cert-card:nth-child(4) .cert-square{
-  position:relative;
   background-image:
+    url("/assets/google-skillshop-clean.svg"),
     radial-gradient(circle at 70% 25%,color-mix(in srgb,var(--accent) 15%,transparent),transparent 38%),
     linear-gradient(145deg,color-mix(in srgb,var(--surface2) 80%,var(--accent) 20%),var(--surface));
   background-repeat:no-repeat;
-  background-position:70% 25%,0 0;
-  background-size:auto,auto;
-}
-.certifications-grid .cert-card:nth-child(1) .cert-square::before,
-.certifications-grid .cert-card:nth-child(4) .cert-square::before{
-  content:"Google Skillshop";
-  position:absolute;
-  top:20px;
-  left:20px;
-  z-index:3;
-  display:block;
-  max-width:calc(100% - 40px);
-  font-family:inherit;
-  font-size:14px;
-  font-weight:700;
-  line-height:1.1;
-  letter-spacing:-0.02em;
-  white-space:nowrap;
-  color:var(--text);
+  background-position:22px 22px,70% 25%,0 0;
+  background-size:96px 96px,auto,auto;
 }
 .certifications-grid .cert-card:nth-child(2) .cert-square{
   background-image:
@@ -55,14 +38,7 @@
 }
 @media(max-width:640px){
   .certifications-grid .cert-card:nth-child(1) .cert-square,
-  .certifications-grid .cert-card:nth-child(4) .cert-square{background-size:auto,auto}
-  .certifications-grid .cert-card:nth-child(1) .cert-square::before,
-  .certifications-grid .cert-card:nth-child(4) .cert-square::before{
-    top:16px;
-    left:16px;
-    font-size:13px;
-    max-width:calc(100% - 32px);
-  }
+  .certifications-grid .cert-card:nth-child(4) .cert-square{background-size:82px 82px,auto,auto}
   .certifications-grid .cert-card:nth-child(2) .cert-square{background-size:50px 50px,auto,auto}
   .certifications-grid .cert-card:nth-child(3) .cert-square{background-size:82px auto,auto,auto}
   .certifications-grid .cert-card:nth-child(5) .cert-square{background-size:46px 46px,auto,auto}
