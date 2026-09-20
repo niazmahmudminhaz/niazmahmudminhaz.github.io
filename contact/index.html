@@ -35,11 +35,11 @@
   <style>
     .contact-shell{padding:74px 0 78px;background:var(--surface2);border-top:1px solid var(--line)}
     .contact-layout{display:grid;grid-template-columns:1.04fr .96fr;gap:48px;align-items:start}
-    .contact-copy h1{font-size:clamp(3rem,5.4vw,5rem);max-width:800px;margin:0 0 22px}
+    .contact-copy h1{font-size:clamp(3rem,5.3vw,5rem);max-width:800px;margin:0 0 22px}
     .contact-copy .lead-copy{font-size:1.08rem;max-width:720px}
     .contact-copy .support-copy{max-width:720px}
     .contact-context{margin-top:25px;padding:23px 24px;border:1px solid var(--line);border-radius:18px;background:var(--surface);box-shadow:var(--shadow)}
-    .contact-context h2{font-size:1.35rem;margin:0 0 12px}
+    .contact-context h2{font-size:1.35rem;margin:0 0 10px}
     .contact-context p{margin:0;color:var(--muted)}
     .contact-context ul{margin:14px 0 0;padding-left:20px;color:var(--muted)}
     .contact-context li{margin:7px 0}
@@ -54,12 +54,12 @@
     .contact-form textarea{min-height:165px}
     .contact-form .btn{font-size:.92rem;letter-spacing:.01em}
     .form-status:empty{min-height:1.2em}
-    .direct-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+    .direct-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:17px}
     .direct-actions .btn{min-height:46px}
     .whatsapp-btn{background:#25d366!important;color:#fff!important;border-color:#25d366!important}
     .whatsapp-btn svg{width:18px;height:18px;flex:none}
     .book-btn{background:var(--surface)!important;color:var(--text)!important;border-color:var(--line)!important}
-    .direct-note{margin:10px 0 0;color:var(--muted);font-size:.82rem}
+    .direct-note{margin:9px 0 0;color:var(--muted);font-size:.82rem}
     .contact-section{padding:70px 0}
     .contact-section-head{max-width:840px}
     .contact-section-head h2{margin-bottom:12px}
@@ -78,25 +78,22 @@
     .pricing-cta .btn{width:100%}
     .pricing-note{margin-top:18px;padding:17px 18px;border-left:4px solid var(--accent);border-radius:0 14px 14px 0;background:var(--surface);color:var(--muted)}
     .pricing-note strong{color:var(--text)}
-    .contact-principles{max-width:900px}
-    .contact-principles p{color:var(--muted)}
-    .contact-principles ul{padding-left:20px;color:var(--muted)}
-    .contact-principles li{margin:8px 0}
+    .contact-prose{max-width:900px}
+    .contact-prose p{color:var(--muted)}
+    .contact-prose ul{padding-left:20px;color:var(--muted)}
+    .contact-prose li{margin:8px 0}
     .service-links{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}
     .service-links a{display:inline-flex;padding:9px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--text);font-size:.85rem;font-weight:700}
     .service-links a:hover{text-decoration:none;border-color:color-mix(in srgb,var(--accent) 45%,var(--line));transform:translateY(-1px)}
     .contact-faq{padding-bottom:82px}
-    .contact-faq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:28px}
-    .contact-faq-item{padding:21px 22px;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
-    .contact-faq-item h3{font-size:1rem;margin-bottom:8px}
-    .contact-faq-item p{margin:0;color:var(--muted);font-size:.94rem}
-    .contact-final{margin-top:28px;padding:26px;border:1px solid var(--line);border-radius:20px;background:var(--surface);box-shadow:var(--shadow);display:flex;justify-content:space-between;align-items:center;gap:22px}
-    .contact-final h3{margin:0 0 6px}
-    .contact-final p{margin:0;color:var(--muted);max-width:680px}
+    .contact-faq-list{max-width:900px;margin-top:28px;border-top:1px solid var(--line)}
+    .contact-faq-item{padding:22px 0;border-bottom:1px solid var(--line)}
+    .contact-faq-item h3{font-size:1.05rem;margin:0 0 7px}
+    .contact-faq-item p{margin:0;color:var(--muted);font-size:.95rem;max-width:820px}
     [data-theme=dark] .contact-shell{background:var(--navy);border-top-color:var(--navyLine)}
-    [data-theme=dark] .book-btn,[data-theme=dark] .contact-context,[data-theme=dark] .pricing-card,[data-theme=dark] .pricing-note,[data-theme=dark] .service-links a,[data-theme=dark] .contact-faq-item,[data-theme=dark] .contact-final{background:var(--navy2);border-color:var(--navyLine)}
-    @media(max-width:900px){.contact-layout{grid-template-columns:1fr}.pricing-grid{grid-template-columns:1fr 1fr}.contact-faq-grid{grid-template-columns:1fr}.contact-final{align-items:flex-start;flex-direction:column}}
-    @media(max-width:800px){.contact-shell{padding:54px 0 64px}.contact-copy h1{font-size:clamp(2.65rem,12vw,4.3rem)}.pricing-grid{grid-template-columns:1fr}.contact-form{padding:20px}.contact-section{padding:58px 0}.direct-actions .btn{width:100%}}
+    [data-theme=dark] .book-btn,[data-theme=dark] .contact-context,[data-theme=dark] .pricing-card,[data-theme=dark] .pricing-note,[data-theme=dark] .service-links a{background:var(--navy2);border-color:var(--navyLine)}
+    @media(max-width:900px){.contact-layout{grid-template-columns:1fr}.pricing-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:800px){.contact-shell{padding:54px 0 64px}.contact-copy h1{font-size:clamp(2.65rem,12vw,4.25rem)}.pricing-grid{grid-template-columns:1fr}.contact-form{padding:20px}.contact-section{padding:58px 0}.direct-actions .btn{width:100%}}
   </style>
 
   <script type="application/ld+json">
@@ -152,7 +149,7 @@
         <p class="eyebrow" style="margin:0 0 13px">SEO CONSULTATION · CONTACT</p>
         <h1>Let's start with the SEO problem, not the sales pitch.</h1>
         <p class="lead-copy">Tell me what you are trying to improve, what changed, or where your website feels stuck. You do not need to diagnose the problem before reaching out. The useful starting point is the business goal, the search context and the evidence you already have.</p>
-        <p class="support-copy">Whether the issue involves technical SEO, local visibility, on-page targeting, content, ecommerce, off-page work or AI search, the first conversation should help identify the right next step rather than force your situation into a package that does not fit.</p>
+        <p class="support-copy">Whether the issue involves technical SEO, local visibility, on-page targeting, content, ecommerce, off-page work or AI search, the first conversation should identify the right direction before any larger commitment is discussed.</p>
 
         <div class="contact-context">
           <h2>What makes a first enquiry useful?</h2>
@@ -164,6 +161,7 @@
             <li>Any recent change, such as a redesign, migration, new content, platform change or traffic drop.</li>
             <li>Useful evidence from Google Search Console or Google Analytics, when available.</li>
           </ul>
+          <p style="margin-top:14px">A simple message is also fine. You can explain the problem in plain language and decide the appropriate next step together.</p>
         </div>
 
         <div class="contact-contactline">
@@ -175,7 +173,7 @@
 
       <div class="contact-form-wrap">
         <p class="contact-form-heading">Request a free SEO consultation</p>
-        <p class="contact-form-note">Share the basics below. You can use WhatsApp instead after submitting the form.</p>
+        <p class="contact-form-note">Share the basics below. After the form, you can also move directly to WhatsApp or book a call.</p>
         <form id="seoContactForm" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
           <input type="hidden" name="access_key" value="19a50e51-5273-4cb7-a41c-5b6ab2cd1ec2">
           <input type="hidden" name="subject" value="New SEO Consultation Request">
@@ -204,7 +202,7 @@
           </a>
           <a class="btn book-btn" href="https://wa.me/8801622184191?text=Hello%20Niaz%2C%20I%27d%20like%20to%20book%20a%20call%20about%20SEO." target="_blank" rel="noopener noreferrer">Book a Call Now ↗</a>
         </div>
-        <p class="direct-note">Prefer a direct route? These buttons open WhatsApp with the relevant conversation already prepared.</p>
+        <p class="direct-note">These options stay below the form so the structured enquiry remains the primary path on the page.</p>
       </div>
     </div>
   </section>
@@ -214,7 +212,7 @@
       <div class="contact-section-head">
         <p class="eyebrow">SEO SUBSCRIPTION OPTIONS</p>
         <h2>Ongoing SEO support with a defined scope.</h2>
-        <p>Monthly SEO should respond to the actual condition of the website. These structures describe the type of work that can be discussed, while the final scope is confirmed after the site, goals, competition and implementation needs are understood.</p>
+        <p>Monthly SEO works better when the scope follows the real condition of the website. These plans describe the type of support you can discuss. The final scope should be based on page count, competition, technical conditions, content needs, markets and implementation responsibilities.</p>
       </div>
 
       <div class="pricing-grid">
@@ -222,11 +220,11 @@
           <span class="pricing-label">Foundation</span>
           <h3>SEO Foundation</h3>
           <p class="price-line">Custom scope <span>/ month</span></p>
-          <p>For websites that need a clear baseline and a focused set of priorities before wider optimisation begins.</p>
+          <p>For websites that need a clear baseline, prioritised fixes and a practical SEO operating rhythm.</p>
           <ul>
             <li>Technical and on-page prioritisation</li>
             <li>Keyword and search-intent direction</li>
-            <li>Core internal-linking opportunities</li>
+            <li>Internal-linking opportunities</li>
             <li>Content and metadata recommendations</li>
             <li>Agreed monthly review</li>
           </ul>
@@ -252,7 +250,7 @@
           <span class="pricing-label">Authority</span>
           <h3>Authority &amp; AI Search</h3>
           <p class="price-line">Custom scope <span>/ month</span></p>
-          <p>For broader search work combining authority, relevant off-page strategy, entity clarity, AI-search considerations and content systems.</p>
+          <p>For broader search work combining relevant authority, off-page strategy, entity clarity, AI-search considerations and content systems.</p>
           <ul>
             <li>Authority and off-page strategy</li>
             <li>Backlink profile review</li>
@@ -264,23 +262,25 @@
         </article>
       </div>
 
-      <div class="pricing-note"><strong>Pricing principle:</strong> the public page does not pretend every website requires the same monthly workload. Scope can change with page count, products, locations, markets, technical complexity, content responsibilities and implementation support.</div>
+      <div class="pricing-note"><strong>Pricing principle:</strong> the page does not publish an artificial rate card for work that may vary substantially between websites. A consultation or audit can establish the actual workload before a recurring scope is proposed.</div>
     </div>
   </section>
 
   <section class="contact-section">
     <div class="container">
-      <div class="contact-section-head contact-principles">
-        <p class="eyebrow">HOW THE WORK STARTS</p>
-        <h2>The first goal is to reduce uncertainty.</h2>
-        <p>A good SEO engagement should make the next decision clearer. That can mean confirming a technical issue, narrowing search intent, deciding which pages deserve attention first, or recognising that a different constraint is holding the site back.</p>
-        <p>Recommendations should be tied to evidence and implementation reality. Not every issue deserves immediate action, and not every website needs the same service. The practical sequence is usually to understand the objective, inspect the available signals, identify the highest-value questions, and then choose the work that can genuinely move the project forward.</p>
+      <div class="contact-section-head contact-prose">
+        <p class="eyebrow">WHAT HAPPENS AFTER YOU CONTACT ME</p>
+        <h2>The first step should make the next step clearer.</h2>
+        <p>Contacting an SEO consultant should not feel like entering a complicated sales funnel. The useful first stage is understanding what you are trying to achieve, what you have already changed, and what evidence is available. From there, the conversation can determine whether you need a focused answer, a deeper audit, ongoing support or another kind of investigation.</p>
+        <p>That distinction matters because SEO problems often look similar on the surface but require very different responses. A traffic decline may relate to technical changes, search-demand shifts, indexing, content relevance or measurement. A weak local presence may require work on location signals and business information rather than another round of generic blog posts. An ecommerce site can have strong products but poor category architecture. A technically healthy site can still struggle because its content does not match the searches that matter.</p>
+        <p>The goal is therefore not to produce the longest recommendation list. It is to identify the questions that matter most, verify what can be verified, and turn that understanding into practical priorities.</p>
         <ul>
-          <li>No guaranteed ranking positions or universal SEO timelines.</li>
-          <li>No manufactured authority or irrelevant link volume for its own sake.</li>
-          <li>No need to buy a large package before the underlying problem is understood.</li>
-          <li>Clearer priorities when new data changes the picture.</li>
+          <li><strong>Start with the objective:</strong> define what the website is actually trying to achieve.</li>
+          <li><strong>Separate signals from assumptions:</strong> use Search Console, Analytics, crawling, page review and other appropriate evidence when available.</li>
+          <li><strong>Prioritise the constraints:</strong> focus first on issues that meaningfully affect visibility, relevance, usability or implementation.</li>
+          <li><strong>Keep the scope realistic:</strong> choose the level of work that matches the problem rather than buying activity for its own sake.</li>
         </ul>
+        <p>This approach also keeps expectations realistic. SEO does not provide a responsible basis for promising a specific ranking position or universal timeline. Markets, competitors, search behaviour, site history and implementation quality all affect outcomes. A sound strategy should explain those dependencies rather than hide them behind confident claims.</p>
       </div>
     </div>
   </section>
@@ -289,8 +289,8 @@
     <div class="container">
       <div class="contact-section-head">
         <p class="eyebrow">RELATED SEO SERVICES</p>
-        <h2>Start with the area that matches your problem.</h2>
-        <p>You do not need to choose the perfect service before contacting me. These links simply let you explore the relevant area first and return when you are ready.</p>
+        <h2>Explore the relevant area before you decide.</h2>
+        <p>You do not need to choose the perfect service before contacting me. These links simply give you a more focused route through the site.</p>
       </div>
       <div class="service-links" aria-label="Related SEO services">
         <a href="/services/seo-audits/">SEO Audits</a>
@@ -312,17 +312,17 @@
       <div class="contact-section-head">
         <p class="eyebrow">COMMON QUESTIONS</p>
         <h2>Before you send the message.</h2>
-        <p>The contact step should be simple, clear and low-friction.</p>
+        <p>The final questions should be easy to answer without adding another wall of content.</p>
       </div>
 
-      <div class="contact-faq-grid">
+      <div class="contact-faq-list">
         <article class="contact-faq-item">
           <h3>What should I include in an SEO consultation request?</h3>
           <p>Share your website URL, target market, main SEO challenge or goal, and any important recent change. A short explanation is enough to begin.</p>
         </article>
         <article class="contact-faq-item">
           <h3>Can I contact you before choosing a specific SEO service?</h3>
-          <p>Yes. Start with the problem. The right service can be identified after the goal and available evidence are understood.</p>
+          <p>Yes. Start with the problem. The appropriate service can be identified after the goal, search situation and available evidence are understood.</p>
         </article>
         <article class="contact-faq-item">
           <h3>Do you cover technical, local, content and ecommerce SEO?</h3>
@@ -330,19 +330,8 @@
         </article>
         <article class="contact-faq-item">
           <h3>Can I contact you without using the form?</h3>
-          <p>Yes. The WhatsApp and Book a Call buttons below the form provide a direct route, and email and phone details are also listed on the page.</p>
+          <p>Yes. The WhatsApp and Book a Call buttons appear directly below the form, with email and phone details also available on the page.</p>
         </article>
-      </div>
-
-      <div class="contact-final">
-        <div>
-          <h3>Ready to discuss the next step?</h3>
-          <p>Send the website and the problem you want to solve. Start with the form or use the direct WhatsApp options beside it.</p>
-        </div>
-        <div class="direct-actions" style="margin-top:0">
-          <a class="btn whatsapp-btn" href="https://wa.me/8801622184191?text=Hello%20Niaz%2C%20I%27d%20like%20to%20discuss%20an%20SEO%20project." target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
-          <a class="btn book-btn" href="https://wa.me/8801622184191?text=Hello%20Niaz%2C%20I%27d%20like%20to%20book%20a%20call%20about%20SEO." target="_blank" rel="noopener noreferrer">Book a Call Now ↗</a>
-        </div>
       </div>
     </div>
   </section>
