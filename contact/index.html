@@ -107,7 +107,15 @@
     [data-theme=dark] .client-answer,[data-theme=dark] .problem-item{background:var(--navy2);border-color:var(--navyLine)}
     @media(max-width:900px){.client-answer-list{grid-template-columns:1fr 1fr}.problem-item{grid-template-columns:150px 1fr}}
     @media(max-width:800px){.client-answer-list{grid-template-columns:1fr}.problem-item{grid-template-columns:1fr;gap:7px}}
-  </style>
+  
+    /* Contact-card interaction: keep non-clickable cards responsive to hover without implying they are links. */
+    .pricing-card,.client-answer,.problem-item,.contact-faq-item,.contact-context{transition:transform .24s ease,border-color .24s ease,box-shadow .24s ease,background-color .24s ease}
+    .pricing-card:hover,.client-answer:hover,.problem-item:hover,.contact-faq-item:hover,.contact-context:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--accent) 42%,var(--line));box-shadow:0 24px 64px rgba(15,23,42,.12)}
+    [data-theme=dark] .pricing-card:hover,[data-theme=dark] .client-answer:hover,[data-theme=dark] .problem-item:hover,[data-theme=dark] .contact-faq-item:hover,[data-theme=dark] .contact-context:hover{box-shadow:0 26px 70px rgba(0,0,0,.28)}
+    .pricing-card .pricing-cta .btn.primary{background:var(--accent)!important;color:#fff!important;border-color:var(--accent)!important}
+    .pricing-card .pricing-cta .btn.primary:hover{background:color-mix(in srgb,var(--accent) 88%,#000)!important;border-color:color-mix(in srgb,var(--accent) 88%,#000)!important}
+    @media(prefers-reduced-motion:reduce){.pricing-card,.client-answer,.problem-item,.contact-faq-item,.contact-context{transition:none!important}}
+</style>
 
   <script type="application/ld+json">
   {
@@ -223,59 +231,57 @@
   <section class="contact-section section-alt">
     <div class="container">
       <div class="contact-section-head">
-        <p class="eyebrow">SEO SUBSCRIPTION OPTIONS</p>
-        <h2>Ongoing SEO support with a defined scope.</h2>
-        <p>Monthly SEO works better when the scope follows the real condition of the website. These plans describe the type of support you can discuss. The final scope should be based on page count, competition, technical conditions, content needs, markets and implementation responsibilities.</p>
+        <p class="eyebrow">WAYS TO START</p>
+        <h2>Choose the level of SEO help that fits the question.</h2>
+        <p>Not every situation needs a large engagement. These options keep the first step flexible, from a free SEO audit to a focused hourly session or a deeper strategic review.</p>
       </div>
 
       <div class="pricing-grid">
         <article class="pricing-card">
-          <span class="pricing-label">Foundation</span>
-          <h3>SEO Foundation</h3>
-          <p class="price-line">Custom scope <span>/ month</span></p>
-          <p>For websites that need a clear baseline, prioritised fixes and a practical SEO operating rhythm.</p>
+          <p class="pricing-kicker">FREE · NOT SURE YET?</p>
+          <h3>Free SEO Audit</h3>
+          <p class="pricing-price">$0 <span>initial review</span></p>
+          <p>Send your website and target keywords for a first SEO look before you book paid time. The goal is to identify the main areas worth discussing, not to overload you with a generic report.</p>
           <ul>
-            <li>Technical and on-page prioritisation</li>
-            <li>Keyword and search-intent direction</li>
-            <li>Internal-linking opportunities</li>
-            <li>Content and metadata recommendations</li>
-            <li>Agreed monthly review</li>
+            <li>Website + target keyword context</li>
+            <li>Quick SEO read and likely discussion areas</li>
+            <li>No commitment to book paid hours</li>
           </ul>
-          <div class="pricing-cta"><a class="btn" href="https://wa.me/8801622184191?text=Hello%20Niaz%2C%20I%27m%20interested%20in%20SEO%20Foundation%20support." target="_blank" rel="noopener noreferrer">Discuss Foundation Support ↗</a></div>
-        </article>
-
-        <article class="pricing-card featured">
-          <span class="pricing-label">Growth</span>
-          <h3>SEO Growth</h3>
-          <p class="price-line">Custom scope <span>/ month</span></p>
-          <p>For businesses that need ongoing optimisation across technical SEO, content, local or ecommerce priorities and measurement.</p>
-          <ul>
-            <li>Technical and on-page improvements</li>
-            <li>Content planning around search demand</li>
-            <li>Internal linking and architecture refinement</li>
-            <li>Local or ecommerce SEO where relevant</li>
-            <li>Search Console and analytics-led review</li>
-          </ul>
-          <div class="pricing-cta"><a class="btn primary" href="https://wa.me/8801622184191?text=Hello%20Niaz%2C%20I%27m%20interested%20in%20an%20SEO%20Growth%20subscription." target="_blank" rel="noopener noreferrer">Discuss Growth Support ↗</a></div>
+          <div class="pricing-cta"><a class="btn primary" href="#seoContactForm">GET A FREE SEO AUDIT ↗</a></div>
         </article>
 
         <article class="pricing-card">
-          <span class="pricing-label">Authority</span>
-          <h3>Authority &amp; AI Search</h3>
-          <p class="price-line">Custom scope <span>/ month</span></p>
-          <p>For broader search work combining relevant authority, off-page strategy, entity clarity, AI-search considerations and content systems.</p>
+          <p class="pricing-kicker">FOCUSED · HOURLY</p>
+          <h3>SEO Session</h3>
+          <p class="pricing-price">$20 <span>/ hour</span></p>
+          <p>For smaller, focused questions where you need practical SEO direction without a larger review.</p>
           <ul>
-            <li>Authority and off-page strategy</li>
-            <li>Backlink profile review</li>
-            <li>Entity, AEO and GEO considerations</li>
-            <li>Content clusters and supporting resources</li>
-            <li>Competitive visibility analysis</li>
+            <li>Answers to your specific SEO questions</li>
+            <li>Prioritized action roadmap</li>
+            <li>Keyword + competitor analysis</li>
+            <li>Follow-up notes and next steps</li>
           </ul>
-          <div class="pricing-cta"><a class="btn" href="https://wa.me/8801622184191?text=Hello%20Niaz%2C%20I%27m%20interested%20in%20Authority%20and%20AI%20Search%20support." target="_blank" rel="noopener noreferrer">Discuss Authority Support ↗</a></div>
+          <div class="pricing-cta"><a class="btn primary" href="#seoContactForm">ASK ABOUT A SESSION ↗</a></div>
+        </article>
+
+        <article class="pricing-card featured">
+          <p class="pricing-kicker">DEEP-DIVE · HOURLY</p>
+          <h3>Strategy Review</h3>
+          <p class="pricing-price">$50 <span>/ hour</span></p>
+          <p>For teams or businesses that need a broader live review and a more detailed strategic conversation.</p>
+          <ul>
+            <li>Live review of your site</li>
+            <li>Technical SEO, keyword + competitor analysis</li>
+            <li>Prioritized action roadmap</li>
+            <li>On-page and content direction</li>
+            <li>Answers to specific questions</li>
+            <li>Follow-up notes and next steps</li>
+          </ul>
+          <div class="pricing-cta"><a class="btn primary" href="#seoContactForm">DISCUSS A DEEPER REVIEW ↗</a></div>
         </article>
       </div>
 
-      <div class="pricing-note"><strong>Pricing principle:</strong> the page does not publish an artificial rate card for work that may vary substantially between websites. A consultation or audit can establish the actual workload before a recurring scope is proposed.</div>
+      <div class="pricing-note"><strong>How pricing works:</strong> the listed hourly options describe the starting format, while the actual time needed depends on the website, question and scope. The free audit option is intended as a low-friction first step before paid work.</div>
     </div>
   </section>
 
