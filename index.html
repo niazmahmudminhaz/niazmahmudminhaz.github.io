@@ -49,7 +49,7 @@
 .strategy-visual{margin-top:40px;border:1px solid color-mix(in srgb,var(--line) 82%,var(--accent) 18%);border-radius:var(--home-r-xl);overflow:hidden;box-shadow:var(--shadow);background:var(--surface);transition:border-color .24s ease,box-shadow .24s ease}.strategy-visual img{width:100%;height:auto;display:block;transition:transform .3s ease}.strategy-visual figcaption{padding:15px 22px 17px;font-size:var(--home-sm);color:var(--muted);border-top:1px solid var(--line);background:color-mix(in srgb,var(--surface) 94%,var(--accent) 6%)}.strategy-visual:hover{border-color:color-mix(in srgb,var(--accent) 42%,var(--line));box-shadow:0 24px 70px color-mix(in srgb,var(--accent) 8%,transparent)}.strategy-visual:hover img{transform:scale(1.008)}
 .measurement{display:grid;grid-template-columns:1fr .92fr;gap:40px;align-items:start;margin-top:38px}.measurement-copy h2{font-size:clamp(2.1rem,3.6vw,3.4rem);margin:0 0 15px;line-height:1.1}.measurement-copy p{font-size:var(--home-lg);color:var(--muted);line-height:1.75}.metric-board{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.metric{padding:22px;border:1px solid var(--line);border-radius:var(--home-r-lg);background:var(--surface);box-shadow:var(--shadow)}.metric b{font-family:'Space Grotesk',Arial,sans-serif;font-size:var(--home-2xl)}.metric span{display:block;color:var(--muted);font-size:var(--home-sm);margin-top:4px}
 .consultation{position:relative;padding:38px;border-radius:var(--home-r-xl);background:linear-gradient(135deg,var(--surface),color-mix(in srgb,var(--accent) 7%,var(--surface)));border:1px solid color-mix(in srgb,var(--accent) 24%,var(--line));box-shadow:0 28px 80px color-mix(in srgb,var(--accent) 8%,transparent);overflow:hidden}.consultation:before{content:"";position:absolute;width:210px;height:210px;right:-88px;top:-106px;border-radius:50%;border:1px solid color-mix(in srgb,var(--accent) 28%,transparent);animation:homeOrbit 16s linear infinite}.consultation h2{font-size:clamp(2.15rem,4vw,3.6rem);line-height:1.08;max-width:780px;margin:0 0 13px}.consultation p{font-size:var(--home-lg);line-height:1.7;max-width:820px;color:var(--muted);margin:0}.consultation-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}.consultation-actions .btn{min-height:46px;border-radius:var(--home-r-md);font-size:var(--home-md)}.consultation-actions .whatsapp-button{background:#25D366;border-color:#25D366;color:#fff}.consultation-actions .whatsapp-button:hover{box-shadow:0 14px 34px rgba(37,211,102,.24)}
-.home-social{display:flex;justify-content:flex-start;gap:10px;margin-top:24px}.home-social a{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;padding:0;border-radius:8px;border:0;color:#fff;font-size:0;font-weight:800;text-decoration:none;transition:transform .18s ease,box-shadow .18s ease}.home-social a.facebook-button{background:#1877F2}.home-social a.instagram-button{background:#E4405F}.home-social a:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(15,23,42,.16);text-decoration:none}.home-social svg{width:19px;height:19px;fill:#fff}
+.consultation-social{display:flex;align-items:center;gap:10px}.consultation-social .social-button{display:inline-flex;align-items:center;justify-content:center;width:48px;height:46px;padding:0;border-radius:var(--home-r-md);color:#fff;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease}.consultation-social .social-button.facebook-button{background:#1877F2}.consultation-social .social-button.instagram-button{background:#E4405F}.consultation-social .social-button:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(15,23,42,.16);text-decoration:none}.consultation-social .social-button svg{width:21px;height:21px;fill:#fff}.consultation-social .whatsapp-button{min-width:112px}
 .review-evidence{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:12px 18px;border-radius:var(--home-r-md);background:transparent;border:1px solid var(--line);color:var(--text);font-size:var(--home-md);font-weight:800;text-decoration:none}.review-evidence:hover{transform:translateY(-2px);box-shadow:0 14px 34px color-mix(in srgb,var(--accent) 9%,transparent);text-decoration:none}
 .home-body footer,.home-body .site-footer{font-size:var(--home-sm)}.home-body .site-footer a{font-size:var(--home-sm)}
 [data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}.is-visible{opacity:1;transform:none}
@@ -60,9 +60,6 @@
 @media(prefers-reduced-motion:reduce){.home-body *,.home-body *:before,.home-body *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}[data-reveal]{opacity:1;transform:none}}
 
 /* Homepage content expansion: keep the existing visual system while adding depth without grid overload. */
-.home-breadcrumb{width:min(1120px,calc(100% - 36px));margin:0 auto;padding:16px 0 0;font-size:.78rem;color:var(--muted)}
-.home-breadcrumb a{color:var(--accent);font-weight:700}
-.home-breadcrumb span{margin:0 7px;color:var(--line)}
 .home-copy-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:34px;margin-top:36px}
 .home-copy-block{padding:0}
 .home-copy-block h3{font-size:1.45rem;margin:0 0 10px}
@@ -175,10 +172,6 @@
   </div>
 </header>
 <main class="home-main">
-<nav class="home-breadcrumb" aria-label="Breadcrumb">
-  <a href="/">Home</a><span>/</span><span aria-current="page">SEO Consultant</span>
-</nav>
-
 <section class="hero container" aria-labelledby="home-title">
   <div class="hero-copy" data-reveal>
     <span class="hero-kicker">SEO Consultant · Technical SEO · Local SEO · AI Search</span>
@@ -530,11 +523,15 @@
     <p>Tell me what is happening, what you have already tried and what outcome matters. A focused SEO audit can turn a vague visibility problem into a prioritized set of actions across technical SEO, search intent, content, internal links, local visibility and AI-search readiness.</p>
     <div class="consultation-actions">
       <a class="btn primary" href="/contact/">Request Free SEO Audit</a>
-      <a class="btn secondary whatsapp-button" href="https://wa.me/8801622184191/" target="_blank" rel="noopener noreferrer" aria-label="Chat with Niaz Mahmud Minhaz on WhatsApp">WhatsApp</a>
-    </div>
-    <div class="home-social" aria-label="Social profiles">
-      <a class="facebook-button" href="https://www.facebook.com/people/Niaz-Mahmud-Minhaz/pfbid02bKxgSGmfPVLyRg4QQU1tuAyeNNkdjx3sN8e6vRgT9F5vL15LWUkQD6w6rMTAgrMnl/" target="_blank" rel="noopener noreferrer" aria-label="Open Niaz Mahmud Minhaz on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.6 1.6-1.6h1.7V3.8c-.3 0-1.3-.1-2.4-.1-2.4 0-4.1 1.5-4.1 4.2V10H7.5v3h2.8v8h3.2Z"/></svg></a>
-      <a class="instagram-button" href="https://www.instagram.com/niaz__mahmud__/" target="_blank" rel="noopener noreferrer" aria-label="Open Niaz Mahmud Minhaz on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 2h9.6A5.2 5.2 0 0 1 22 7.2v9.6a5.2 5.2 0 0 1-5.2 5.2H7.2A5.2 5.2 0 0 1 2 16.8V7.2A5.2 5.2 0 0 1 7.2 2Zm0 2A3.2 3.2 0 0 0 4 7.2v9.6A3.2 3.2 0 0 0 7.2 20h9.6a3.2 3.2 0 0 0 3.2-3.2V7.2A3.2 3.2 0 0 0 16.8 4H7.2Zm9.9 1.5a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0-3-3Z"/></svg></a>
+      <div class="consultation-social" aria-label="Contact and social profiles">
+        <a class="btn secondary whatsapp-button" href="https://wa.me/8801622184191/" target="_blank" rel="noopener noreferrer" aria-label="Chat with Niaz Mahmud Minhaz on WhatsApp">WhatsApp</a>
+        <a class="social-button facebook-button" href="https://www.facebook.com/people/Niaz-Mahmud-Minhaz/pfbid02bKxgSGmfPVLyRg4QQU1tuAyeNNkdjx3sN8e6vRgT9F5vL15LWUkQD6w6rMTAgrMnl/" target="_blank" rel="noopener noreferrer" aria-label="Open Niaz Mahmud Minhaz on Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073c0 6.023 4.388 11.006 10.125 11.95v-8.475H7.078v-3.475h3.047V9.43c0-3.017 1.79-4.69 4.533-4.69 1.313 0 2.686.236 2.686.236v2.962h-1.514c-1.491 0-1.956.932-1.956 1.89v2.245h3.328l-.532 3.475h-2.796v8.475C19.612 23.079 24 18.096 24 12.073Z"/></svg>
+        </a>
+        <a class="social-button instagram-button" href="https://www.instagram.com/niaz__mahmud__/" target="_blank" rel="noopener noreferrer" aria-label="Open Niaz Mahmud Minhaz on Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2Zm0 2A3.8 3.8 0 0 0 4 7.8v8.4A3.8 3.8 0 0 0 7.8 20h8.4a3.8 3.8 0 0 0 3.8-3.8V7.8A3.8 3.8 0 0 0 16.2 4H7.8Zm4.2 3.2a4.8 4.8 0 1 0 0 9.6 4.8 4.8 0 0 0 0-9.6Zm0 2a2.8 2.8 0 1 1 0 5.6 2.8 2.8 0 0 1 0-5.6Zm5.1-2.3a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2Z"/></svg>
+        </a>
+      </div>
     </div>
     <p class="home-final-note">The site is intentionally clear about what can be shown, tested and verified. I do not use invented rankings, fabricated client counts or guaranteed outcomes as substitutes for evidence.</p>
   </div>
