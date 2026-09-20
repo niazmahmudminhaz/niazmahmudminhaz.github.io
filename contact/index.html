@@ -94,6 +94,19 @@
     [data-theme=dark] .book-btn,[data-theme=dark] .contact-context,[data-theme=dark] .pricing-card,[data-theme=dark] .pricing-note,[data-theme=dark] .service-links a,[data-theme=dark] .direct-actions{background:var(--navy2);border-color:var(--navyLine)}
     @media(max-width:900px){.contact-layout{grid-template-columns:1fr}.pricing-grid{grid-template-columns:1fr 1fr}}
     @media(max-width:800px){.contact-shell{padding:54px 0 64px}.contact-copy h1{font-size:clamp(2.65rem,12vw,4.25rem)}.pricing-grid{grid-template-columns:1fr}.contact-form{padding:20px}.contact-section{padding:58px 0}.direct-actions .btn{width:100%}}
+  
+    .client-answer-list{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+    .client-answer{padding:22px;border:1px solid var(--line);border-radius:18px;background:var(--surface);box-shadow:var(--shadow)}
+    .client-answer .question{margin:0 0 8px;color:var(--accent);font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+    .client-answer h3{margin:0 0 8px;font-size:1.16rem}
+    .client-answer p{margin:0;color:var(--muted);font-size:.93rem}
+    .problem-list{display:grid;gap:12px;margin-top:28px;max-width:900px}
+    .problem-item{display:grid;grid-template-columns:185px 1fr;gap:20px;align-items:start;padding:18px 20px;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
+    .problem-item strong{font-family:'Space Grotesk',Arial,sans-serif;font-size:1rem}
+    .problem-item p{margin:0;color:var(--muted);font-size:.93rem}
+    [data-theme=dark] .client-answer,[data-theme=dark] .problem-item{background:var(--navy2);border-color:var(--navyLine)}
+    @media(max-width:900px){.client-answer-list{grid-template-columns:1fr 1fr}.problem-item{grid-template-columns:150px 1fr}}
+    @media(max-width:800px){.client-answer-list{grid-template-columns:1fr}.problem-item{grid-template-columns:1fr;gap:7px}}
   </style>
 
   <script type="application/ld+json">
@@ -266,39 +279,64 @@
     </div>
   </section>
 
-  <section class="contact-section">
+    <section class="contact-section">
     <div class="container">
-      <div class="contact-section-head contact-prose">
-        <p class="eyebrow">WHAT HAPPENS AFTER YOU CONTACT ME</p>
-        <h2>The first step should make the next step clearer.</h2>
-        <p>Contacting an SEO consultant should not feel like entering a complicated sales funnel. The useful first stage is understanding what you are trying to achieve, what has already changed, and what evidence is available. From there, the conversation can determine whether you need a focused answer, a deeper audit, ongoing support or another kind of investigation.</p>
-        <p>That distinction matters because SEO problems can look similar on the surface but require very different responses. A traffic decline may relate to technical changes, search-demand shifts, indexing, content relevance or measurement. A weak local presence may need work on location signals and business information rather than another round of generic blog posts. An ecommerce site may have strong products but weak category architecture. A technically healthy site can still struggle because its content does not match the searches that matter to its customers.</p>
-        <p>The first conversation should therefore be practical. It can establish the website's current situation, the commercial goal behind the search work, the markets or locations that matter, and the level of involvement that makes sense. It should also identify what is not yet known. Good SEO decisions are easier to make when assumptions are separated from observable signals.</p>
-        <p>For example, a business might believe that it needs backlinks because a competitor appears above it. A closer review could show that the more immediate constraint is page intent, internal linking, indexing or weak information architecture. Another site might be publishing regularly but still miss the queries that matter because its topics are not mapped to the right audience, stage of the journey or page type. The purpose of consultation is not to agree with the first explanation. It is to test it.</p>
-        <p>Once the main questions are clear, the work can be scoped sensibly. A focused problem may fit an <a href="/services/seo-consultation/">SEO Consultation</a>. A broader unknown may justify an <a href="/services/seo-audits/">SEO Audit</a>. A specific implementation need can move into <a href="/services/technical-seo/">Technical SEO</a>, <a href="/services/on-page-seo/">On-Page SEO</a>, <a href="/services/local-seo/">Local SEO</a>, <a href="/services/content-seo/">Content SEO</a>, <a href="/services/ecommerce-seo/">Ecommerce SEO</a>, <a href="/services/off-page-seo/">Off-Page SEO</a> or <a href="/services/ai-search-seo/">AI Search SEO</a> when the evidence supports it.</p>
-        <p>That is also why the subscription plans use “Custom scope” rather than promising that every website needs the same monthly workload. Ongoing SEO should respond to real changes in search demand, technical conditions, published content, competition and business priorities. A monthly engagement should have a reason for the work it contains, and that reason should remain understandable to the person paying for it.</p>
-        <ul>
-          <li><strong>Start with the objective:</strong> define the business or audience outcome the SEO work is meant to support.</li>
-          <li><strong>Use the available evidence:</strong> review Search Console, Analytics, crawling, page content, search intent and other appropriate signals rather than relying on assumptions alone.</li>
-          <li><strong>Prioritise the constraint:</strong> focus on the issues most relevant to visibility, relevance, usability, conversion or implementation capacity.</li>
-          <li><strong>Keep expectations realistic:</strong> SEO cannot responsibly promise a fixed ranking position or universal timeline because search environments and implementation conditions change.</li>
-        </ul>
-        <p>The standard is simple: recommendations should be explainable, the scope should be proportionate to the problem, and the work should be useful to the business rather than busywork dressed up as SEO.</p>
+      <div class="contact-section-head">
+        <p class="eyebrow">HOW I CAN HELP</p>
+        <h2>Clear answers before bigger SEO work.</h2>
+        <p>You do not need a perfect brief. Start with the issue, and the first conversation can turn it into a practical next step.</p>
+      </div>
+
+      <div class="client-answer-list">
+        <article class="client-answer">
+          <p class="question">What are you trying to solve?</p>
+          <h3>Traffic or visibility feels stuck.</h3>
+          <p>I can help identify whether the constraint is technical, content-related, search-intent related, structural or competitive, then focus on the evidence that matters.</p>
+        </article>
+        <article class="client-answer">
+          <p class="question">What are you trying to solve?</p>
+          <h3>Your important pages are not performing.</h3>
+          <p>I can review targeting, intent, internal links, page structure and content quality to find where the page is losing relevance or search opportunity.</p>
+        </article>
+        <article class="client-answer">
+          <p class="question">What are you trying to solve?</p>
+          <h3>You are not sure what to do next.</h3>
+          <p>Bring the website and the question. I can help separate urgent issues from lower-value tasks and map the next practical action.</p>
+        </article>
       </div>
     </div>
   </section>
 
 
-  <section class="contact-section section-alt">
+    <section class="contact-section section-alt">
     <div class="container">
-      <div class="contact-section-head contact-prose">
-        <p class="eyebrow">CHOOSE A SENSIBLE STARTING POINT</p>
-        <h2>Different problems need different levels of attention.</h2>
-        <p>A website with an indexing problem should not be treated like a website that simply needs more content. A local business trying to improve discovery in one city has a different search environment from an ecommerce store with hundreds of product and category pages. A new site may need a clean technical and information-architecture foundation, while an established site may need a focused review of what is already working and where the strongest opportunities sit.</p>
-        <p>That is why the first decision should be based on the question, not the package name. When the problem is unclear, a consultation can help frame it. When several related technical or content issues are involved, an audit can create a more structured picture. When the diagnosis is already clear, the work can move directly into the relevant service area. Ongoing subscription support makes sense when there is a continuing set of priorities worth managing over time.</p>
-        <p>The same principle applies to measurement. Traffic alone does not explain whether the work is useful. Depending on the project, meaningful signals may include search impressions, qualified clicks, page-level visibility, enquiries, conversions, product discovery, local actions or index coverage. The measurement plan should follow the business goal rather than forcing every website into the same reporting template.</p>
-        <p>For international or multilingual projects, market and language context matters. For ecommerce websites, product and category architecture can matter more than publishing volume. For local businesses, accurate business information and location relevance deserve attention. For sites preparing for AI-search surfaces, clear entities, accessible information and strong first-party evidence are more useful foundations than chasing every new terminology trend.</p>
-        <p>In practical terms, the best first message is simple: tell me what the website is, what you want to improve, and what has changed or feels unclear. From there, the conversation can become more specific without making the first step unnecessarily complicated.</p>
+      <div class="contact-section-head">
+        <p class="eyebrow">FIND THE RIGHT SEO DIRECTION</p>
+        <h2>What are you trying to solve?</h2>
+        <p>Choose the closest situation below. You can also ignore the labels and simply describe the problem in your own words.</p>
+      </div>
+
+      <div class="problem-list">
+        <article class="problem-item">
+          <strong>Technical issues</strong>
+          <p>Crawling, indexing, redirects, canonical signals, structured data, performance or a migration that needs a safer SEO path.</p>
+        </article>
+        <article class="problem-item">
+          <strong>Content or rankings</strong>
+          <p>Pages get impressions but weak clicks, target keywords do not match the page, or content exists without a clear search-intent structure.</p>
+        </article>
+        <article class="problem-item">
+          <strong>Local visibility</strong>
+          <p>You want stronger visibility in a city or service area and need the site, location signals and local search strategy working together.</p>
+        </article>
+        <article class="problem-item">
+          <strong>Ecommerce growth</strong>
+          <p>Products or categories are difficult to discover, filters create SEO problems, or organic search is not connecting well with commercial intent.</p>
+        </article>
+        <article class="problem-item">
+          <strong>Authority or AI search</strong>
+          <p>You need a more responsible approach to off-page authority, entity clarity, AEO, GEO or broader AI-search readiness without chasing empty signals.</p>
+        </article>
       </div>
     </div>
   </section>
