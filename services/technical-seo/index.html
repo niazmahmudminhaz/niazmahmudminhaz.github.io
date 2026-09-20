@@ -14,20 +14,66 @@
 <meta property="og:description" content="Technical SEO consulting for crawlability, indexing, site architecture, Core Web Vitals, structured data and technical search issues.">
 <meta property="og:url" content="https://niazmahmudminhaz.github.io/services/technical-seo/">
 <meta property="og:image" content="https://niazmahmudminhaz.github.io/assets/Technical%20SEO%20expert%20in%20Bangladesh.webp">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Technical SEO Consultant in Bangladesh | SEO Specialist">
 <meta name="twitter:description" content="Technical SEO consulting for crawlability, indexing, site architecture, Core Web Vitals, structured data and technical search issues.">
 <meta name="twitter:image" content="https://niazmahmudminhaz.github.io/assets/Technical%20SEO%20expert%20in%20Bangladesh.webp">
 <link rel="stylesheet" href="/style.css">
 <style>
-.tech-seo-visual{margin:34px 0 44px;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--surface);box-shadow:var(--shadow)}
+.technical-page .prose{max-width:920px}
+.technical-page .prose>h2{margin-top:76px;margin-bottom:18px}
+.technical-page .prose>p{max-width:860px}
+.technical-page .lead{max-width:820px;font-size:1.12rem;line-height:1.78}
+.tech-seo-visual{margin:36px 0 48px;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--surface);box-shadow:var(--shadow)}
 .tech-seo-visual picture{display:block}
 .tech-seo-visual img{display:block;width:100%;height:auto;max-height:620px;object-fit:cover}
 .tech-seo-visual figcaption{padding:14px 18px;border-top:1px solid var(--line);color:var(--muted);font-size:.86rem;line-height:1.6}
-</style>
-<style>
-.breadcrumb{margin:0 0 26px;color:var(--muted);font-size:.86rem;display:flex;flex-wrap:wrap;gap:4px;align-items:center}
-.breadcrumb a{font-weight:600}
+.tech-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
+.tech-pillar{padding:24px;border:1px solid var(--line);border-radius:18px;background:var(--surface);box-shadow:var(--shadow)}
+.tech-pillar strong{display:block;color:var(--accent);font-size:1.6rem;margin-bottom:8px}
+.tech-pillar h3{margin:0 0 8px}
+.tech-pillar p{margin:0;color:var(--muted)}
+.audit-checks{display:grid;grid-template-columns:repeat(2,1fr);gap:0 36px;margin:28px 0 0;padding:0;list-style:none}
+.audit-checks li{position:relative;padding:14px 0 14px 28px;border-bottom:1px solid var(--line);color:var(--muted)}
+.audit-checks li:before{content:"";position:absolute;left:0;top:22px;width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.metric-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.metric-card{padding:22px;border:1px solid var(--line);border-radius:16px;background:var(--surface);box-shadow:var(--shadow)}
+.metric-card strong{display:block;font:700 1.7rem/1.1 'Space Grotesk',Arial,sans-serif}
+.metric-card span{display:block;margin-top:8px;color:var(--muted);font-size:.9rem}
+.note-panel{margin:30px 0 0;padding:22px 24px;border-left:4px solid var(--accent);background:var(--surface2);border-radius:0 14px 14px 0}
+.note-panel p{margin:0;color:var(--muted)}
+.priority-list{display:grid;gap:10px;margin-top:28px}
+.priority-row{display:grid;grid-template-columns:120px 1fr;gap:20px;padding:18px 20px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.priority-label{font-weight:800;color:var(--accent)}
+.priority-row h3{margin:0 0 5px;font-size:1.05rem}
+.priority-row p{margin:0;color:var(--muted)}
+.platform-links,.related-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.platform-links a,.related-links a{display:inline-flex;align-items:center;padding:9px 13px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-weight:600}
+.process-list{display:grid;gap:0;margin-top:30px}
+.process-step{display:grid;grid-template-columns:66px 1fr;gap:18px;padding:22px 0;border-top:1px solid var(--line)}
+.process-step:last-child{border-bottom:1px solid var(--line)}
+.process-step strong{font-size:.78rem;color:var(--accent);letter-spacing:.08em}
+.process-step h3{margin:0 0 6px}
+.process-step p{margin:0;color:var(--muted)}
+.deliverable-list{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+.deliverable{padding:22px;border-top:2px solid var(--accent);background:var(--surface2)}
+.deliverable h3{margin:0 0 7px}
+.deliverable p{margin:0;color:var(--muted)}
+.audience-list{columns:2;column-gap:42px;margin:24px 0 0;padding-left:20px}
+.audience-list li{break-inside:avoid;margin:0 0 12px;color:var(--muted)}
+.faq-list{margin-top:26px}
+.technical-page .faq-item{box-shadow:none}
+.final-cta{margin-top:34px;padding:34px;border:1px solid color-mix(in srgb,var(--accent) 24%,var(--line));border-radius:20px;background:linear-gradient(135deg,var(--surface),color-mix(in srgb,var(--accent) 7%,var(--surface)))}
+.final-cta h2{margin-top:0!important;margin-bottom:12px!important}
+.final-cta p{margin:0;color:var(--muted);max-width:760px}
+.final-cta .actions{margin-top:22px}
+@media(max-width:760px){
+  .technical-page .prose>h2{margin-top:58px}
+  .tech-pillars,.metric-row,.deliverable-list,.audit-checks{grid-template-columns:1fr}
+  .priority-row{grid-template-columns:1fr;gap:6px}
+  .process-step{grid-template-columns:50px 1fr}
+  .audience-list{columns:1}
+}
 </style>
 <script type="application/ld+json">
 {
@@ -94,12 +140,10 @@
   </div>
 </header>
 
-<main class="container page">
-<p class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true"> / </span><a href="/services/">Services</a><span aria-hidden="true"> / </span><span>Technical SEO</span></p>
+<main class="container page technical-page">
   <div class="prose">
-    <p class="eyebrow">Technical SEO · Bangladesh &amp; Remote</p>
     <h1>Technical SEO Consultant &amp; Specialist in Bangladesh</h1>
-    <p class="lead">A technically strong website should make sense to people, search engines and the systems that crawl and process it. I diagnose the technical layer that sits behind organic visibility, then turn the findings into practical fixes a business or developer can actually use. When the wider problem also involves content, intent or measurement, I connect the technical diagnosis with the relevant <a href="/services/seo-audits/">SEO audit</a> and related SEO services rather than treating technical SEO as an isolated checklist.</p>
+    <p class="lead">A website can look perfectly healthy to a visitor and still have technical problems that make important pages difficult to discover, render or index. I diagnose those underlying issues, connect them to business priorities and turn the findings into practical actions for site owners, marketers and developers.</p>
 
     <div class="actions">
       <a class="btn primary" href="/contact/">Request a Technical SEO Audit</a>
@@ -109,355 +153,152 @@
     <figure class="tech-seo-visual">
       <picture>
         <source srcset="/assets/Technical%20SEO%20expert%20in%20Bangladesh.webp" type="image/webp">
-        <img src="/assets/Technical%20SEO%20expert%20in%20Bangladesh.png" alt="Technical SEO visual for a Technical SEO consultant in Bangladesh" loading="eager" decoding="async">
+        <img src="/assets/Technical%20SEO%20expert%20in%20Bangladesh.png" alt="Technical SEO visual for a Technical SEO consultant in Bangladesh" width="1600" height="900" loading="eager" fetchpriority="high" decoding="async">
       </picture>
-      <figcaption>Technical SEO starts with the technical systems behind search visibility: crawling, rendering, indexing, performance and site structure.</figcaption>
+      <figcaption>Technical SEO examines the systems behind organic visibility: crawling, rendering, indexing, site architecture, performance and structured information.</figcaption>
     </figure>
 
     <div class="keyword-band">
-      <p><strong>Core focus:</strong> Technical SEO consulting, technical SEO audits, crawlability, indexability, rendering, site architecture, Core Web Vitals, structured data, redirects and technical search diagnostics.</p>
+      <p><strong>Core focus:</strong> technical SEO consulting, technical SEO audits, crawlability, indexability, rendering, site architecture, Core Web Vitals, structured data, redirects and technical search diagnostics.</p>
     </div>
 
-    <h2>Technical SEO, Built Around How Search Engines Process a Site</h2>
-    <p>Technical SEO is not a collection of browser-extension warnings. It is the work of making important pages discoverable, accessible, understandable and technically consistent enough for search engines to process them correctly.</p>
-    <p>That means looking beyond the homepage. A real technical review can involve templates, URL patterns, internal links, sitemap files, robots.txt, canonical signals, redirects, rendered HTML, structured data, performance data and Search Console coverage. The exact depth depends on the website, platform, scale and business objective.</p>
+    <h2>Technical SEO Starts With the Foundation</h2>
+    <p>Technical SEO is not a race to collect the most warnings from an audit tool. The real question is whether search engines can reliably discover the pages that matter, process the content, understand the URL relationships and receive consistent signals about what should be indexed.</p>
+    <p>That requires looking at the whole system: URL patterns, internal links, crawl controls, rendered output, status codes, canonicals, sitemaps, structured data, performance and Search Console evidence. The review should go as deep as the site requires, not as deep as a generic checklist allows.</p>
 
-    <div class="steps">
-      <div>
+    <div class="tech-pillars">
+      <article class="tech-pillar">
         <strong>01</strong>
         <h3>Discover</h3>
-        <p>Can search engines reach the URLs that matter through links, sitemaps and a sensible site structure?</p>
-      </div>
-      <div>
+        <p>Important URLs need clear discovery paths through internal links, sensible architecture and appropriate sitemap signals.</p>
+      </article>
+      <article class="tech-pillar">
         <strong>02</strong>
-        <h3>Render</h3>
-        <p>Does the important content and linking structure remain available when the page needs to be rendered?</p>
-      </div>
-      <div>
+        <h3>Process</h3>
+        <p>Pages need to render and expose the important content, navigation and structured information search systems can interpret.</p>
+      </article>
+      <article class="tech-pillar">
         <strong>03</strong>
-        <h3>Index</h3>
-        <p>Are the right URLs eligible for indexing, with clean canonicals, status codes and indexing signals?</p>
-      </div>
-      <div>
-        <strong>04</strong>
-        <h3>Compete</h3>
-        <p>Once the technical barriers are reduced, the page can compete on relevance, content quality and authority.</p>
-      </div>
+        <h3>Index &amp; Consolidate</h3>
+        <p>Indexable pages need consistent canonicals, status codes, internal signals and URL relationships that support one clear version.</p>
+      </article>
     </div>
 
     <h2>What I Review in a Technical SEO Audit</h2>
-    <p>A useful audit connects an issue to a URL, template, pattern or implementation decision. The purpose is not to collect the biggest possible warning list. The purpose is to find the problems that deserve action.</p>
+    <p>A good technical audit ties each finding to the affected URL, template, pattern or implementation choice. That makes the work easier to prioritize and easier for a developer or site owner to act on.</p>
 
-    <div class="service-grid">
-      <article>
-        <p class="eyebrow">01 · Discovery</p>
-        <h2>Crawlability &amp; Indexability</h2>
-        <p>Review important URL discovery paths, crawl blocks, indexation patterns, internal links and Search Console signals to understand what search engines can actually process.</p>
-      </article>
-      <article>
-        <p class="eyebrow">02 · Control</p>
-        <h2>Robots.txt &amp; XML Sitemaps</h2>
-        <p>Check whether crawler directives and sitemap URLs reflect the real site. Important pages belong in the discovery system, while unwanted crawl paths should be handled deliberately.</p>
-      </article>
-      <article>
-        <p class="eyebrow">03 · Consolidation</p>
-        <h2>Canonicalization &amp; Duplicates</h2>
-        <p>Inspect canonical tags, URL variants, parameters and duplicate page patterns so similar URLs do not send contradictory signals about the preferred page.</p>
-      </article>
-      <article>
-        <p class="eyebrow">04 · Architecture</p>
-        <h2>Site Structure &amp; Internal Links</h2>
-        <p>Review hierarchy, click depth and contextual links so important service, category and commercial pages are connected through a logical information architecture.</p>
-      </article>
-      <article>
-        <p class="eyebrow">05 · Rendering</p>
-        <h2>JavaScript &amp; Rendering</h2>
-        <p>Check whether client-side rendering, dynamic content or app-style navigation changes what crawlers can discover, render or index compared with what a user sees.</p>
-      </article>
-      <article>
-        <p class="eyebrow">06 · Performance</p>
-        <h2>Core Web Vitals</h2>
-        <p>Use field and diagnostic data to investigate loading, responsiveness and visual stability rather than treating a single lab score as the whole performance story.</p>
-      </article>
-      <article>
-        <p class="eyebrow">07 · Semantics</p>
-        <h2>Structured Data &amp; Schema</h2>
-        <p>Check whether JSON-LD describes the visible page accurately, uses appropriate types and can be validated. Structured data supports understanding and eligibility for search features, not guaranteed rankings.</p>
-      </article>
-      <article>
-        <p class="eyebrow">08 · Hygiene</p>
-        <h2>Status Codes &amp; Redirects</h2>
-        <p>Investigate broken links, 3xx chains, loops, soft 404 behaviour and migration redirects that can create unnecessary crawl paths or send users and search engines to the wrong destination.</p>
-      </article>
-      <article>
-        <p class="eyebrow">09 · International</p>
-        <h2>Hreflang &amp; Market Signals</h2>
-        <p>For multi-language or multi-region sites, review URL relationships, language versions and international targeting signals so the intended pages can be associated with the right markets.</p>
-      </article>
+    <ul class="audit-checks">
+      <li><strong>Crawlability &amp; indexability:</strong> important URLs, crawl blocks, indexation patterns and Search Console signals.</li>
+      <li><strong>Robots.txt &amp; XML sitemaps:</strong> crawler directives and sitemap URLs matched to the real site structure.</li>
+      <li><strong>Canonicalization:</strong> duplicate URLs, parameters, protocol/host variants and preferred URL signals.</li>
+      <li><strong>Site architecture:</strong> hierarchy, click depth, contextual internal links and important page discoverability.</li>
+      <li><strong>JavaScript &amp; rendering:</strong> dynamic content, client-side navigation and rendered output compared with the user experience.</li>
+      <li><strong>Core Web Vitals:</strong> loading, responsiveness and visual stability using field and diagnostic evidence.</li>
+      <li><strong>Structured data:</strong> JSON-LD accuracy, suitable schema types and alignment with visible page content.</li>
+      <li><strong>Status codes &amp; redirects:</strong> broken links, redirect chains, loops, soft 404s and migration behaviour.</li>
+      <li><strong>International signals:</strong> localized URLs, hreflang, canonicals and market-specific indexing when multiple regions or languages are genuinely served.</li>
+      <li><strong>Security-related checks:</strong> HTTPS consistency and technical changes that could unexpectedly alter search access or URL behaviour.</li>
+    </ul>
+
+    <h2>Core Web Vitals Without Chasing a Tool Score</h2>
+    <p>Performance decisions should be based on the actual problem. Core Web Vitals are useful because they give the team specific measures for loading, interaction and visual stability, but a single lab score should never become the entire performance strategy.</p>
+
+    <div class="metric-row">
+      <div class="metric-card"><strong>2.5s</strong><span>LCP good threshold at the 75th percentile</span></div>
+      <div class="metric-card"><strong>200ms</strong><span>INP good threshold at the 75th percentile</span></div>
+      <div class="metric-card"><strong>0.1</strong><span>CLS good threshold at the 75th percentile</span></div>
     </div>
 
-    <h2>Core Web Vitals: Measure the Experience, Do Not Guess It</h2>
-    <p>Performance is most useful when it is measured against real-user and diagnostic evidence. Google's current Core Web Vitals focus on loading, interactivity and visual stability.</p>
-
-    <div class="article-grid">
-      <article class="article-card">
-        <p class="eyebrow">Loading</p>
-        <h2>LCP</h2>
-        <p><strong>Largest Contentful Paint:</strong> a good target is 2.5 seconds or less at the 75th percentile.</p>
-      </article>
-      <article class="article-card">
-        <p class="eyebrow">Interactivity</p>
-        <h2>INP</h2>
-        <p><strong>Interaction to Next Paint:</strong> a good target is 200 milliseconds or less at the 75th percentile.</p>
-      </article>
-      <article class="article-card">
-        <p class="eyebrow">Stability</p>
-        <h2>CLS</h2>
-        <p><strong>Cumulative Layout Shift:</strong> a good target is 0.1 or less at the 75th percentile.</p>
-      </article>
-      <article class="article-card">
-        <p class="eyebrow">Method</p>
-        <h2>Field Data First</h2>
-        <p>Lab tools help diagnose problems, while field data shows how real users experience the page. Both can be useful for different decisions.</p>
-      </article>
+    <div class="note-panel">
+      <p><strong>How I interpret performance:</strong> field data shows how real users experience a page; lab diagnostics help investigate why. Both can be useful, but they answer different questions.</p>
     </div>
 
-    <h2>Technical Problems I Prioritize First</h2>
-    <p>Not every warning deserves the same attention. A strong technical SEO specialist should be able to separate a genuine search blocker from a cleanup task that can wait.</p>
+    <h2>How I Prioritize Technical Problems</h2>
+    <p>A technical issue is important when it blocks valuable pages, repeats across a template, wastes crawl effort or materially affects the user experience. I prioritize the cause and its reach instead of treating every automated warning as equally urgent.</p>
 
-    <div class="steps">
-      <div>
-        <strong>High</strong>
-        <h3>Indexing blockers</h3>
-        <p>Important pages blocked, unintentionally noindexed, miscanonicalized or otherwise unavailable for search processing.</p>
-      </div>
-      <div>
-        <strong>High</strong>
-        <h3>Template failures</h3>
-        <p>A problem repeated across a template can affect hundreds of URLs and should be fixed at the source when possible.</p>
-      </div>
-      <div>
-        <strong>Medium</strong>
-        <h3>Architecture gaps</h3>
-        <p>Weak internal paths, excessive click depth, duplicate URL patterns or poor taxonomy can limit discoverability and relevance.</p>
-      </div>
-      <div>
-        <strong>Later</strong>
-        <h3>Low-impact cleanup</h3>
-        <p>Cosmetic or marginal warnings should not consume developer time before important crawl, index and experience issues are resolved.</p>
-      </div>
+    <div class="priority-list">
+      <div class="priority-row"><div class="priority-label">High</div><div><h3>Indexing blockers</h3><p>Important pages are blocked, unintentionally excluded, miscanonicalized or otherwise unavailable for normal search processing.</p></div></div>
+      <div class="priority-row"><div class="priority-label">High</div><div><h3>Template failures</h3><p>A shared template problem can affect hundreds of URLs, making a source-level fix more valuable than page-by-page cleanup.</p></div></div>
+      <div class="priority-row"><div class="priority-label">Medium</div><div><h3>Architecture gaps</h3><p>Weak internal paths, excessive depth, duplicate URL patterns or poor taxonomy can make important content harder to discover.</p></div></div>
+      <div class="priority-row"><div class="priority-label">Later</div><div><h3>Low-impact cleanup</h3><p>Marginal warnings should not consume developer time while genuine crawl, index or experience problems remain unresolved.</p></div></div>
     </div>
 
-    <h2>When Your Business Serves More Than One Market</h2>
-    <p>For businesses expanding beyond one country, technical SEO overlaps with <a href="/services/international-seo/">international SEO</a>. I review country or language URL structures, hreflang where appropriate, canonical relationships, internal links, XML sitemaps and market-specific indexing signals so search engines can understand how the versions of a site relate to one another.</p>
-    <p>The goal is simple: each important version should have a clear purpose, a consistent technical relationship with the others and a sensible path for users and search engines to discover it. I do not add international signals just because they are available; they are useful when the site genuinely serves different markets or languages.</p>
+    <h2>Technical SEO When You Serve Multiple Markets</h2>
+    <p>For businesses serving more than one country or language, technical SEO often overlaps with <a href="/services/international-seo/">international SEO</a>. Country or language URL structures, hreflang, canonical relationships, internal linking and XML sitemaps all need to work together so the relationship between localized versions is clear.</p>
+    <p>The same principle applies here as everywhere else on the page: use the signal because the business actually needs it. Do not create international technical complexity simply because a feature exists.</p>
 
-    <h2>Technical SEO for Different Website Types</h2>
-    <p>The underlying principles stay consistent, but implementation changes with the platform and website architecture.</p>
+    <h2>Where Platform and Website Type Change the Implementation</h2>
+    <p>The technical principle may be the same, but the implementation path is not. A WordPress site, Shopify store, Webflow build and custom JavaScript application can expose the same SEO problem through very different systems.</p>
 
-    <div class="topic-grid">
-      <article class="topic-card">
-        <p class="eyebrow">Business Sites</p>
-        <h3>Small &amp; Local Businesses</h3>
-        <p>Focus on clean information architecture, crawlable service pages, local landing pages where genuinely useful, performance and a reliable indexing setup. This connects naturally with <a href="/services/local-seo/">Local SEO</a> when geographic search intent is part of the brief.</p>
-      </article>
-      <article class="topic-card">
-        <p class="eyebrow">Commerce</p>
-        <h3>Ecommerce Websites</h3>
-        <p>Pay close attention to products, categories, filters, pagination, duplicate URLs, internal linking, inventory changes and scalable templates. For broader commercial search work, connect this with <a href="/services/ecommerce-seo/">Ecommerce SEO</a>.</p>
-      </article>
-      <article class="topic-card">
-        <p class="eyebrow">Growth</p>
-        <h3>SaaS &amp; Content Sites</h3>
-        <p>Review programmatic URL patterns, faceted structures, JavaScript rendering, canonical logic and the technical relationship between commercial and informational pages. Pair the technical layer with <a href="/services/content-seo/">Content SEO</a> when page usefulness and topical coverage are also part of the problem.</p>
-      </article>
-      <article class="topic-card">
-        <p class="eyebrow">Platforms</p>
-        <h3>WordPress, Shopify &amp; Webflow</h3>
-        <p>Check the platform's native SEO controls, templates, generated URLs, metadata behaviour and implementation constraints rather than applying a one-size-fits-all checklist. See the platform-specific <a href="/services/wordpress-seo/">WordPress SEO</a>, <a href="/services/shopify-seo/">Shopify SEO</a> and <a href="/services/webflow-seo/">Webflow SEO</a> services where needed.</p>
-      </article>
-      <article class="topic-card">
-        <p class="eyebrow">International</p>
-        <h3>Multi-Region Websites</h3>
-        <p>Review localized URLs, canonical relationships, hreflang, internal linking and regional architecture when the business serves multiple markets. Continue to <a href="/services/international-seo/">International SEO</a> for the wider market-expansion strategy.</p>
-      </article>
-      <article class="topic-card">
-        <p class="eyebrow">Technical</p>
-        <h3>JavaScript &amp; Custom Builds</h3>
-        <p>Inspect rendered output, navigation, dynamically generated content and the gap between browser behaviour and what search engines can reliably access. Where machine-readable information is also part of the objective, connect this foundation with <a href="/services/ai-search-seo/">AI Search SEO</a>.</p>
-      </article>
-    </div>
-
-    <h2>Connected SEO Services</h2>
-    <p>Technical SEO rarely exists on its own. Once the technical condition is clear, the next step often depends on the actual search problem. These related services keep the implementation path connected.</p>
-    <div class="service-grid">
-      <article><p class="eyebrow">Strategy</p><h2>SEO Consultation</h2><p>Use a focused consultation when the main need is diagnosis, prioritization or a technical decision before implementation.</p><a href="/services/seo-consultation/">Explore SEO Consultation →</a></article>
-      <article><p class="eyebrow">Audit</p><h2>SEO Audits</h2><p>Broaden the review when technical findings need to be assessed alongside on-page, content, local or authority issues.</p><a href="/services/seo-audits/">Explore SEO Audits →</a></article>
-      <article><p class="eyebrow">Relevance</p><h2>On-Page SEO</h2><p>Connect technical accessibility with titles, headings, page structure, relevance and contextual internal linking.</p><a href="/services/on-page-seo/">Explore On-Page SEO →</a></article>
-      <article><p class="eyebrow">Demand</p><h2>Search Intent Analysis</h2><p>When the site is technically sound but pages target the wrong purpose, map the technical foundation to the correct search intent.</p><a href="/services/search-intent-analysis/">Explore Search Intent Analysis →</a></article>
-      <article><p class="eyebrow">Research</p><h2>Keyword Research</h2><p>Use business-first keyword research to decide which URL groups, templates and landing pages deserve technical priority.</p><a href="/services/keyword-research/">Explore Keyword Research →</a></article>
-      <article><p class="eyebrow">Evidence</p><h2>Case Studies</h2><p>Review the site's evidence layer and see how technical diagnosis can sit alongside search visibility and measurement.</p><a href="/case-studies/">Review Case Studies →</a></article>
-    </div>
-
-    <h2>Useful Technical SEO Resources</h2>
-    <div class="article-grid">
-      <article class="article-card"><p class="eyebrow">Guide</p><h2>Technical SEO Checklist</h2><p>A practical walkthrough of crawlability, indexability, rendering, canonicals, redirects, sitemaps, structured data and validation.</p><a href="/blog/technical-seo-checklist-2026/">Read the Technical SEO Checklist →</a></article>
-      <article class="article-card"><p class="eyebrow">Architecture</p><h2>Internal Links &amp; Crawlability</h2><p>See how internal links help users and crawlers discover important pages and understand the relationships between topics.</p><a href="/blog/internal-links-crawlability/">Read the Internal Linking Guide →</a></article>
-      <article class="article-card"><p class="eyebrow">Platform</p><h2>WordPress SEO Without Plugin Dependence</h2><p>Explore the technical and on-page issues that remain important even when an SEO plugin is installed.</p><a href="/blog/wordpress-seo-without-plugins/">Read the WordPress SEO Guide →</a></article>
+    <div class="platform-links">
+      <a href="/services/wordpress-seo/">WordPress SEO</a>
+      <a href="/services/shopify-seo/">Shopify SEO</a>
+      <a href="/services/webflow-seo/">Webflow SEO</a>
+      <a href="/services/wix-seo/">Wix SEO</a>
+      <a href="/services/squarespace-seo/">Squarespace SEO</a>
+      <a href="/services/ecommerce-seo/">Ecommerce SEO</a>
     </div>
 
     <h2>How a Technical SEO Engagement Works</h2>
-    <div class="steps">
-      <div>
-        <strong>01</strong>
-        <h3>Baseline</h3>
-        <p>Understand the website, business goal, platform, important URL groups and current search signals before diagnosing anything.</p>
-      </div>
-      <div>
-        <strong>02</strong>
-        <h3>Inspect</h3>
-        <p>Combine crawl data, Search Console, performance diagnostics and direct page inspection to separate symptoms from root causes.</p>
-      </div>
-      <div>
-        <strong>03</strong>
-        <h3>Prioritize</h3>
-        <p>Turn findings into a focused implementation list with affected URLs or templates, reason, priority and the practical fix path.</p>
-      </div>
-      <div>
-        <strong>04</strong>
-        <h3>Validate</h3>
-        <p>Re-check important changes after implementation and compare the technical condition against the baseline rather than assuming the task is finished.</p>
-      </div>
+    <div class="process-list">
+      <div class="process-step"><strong>01</strong><div><h3>Establish the baseline</h3><p>Understand the business goal, platform, priority URL groups, current search visibility and the technical changes already in place.</p></div></div>
+      <div class="process-step"><strong>02</strong><div><h3>Inspect the evidence</h3><p>Use crawl data, Search Console, performance diagnostics and direct page inspection to separate symptoms from root causes.</p></div></div>
+      <div class="process-step"><strong>03</strong><div><h3>Prioritize the implementation</h3><p>Group findings by root cause and affected templates, then turn them into an ordered action list with a clear reason for each fix.</p></div></div>
+      <div class="process-step"><strong>04</strong><div><h3>Validate the changes</h3><p>Re-check important URLs and signals after implementation. A technical fix is not complete until the corrected system behaves as expected.</p></div></div>
     </div>
 
-    <h2>What You Can Expect From the Audit</h2>
-    <div class="service-grid">
-      <article>
-        <p class="eyebrow">Evidence</p>
-        <h2>Findings With Context</h2>
-        <p>Each important finding should explain what was observed, where it occurs and why it deserves attention.</p>
-      </article>
-      <article>
-        <p class="eyebrow">Implementation</p>
-        <h2>Developer-Ready Direction</h2>
-        <p>Recommendations should be concrete enough for a developer, marketer or site owner to understand the next action.</p>
-      </article>
-      <article>
-        <p class="eyebrow">Validation</p>
-        <h2>Post-Fix Checks</h2>
-        <p>Important technical changes should be re-tested. A fix that creates a new canonical, redirect or indexing problem is not a successful fix.</p>
-      </article>
-    </div>
-
-    <h2>Technical SEO Tools and Evidence</h2>
-    <p>The tool matters less than the question being investigated. Depending on scope, useful evidence can include Google Search Console, Google Analytics 4, PageSpeed Insights, Lighthouse, a site crawler, schema validators and server or log data for larger sites.</p>
-
-    <div class="chips">
-      <span>Google Search Console</span>
-      <span>Google Analytics 4</span>
-      <span>PageSpeed Insights</span>
-      <span>Lighthouse</span>
-      <span>Site Crawlers</span>
-      <span>Schema Validators</span>
-      <span>Server &amp; Log Data</span>
-    </div>
-
-    <h2>What Technical SEO Does Not Promise</h2>
-    <p>Technical SEO can remove barriers, improve accessibility to important content and create a cleaner foundation for organic search. It cannot guarantee a specific ranking position, traffic increase or indexing outcome.</p>
-    <p>A sitemap does not guarantee indexing. Robots.txt is for crawl control, not a reliable way to keep a page out of Google. A structured data implementation can help search engines understand a page and may make it eligible for supported search features, but it is not a ranking guarantee. Canonical tags are important signals, yet Google can choose a different canonical when its systems determine another URL is more appropriate.</p>
-
-    <div class="keyword-band">
-      <p><strong>The practical rule:</strong> fix the issue that affects the important page, template or search path first. Do not spend developer time chasing a tool score when a real indexing or architecture problem is still sitting underneath it.</p>
+    <h2>What a Useful Audit Delivers</h2>
+    <div class="deliverable-list">
+      <div class="deliverable"><h3>Evidence</h3><p>What was observed, where it occurs and which technical or search signal supports the finding.</p></div>
+      <div class="deliverable"><h3>Action</h3><p>A practical recommendation written so a developer, marketer or site owner can understand the next step.</p></div>
+      <div class="deliverable"><h3>Validation</h3><p>A clear way to re-check the important change instead of assuming implementation solved the underlying problem.</p></div>
     </div>
 
     <h2>Who This Technical SEO Service Is For</h2>
-    <div class="topic-grid">
-      <article class="topic-card">
-        <h3>Business Owners</h3>
-        <p>You need to understand why important pages are not being discovered, indexed or performing as expected.</p>
-      </article>
-      <article class="topic-card">
-        <h3>Marketing Teams</h3>
-        <p>You need a second set of eyes on a technical audit, migration plan or implementation backlog.</p>
-      </article>
-      <article class="topic-card">
-        <h3>Developers &amp; Agencies</h3>
-        <p>You want technical search requirements translated into clear tickets, checks and validation steps.</p>
-      </article>
-      <article class="topic-card">
-        <h3>Growing Websites</h3>
-        <p>Your site is expanding into more templates, products, locations, languages or JavaScript-driven experiences.</p>
-      </article>
-      <article class="topic-card">
-        <h3>After a Migration</h3>
-        <p>You need to verify redirects, canonicals, internal links, indexing signals and template behaviour after a major change.</p>
-      </article>
-      <article class="topic-card">
-        <h3>Sites With Search Issues</h3>
-        <p>You have traffic changes, indexing anomalies, duplicate URLs, crawl waste or unexplained technical search problems.</p>
-      </article>
-    </div>
+    <ul class="audience-list">
+      <li><strong>Business owners</strong> who need to understand why important pages are not being discovered or indexed as expected.</li>
+      <li><strong>Marketing teams</strong> reviewing a technical audit, migration plan or implementation backlog.</li>
+      <li><strong>Developers and agencies</strong> who need SEO requirements translated into practical implementation checks.</li>
+      <li><strong>Ecommerce teams</strong> dealing with product, category, filter, pagination or scalable URL issues.</li>
+      <li><strong>International businesses</strong> managing country or language versions of the same site.</li>
+      <li><strong>Growing websites</strong> adding templates, products, locations, content or JavaScript-driven experiences.</li>
+      <li><strong>Sites after a migration or redesign</strong> where redirects, canonicals, internal links and indexing need careful validation.</li>
+      <li><strong>Businesses with unexplained search issues</strong> such as duplicate URLs, crawl waste, indexing anomalies or technical performance problems.</li>
+    </ul>
 
     <h2>Common Questions About Technical SEO</h2>
-    <div class="article-grid">
-      <article class="article-card">
-        <h2>What does a Technical SEO consultant do?</h2>
-        <p>A Technical SEO consultant investigates the technical conditions that affect how search engines discover, render, process and index a website, then translates the findings into prioritized actions.</p>
-      </article>
-      <article class="article-card">
-        <h2>Does technical SEO improve rankings by itself?</h2>
-        <p>It can remove technical barriers, but rankings also depend on relevance, content quality, competition, authority and search context. Technical SEO is one layer of the full system.</p>
-      </article>
-      <article class="article-card">
-        <h2>How often should a technical SEO audit be done?</h2>
-        <p>It depends on site complexity and change frequency. A deeper review is especially useful after a migration, redesign, major template change or platform move, with lighter monitoring between audits.</p>
-      </article>
-      <article class="article-card">
-        <h2>Can a small business benefit from a technical SEO audit?</h2>
-        <p>Yes, but the scope should match the site. A small brochure site usually needs a focused technical review rather than an enterprise-sized checklist.</p>
-      </article>
-      <article class="article-card">
-        <h2>Do you need developer access?</h2>
-        <p>Some diagnosis can be completed from the public site and Search Console. Meaningful implementation often needs CMS access or developer support, especially for templates, redirects, rendering and performance work.</p>
-      </article>
-      <article class="article-card">
-        <h2>What makes a technical SEO audit useful?</h2>
-        <p>A useful audit explains the evidence, affected URLs or templates, likely cause, business relevance, recommended fix and the order in which actions should be taken.</p>
-      </article>
+    <div class="faq-list">
+      <details class="faq-item"><summary>What does a Technical SEO consultant do?</summary><div class="faq-answer"><p>A Technical SEO consultant investigates the technical conditions that affect how search engines discover, render, process and index a website, then translates the findings into prioritized actions.</p></div></details>
+      <details class="faq-item"><summary>Does technical SEO improve rankings by itself?</summary><div class="faq-answer"><p>It can remove technical barriers, but rankings also depend on relevance, content quality, competition, authority and search context. Technical SEO is one layer of the wider SEO system.</p></div></details>
+      <details class="faq-item"><summary>How often should a technical SEO audit be done?</summary><div class="faq-answer"><p>It depends on site complexity and how often the site changes. A deeper review is particularly useful after a migration, redesign, major template change or platform move, with lighter monitoring between audits.</p></div></details>
+      <details class="faq-item"><summary>Can a small business benefit from a technical SEO audit?</summary><div class="faq-answer"><p>Yes. The scope should match the site. A small brochure website usually needs a focused review rather than an enterprise-sized checklist.</p></div></details>
+      <details class="faq-item"><summary>Do you need developer access?</summary><div class="faq-answer"><p>Some diagnosis can be completed from the public site and Search Console. Meaningful implementation often needs CMS access or developer support, especially for templates, redirects, rendering and performance work.</p></div></details>
+      <details class="faq-item"><summary>What makes a technical SEO audit useful?</summary><div class="faq-answer"><p>A useful audit explains the evidence, affected URLs or templates, likely cause, business relevance, recommended fix and the order in which actions should be taken.</p></div></details>
     </div>
 
-    <h2>Reference Standards</h2>
-    <p>I use primary documentation where a technical recommendation depends on a platform or search-engine specification.</p>
-    <div class="article-grid">
-      <article class="article-card">
-        <h2>Google Search: Crawling &amp; Indexing</h2>
-        <p><a href="https://developers.google.com/search/docs/crawling-indexing" target="_blank" rel="noopener">Read Google Search documentation →</a></p>
-      </article>
-      <article class="article-card">
-        <h2>Google: Canonicalization</h2>
-        <p><a href="https://developers.google.com/search/docs/crawling-indexing/canonicalization" target="_blank" rel="noopener">Review canonicalization guidance →</a></p>
-      </article>
-      <article class="article-card">
-        <h2>Google: Sitemaps</h2>
-        <p><a href="https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview" target="_blank" rel="noopener">Read sitemap guidance →</a></p>
-      </article>
-      <article class="article-card">
-        <h2>Google: Robots.txt</h2>
-        <p><a href="https://developers.google.com/search/docs/crawling-indexing/robots/intro" target="_blank" rel="noopener">Read robots.txt guidance →</a></p>
-      </article>
-      <article class="article-card">
-        <h2>Google: JavaScript SEO</h2>
-        <p><a href="https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics" target="_blank" rel="noopener">Read JavaScript SEO guidance →</a></p>
-      </article>
-      <article class="article-card">
-        <h2>web.dev: Core Web Vitals</h2>
-        <p><a href="https://web.dev/articles/vitals" target="_blank" rel="noopener">Review current Core Web Vitals guidance →</a></p>
-      </article>
+    <h2>Related SEO Services and Resources</h2>
+    <p>Technical SEO often connects to other parts of the search system. Continue into the service or resource that matches the next question you need to solve.</p>
+    <div class="related-links">
+      <a href="/services/seo-consultation/">SEO Consultation</a>
+      <a href="/services/seo-audits/">SEO Audits</a>
+      <a href="/services/on-page-seo/">On-Page SEO</a>
+      <a href="/services/keyword-research/">Keyword Research</a>
+      <a href="/services/search-intent-analysis/">Search Intent Analysis</a>
+      <a href="/services/ai-search-seo/">AI Search SEO</a>
+      <a href="/case-studies/">Case Studies</a>
+      <a href="/blog/technical-seo-checklist-2026/">Technical SEO Checklist</a>
+      <a href="/blog/internal-links-crawlability/">Internal Links &amp; Crawlability</a>
+      <a href="/blog/wordpress-seo-without-plugins/">WordPress SEO Guide</a>
     </div>
 
-    <div class="actions">
-      <a class="btn primary" href="/contact/">Request a Technical SEO Consultation</a>
-      <a class="btn" href="/services/">Explore All SEO Services</a>
+    <div class="final-cta">
+      <h2>Need a Clear Technical SEO Plan?</h2>
+      <p>Bring me the website, the problem and the business goal. I’ll help separate genuine technical blockers from low-priority noise and turn the findings into a practical next step.</p>
+      <div class="actions">
+        <a class="btn primary" href="/contact/">Request a Technical SEO Consultation</a>
+        <a class="btn" href="/services/">Explore Our SEO Services</a>
+        <a class="btn" href="https://wa.me/8801622184191" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </div>
     </div>
   </div>
 </main>
