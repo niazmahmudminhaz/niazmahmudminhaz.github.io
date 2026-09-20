@@ -57,6 +57,33 @@
     .contact-mini strong{display:block;font-family:'Space Grotesk',Arial,sans-serif;font-size:.95rem}
     .contact-mini span{display:block;margin-top:4px;color:var(--muted);font-size:.82rem;line-height:1.45}
     .contact-form-wrap{position:relative}
+    .contact-form{width:100%;padding:30px;border-radius:22px}
+    .contact-form input,.contact-form textarea{font-size:1rem;padding:14px 15px}
+    .contact-form textarea{min-height:170px}
+    .contact-form .btn{font-size:.92rem;letter-spacing:.01em}
+    .intent-chips{display:flex;flex-wrap:wrap;gap:9px}
+    .intent-chip{display:inline-flex;align-items:center;gap:7px;padding:9px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface2);color:var(--text);font-size:.86rem;font-weight:600}
+    .intent-chip span{color:var(--accent)}
+    .intent-chip:hover{text-decoration:none;border-color:color-mix(in srgb,var(--accent) 45%,var(--line));transform:translateY(-1px)}
+    .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}
+    .pricing-card{position:relative;padding:26px;border:1px solid var(--line);border-radius:20px;background:var(--surface);box-shadow:var(--shadow)}
+    .pricing-card.featured{border-color:color-mix(in srgb,var(--accent) 50%,var(--line));box-shadow:0 24px 70px rgba(79,70,229,.11)}
+    .pricing-card .pricing-kicker{margin:0 0 8px;color:var(--accent);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+    .pricing-card h3{font-size:1.35rem;margin-bottom:6px}
+    .pricing-price{font-family:'Space Grotesk',Arial,sans-serif;font-size:2rem;font-weight:700;letter-spacing:-.03em;margin:0 0 10px}
+    .pricing-price span{font-family:'DM Sans',Arial,sans-serif;font-size:.82rem;color:var(--muted);font-weight:500;letter-spacing:0}
+    .pricing-card p{color:var(--muted);margin:0 0 14px}
+    .pricing-card ul{margin:0;padding-left:19px;color:var(--muted)}
+    .pricing-card li{margin:7px 0}
+    .pricing-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+    .contact-bottom-cta{margin-top:28px;padding:24px 26px;border:1px solid var(--line);border-radius:18px;background:var(--surface);display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .contact-bottom-cta h3{margin:0 0 6px}
+    .contact-bottom-cta p{margin:0;color:var(--muted)}
+    .contact-bottom-cta .contact-actions{margin-top:0}
+    .contact-faq-grid{grid-template-columns:1fr}
+    [data-theme=dark] .intent-chip,[data-theme=dark] .pricing-card,[data-theme=dark] .contact-bottom-cta{background:var(--navy2);border-color:var(--navyLine)}
+    @media(max-width:900px){.pricing-grid{grid-template-columns:1fr 1fr}.contact-bottom-cta{align-items:flex-start;flex-direction:column}}
+    @media(max-width:800px){.pricing-grid{grid-template-columns:1fr}.contact-form{padding:22px}.contact-form textarea{min-height:150px}}
     .contact-form-label{margin:0 0 10px;font-family:'Space Grotesk',Arial,sans-serif;font-weight:700;font-size:1.35rem}
     .contact-form-note{margin:0 0 16px;color:var(--muted);font-size:.9rem}
     .contact-form{padding:24px}
@@ -157,36 +184,28 @@
         <p class="lead-copy">Tell me what you are trying to improve, what has changed, or where the website feels stuck. A useful first conversation starts with the actual problem—not with forcing your situation into a service package.</p>
         <p class="support-copy">Whether you are dealing with a technical issue, weak local visibility, unclear search intent, underperforming content, an ecommerce SEO challenge, or a broader organic-search question, share the context you already have. The goal is to identify the right next step and keep the work grounded in evidence.</p>
 
-        <div class="contact-mini-grid" aria-label="What a first conversation focuses on">
-          <div class="contact-mini"><strong>Diagnose</strong><span>Separate the visible symptom from the SEO issue behind it.</span></div>
-          <div class="contact-mini"><strong>Prioritize</strong><span>Focus on changes that are relevant to the business goal.</span></div>
-          <div class="contact-mini"><strong>Plan</strong><span>Turn the findings into a practical next step.</span></div>
-        </div>
-
         <div class="contact-intent">
           <div class="contact-intent-head">
             <h2>What are you trying to solve?</h2>
-            <p>Start with the closest match. You can still describe everything in the form.</p>
+            <p>Choose the closest topic—or simply explain it in your own words.</p>
           </div>
-          <div class="intent-grid">
-            <a class="intent-item" href="/services/seo-audits/">SEO audit <span>↗</span></a>
-            <a class="intent-item" href="/services/technical-seo/">Technical SEO <span>↗</span></a>
-            <a class="intent-item" href="/services/on-page-seo/">On-page SEO <span>↗</span></a>
-            <a class="intent-item" href="/services/local-seo/">Local SEO <span>↗</span></a>
-            <a class="intent-item" href="/services/content-seo/">Content SEO <span>↗</span></a>
-            <a class="intent-item" href="/services/ecommerce-seo/">Ecommerce SEO <span>↗</span></a>
-            <a class="intent-item" href="/services/keyword-research/">Keyword research <span>↗</span></a>
-            <a class="intent-item" href="/services/ai-search-seo/">AI search SEO <span>↗</span></a>
+          <div class="intent-chips" aria-label="SEO topics">
+            <a class="intent-chip" href="/services/seo-audits/">SEO audit <span>↗</span></a>
+            <a class="intent-chip" href="/services/technical-seo/">Technical SEO <span>↗</span></a>
+            <a class="intent-chip" href="/services/on-page-seo/">On-page SEO <span>↗</span></a>
+            <a class="intent-chip" href="/services/local-seo/">Local SEO <span>↗</span></a>
+            <a class="intent-chip" href="/services/content-seo/">Content SEO <span>↗</span></a>
+            <a class="intent-chip" href="/services/ecommerce-seo/">Ecommerce SEO <span>↗</span></a>
+            <a class="intent-chip" href="/services/ai-search-seo/">AI search SEO <span>↗</span></a>
           </div>
         </div>
 
         <div class="contact-actions">
-          <a class="btn primary" href="#seoContactForm">REQUEST SEO CONSULTATION ↗</a>
+          <a class="btn primary" href="/services/seo-audits/">GET A FREE SEO AUDIT ↗</a>
           <a class="btn whatsapp-btn" href="https://wa.me/8801622184191/" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
             <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.06 0 11.91 11.91 0 0 0 1.8 17.67L0 24l6.51-1.71A11.94 11.94 0 0 0 24 12a11.85 11.85 0 0 0-3.5-8.5ZM12.07 21.8a9.8 9.8 0 0 1-5-1.37l-.36-.21-3.86 1.01 1.03-3.75-.23-.38A9.8 9.8 0 1 1 12.07 21.8Zm5.4-7.35c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.21 5.1 4.5.71.31 1.27.49 1.7.62.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.41.25-.69.25-1.28.17-1.41-.07-.12-.27-.2-.57-.35Z"/></svg>
             WhatsApp
           </a>
-          <a class="btn audit-btn" href="/services/seo-audits/">Explore the Free SEO Audit</a>
         </div>
 
         <div class="contact-links">
@@ -196,8 +215,8 @@
       </div>
 
       <div class="contact-form-wrap">
-        <p class="contact-form-label">Tell me what you are trying to solve</p>
-        <p class="contact-form-note">A few clear details help make the first response more useful. You do not need to know which SEO service is the perfect fit.</p>
+        <p class="contact-form-label">Get a free SEO consultation</p>
+        <p class="contact-form-note">Tell me what is happening, what you are trying to improve, and which website is involved. You do not need to diagnose the problem before reaching out.</p>
 
         <form id="seoContactForm" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
           <input type="hidden" name="access_key" value="19a50e51-5273-4cb7-a41c-5b6ab2cd1ec2">
@@ -217,7 +236,7 @@
           <textarea id="problem" name="message" rows="6" placeholder="Tell me about your website, target market, SEO problem or goal." required></textarea>
 
           <div class="h-captcha" data-captcha="true"></div>
-          <button class="btn" type="submit">REQUEST SEO CONSULTATION ↗</button>
+          <button class="btn" type="submit">GET A FREE SEO CONSULTATION ↗</button>
           <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
         </form>
       </div>
@@ -255,161 +274,24 @@
   <section class="contact-section">
     <div class="container">
       <div class="contact-section-head">
-        <p class="eyebrow">START WITH THE BUSINESS QUESTION</p>
-        <h2>A stronger SEO conversation starts with context, not jargon.</h2>
-        <p>Search visibility is usually the visible part of a bigger business problem. A page may be missing from search because its intent is unclear, because the site is difficult for search engines to crawl, because the local signals are weak, because the content does not answer the right need, or because the measurement setup is not showing the full picture. Those situations can look similar from the outside, but they should not be treated as the same SEO task.</p>
-        <p>That is why this contact page is deliberately simple. You can describe the situation in normal language and provide the evidence you already have. From there, the work can be framed around the right SEO question instead of starting with a generic checklist.</p>
-      </div>
-
-      <div class="contact-info-grid">
-        <article class="contact-info-card">
-          <h3>When the issue is technical</h3>
-          <p>Tell me what changed, which templates or pages are affected, and whether the problem involves crawling, indexing, speed, redirects, canonicalization, structured data, JavaScript or a migration. You do not need to know the correct diagnosis in advance. The useful information is what you can observe and when it started.</p>
-        </article>
-        <article class="contact-info-card">
-          <h3>When the issue is visibility</h3>
-          <p>Share the search terms, services, products, locations or pages that matter most. This helps separate a broad ranking concern from a more specific question around search intent, on-page relevance, local visibility, content coverage or competition.</p>
-        </article>
-      </div>
-
-      <div class="contact-info-grid">
-        <article class="contact-info-card">
-          <h3>When traffic or leads change</h3>
-          <p>A drop in clicks does not automatically mean the same thing as a drop in demand. Dates, affected pages, search queries, device mix, countries and conversion patterns can all change the interpretation. When you have that context, the discussion can begin with evidence rather than assumptions.</p>
-        </article>
-        <article class="contact-info-card">
-          <h3>When you are planning something new</h3>
-          <p>A new website, service area, product range, content program or market can create SEO decisions before launch. Early consultation can be useful for information architecture, keyword research, internal linking, local or international targeting, technical requirements and measurement planning.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="contact-section section-alt">
-    <div class="container">
-      <div class="contact-section-head">
-        <p class="eyebrow">HOW I THINK THROUGH SEO PROBLEMS</p>
-        <h2>Look at the signal. Understand the cause. Choose the next move.</h2>
-        <p>A useful SEO process is not just a list of recommendations. It is a sequence of decisions that connects search behaviour, website structure, content, technical conditions and business priorities.</p>
-      </div>
-
-      <div class="contact-steps">
-        <article class="contact-step">
-          <span class="step-no">01</span>
-          <h3>Define the search question</h3>
-          <p>What does the audience need, what is the business trying to achieve, and which search behaviour actually matters? The answer sets the direction for the rest of the investigation.</p>
-        </article>
-        <article class="contact-step">
-          <span class="step-no">02</span>
-          <h3>Separate signal from assumption</h3>
-          <p>Ranking changes, indexing reports, analytics data, page behaviour, competitor patterns and search results can provide different clues. They should be interpreted together rather than treated as isolated facts.</p>
-        </article>
-        <article class="contact-step">
-          <span class="step-no">03</span>
-          <h3>Prioritize the work</h3>
-          <p>Not every SEO issue deserves the same effort. The useful question is which change is relevant to the business goal, feasible for the current site and worth testing first.</p>
-        </article>
-      </div>
-
-      <div class="contact-info-grid">
-        <article class="contact-info-card">
-          <h3>SEO is connected</h3>
-          <p>Technical SEO can affect whether content is discovered. Information architecture can affect internal links and intent. Content quality can affect relevance. Local signals can affect location-based discovery. Analytics can affect how the outcome is measured. Good decisions respect those connections.</p>
-        </article>
-        <article class="contact-info-card">
-          <h3>Not every problem needs more pages</h3>
-          <p>More URLs are not automatically better. Sometimes the better move is to improve an existing page, consolidate overlapping content, fix a technical constraint, clarify the search intent, strengthen an important internal path or stop a tactic that is creating noise.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="contact-section">
-    <div class="container">
-      <div class="contact-section-head">
-        <p class="eyebrow">WHAT A GOOD FIRST MESSAGE CAN REVEAL</p>
-        <h2>Useful SEO questions are often more specific than “How do I rank higher?”</h2>
-        <p>The more clearly the problem is described, the easier it becomes to identify whether the next step is a consultation, an audit, a focused service or further investigation.</p>
-      </div>
-
-      <div class="contact-info-grid">
-        <article class="contact-info-card">
-          <h3>Examples of useful questions</h3>
-          <ul>
-            <li>Why are important pages not appearing for the searches we actually care about?</li>
-            <li>Why did organic clicks change after our redesign or migration?</li>
-            <li>Which pages should target a particular search intent, and which should not?</li>
-            <li>Is our local visibility limited by the website, Google Business Profile, relevance, location or something else?</li>
-            <li>Which technical issues should be fixed before we invest more in content?</li>
-            <li>Do our ecommerce categories and product pages reflect how people search?</li>
-            <li>How should we approach search visibility as AI-generated search experiences change the journey?</li>
-          </ul>
-        </article>
-        <article class="contact-info-card">
-          <h3>Questions I will not force into a package</h3>
-          <p>Sometimes the evidence does not support a large SEO engagement yet. A page may need a clearer business proposition, a tracking correction, a product-market change, a development fix or simply more time for a meaningful measurement window.</p>
-          <p>The contact process is designed to make that distinction easier. A good SEO recommendation should explain what is known, what is uncertain and what should be tested next.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="contact-section">
-    <div class="container">
-      <div class="contact-section-head">
         <p class="eyebrow">MAKE YOUR MESSAGE USEFUL</p>
         <h2>What should you include in your first SEO enquiry?</h2>
-        <p>You do not need to write a long brief. A few specific details can make the first conversation much more efficient and help avoid generic SEO advice.</p>
+        <p>You do not need a long brief or a perfect diagnosis. A few specific details are enough to make the first conversation more focused and reduce generic SEO advice.</p>
       </div>
 
-      <div class="contact-info-grid">
-        <article class="contact-info-card">
-          <h3>Helpful details</h3>
-          <ul>
-            <li>Your website URL and the main business, service or product you care about.</li>
-            <li>Your target country, city or audience, especially for local or international SEO.</li>
-            <li>The outcome you are trying to improve: visibility, qualified traffic, enquiries, sales or something more specific.</li>
-            <li>What changed recently, such as a redesign, migration, traffic drop, new competitor or new market.</li>
-            <li>Any evidence you already have from Google Search Console, Google Analytics or another analytics workflow.</li>
-          </ul>
-        </article>
-
-        <article class="contact-info-card">
-          <h3>You do not need a perfect diagnosis</h3>
-          <p>It is completely fine to say, “traffic dropped and I do not know why,” “my pages are not ranking for the searches that matter,” or “I am not sure whether I need an audit or ongoing SEO.”</p>
-          <p>The important part is describing the situation honestly. The analysis can come after that.</p>
-          <div class="contact-direct">
-            <a href="/about/">Learn about my approach ↗</a>
-            <a href="/case-studies/">Review case studies ↗</a>
-          </div>
-        </article>
-      </div>
+      <article class="contact-info-card" style="margin-top:28px">
+        <h3>Helpful context</h3>
+        <ul>
+          <li>Your website URL and the main service, product or page you care about.</li>
+          <li>Your target country, city, audience or market when relevant.</li>
+          <li>The outcome you are trying to improve: visibility, qualified traffic, enquiries, sales or another business result.</li>
+          <li>What changed recently, such as a redesign, migration, traffic drop, new competitor or new market.</li>
+          <li>Any useful evidence you already have from Google Search Console, Google Analytics or another analytics workflow.</li>
+        </ul>
+        <p style="margin:18px 0 0;color:var(--muted)">It is also fine to write something as simple as “traffic dropped and I do not know why.” The job is to investigate the question—not to make you diagnose your own website first.</p>
+      </article>
     </div>
   </section>
-
-  <section class="contact-section section-alt">
-    <div class="container">
-      <div class="contact-section-head">
-        <p class="eyebrow">CHOOSE THE RIGHT ENTRY POINT</p>
-        <h2>Sometimes the contact page is not the first page you need.</h2>
-        <p>Use the service pages to understand the scope first, then return here when you are ready to discuss the situation in context.</p>
-      </div>
-
-      <div class="contact-info-grid">
-        <article class="contact-info-card">
-          <h3>Need diagnosis first?</h3>
-          <p>The <a href="/services/seo-audits/">SEO Audit</a> service is designed for structured investigation of technical, on-page, content, internal-linking and broader search-performance issues.</p>
-          <p>For a narrower question, <a href="/services/seo-consultation/">SEO Consultation</a> can be the more direct starting point.</p>
-        </article>
-        <article class="contact-info-card">
-          <h3>Want to investigate a specific area?</h3>
-          <p>Explore <a href="/services/technical-seo/">Technical SEO</a>, <a href="/services/on-page-seo/">On-Page SEO</a>, <a href="/services/local-seo/">Local SEO</a>, <a href="/services/content-seo/">Content SEO</a>, <a href="/services/keyword-research/">Keyword Research</a>, <a href="/services/ecommerce-seo/">Ecommerce SEO</a> or <a href="/services/ai-search-seo/">AI Search SEO</a>.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-
 
   <section class="contact-section section-alt">
     <div class="container">
@@ -431,6 +313,121 @@
       </div>
     </div>
   </section>
+  <section class="contact-section contact-faq">
+    <div class="container">
+      <div class="contact-section-head">
+        <p class="eyebrow">COMMON QUESTIONS</p>
+        <h2>Before you send the message.</h2>
+        <p>A few clear answers can remove hesitation without turning the contact page into another long sales page.</p>
+      </div>
+
+      <div class="contact-faq-grid">
+        <article class="contact-faq-item">
+          <h3>What should I include in an SEO consultation request?</h3>
+          <p>Share your website URL, target market, main SEO challenge or goal, and any important change such as a migration, traffic drop, redesign or new service launch.</p>
+        </article>
+        <article class="contact-faq-item">
+          <h3>Can I contact you before choosing a specific SEO service?</h3>
+          <p>Yes. You do not need to diagnose the problem yourself. Describe what is happening and the conversation can start from the business goal and the evidence you already have.</p>
+        </article>
+        <article class="contact-faq-item">
+          <h3>Do you cover technical, local, content and ecommerce SEO?</h3>
+          <p>The site covers technical SEO, on-page SEO, local SEO, content SEO, ecommerce SEO, keyword research, SEO audits, AI search SEO and related strategy services.</p>
+        </article>
+        <article class="contact-faq-item">
+          <h3>Can I contact you without using the form?</h3>
+          <p>Yes. You can use WhatsApp, email or phone using the direct contact details provided above.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+{% include footer.html %}
+
+<script src="/script.js"></script>
+<script src="https://web3forms.com/client/script.js" async defer></script>
+<script>
+  const form=document.getElementById('seoContactForm');
+  const status=document.getElementById('formStatus');
+  form?.addEventListener('submit',function(e){
+    const captcha=form.querySelector('textarea[name="h-captcha-response"]');
+    if(!captcha||!captcha.value){
+      e.preventDefault();
+      status.textContent='Please complete the human verification before submitting.';
+    }
+  });
+</script>
+</body>
+</html>
+  <section class="contact-section section-alt">
+    <div class="container">
+      <div class="contact-section-head">
+        <p class="eyebrow">WAYS TO START</p>
+        <h2>Choose the level of SEO help that fits the question.</h2>
+        <p>Not every situation needs a large engagement. These options keep the first step flexible, from a free first look to a deeper hourly review.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <article class="pricing-card">
+          <p class="pricing-kicker">FREE · NOT SURE YET?</p>
+          <h3>First Look</h3>
+          <p class="pricing-price">$0 <span>initial review</span></p>
+          <p>Send your site and target keywords for a quick read before you book a paid session. I can tell you what the conversation should cover, and you decide how much time you need.</p>
+          <ul>
+            <li>Website + target keyword context</li>
+            <li>Quick SEO read and likely discussion areas</li>
+            <li>No commitment to book hours</li>
+          </ul>
+          <div class="pricing-cta"><a class="btn primary" href="#seoContactForm">GET MY FREE FIRST LOOK ↗</a></div>
+        </article>
+
+        <article class="pricing-card">
+          <p class="pricing-kicker">FOCUSED · HOURLY</p>
+          <h3>SEO Session</h3>
+          <p class="pricing-price">$20 <span>/ hour</span></p>
+          <p>For smaller, focused questions where you need practical direction without a larger review.</p>
+          <ul>
+            <li>Answers to your specific SEO questions</li>
+            <li>Prioritized action roadmap</li>
+            <li>Keyword + competitor analysis</li>
+            <li>Follow-up notes and next steps</li>
+          </ul>
+          <div class="pricing-cta"><a class="btn primary" href="#seoContactForm">ASK ABOUT A SESSION ↗</a></div>
+        </article>
+
+        <article class="pricing-card featured">
+          <p class="pricing-kicker">DEEP-DIVE · HOURLY</p>
+          <h3>Strategy Review</h3>
+          <p class="pricing-price">$50 <span>/ hour</span></p>
+          <p>For teams or businesses that need a broader live review and a more detailed strategic conversation.</p>
+          <ul>
+            <li>Live review of your site</li>
+            <li>Technical SEO, keyword + competitor analysis</li>
+            <li>Prioritized action roadmap</li>
+            <li>On-page and content direction</li>
+            <li>Answers to specific questions</li>
+            <li>Follow-up notes and next steps</li>
+          </ul>
+          <div class="pricing-cta"><a class="btn primary" href="#seoContactForm">DISCUSS A DEEPER REVIEW ↗</a></div>
+        </article>
+      </div>
+
+      <div class="contact-bottom-cta">
+        <div>
+          <h3>Prefer a direct conversation?</h3>
+          <p>Send a message on WhatsApp and start with the SEO problem in your own words.</p>
+        </div>
+        <div class="contact-actions">
+          <a class="btn whatsapp-btn" href="https://wa.me/8801622184191/" target="_blank" rel="noopener noreferrer" aria-label="Start a WhatsApp conversation">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.06 0 11.91 11.91 0 0 0 1.8 17.67L0 24l6.51-1.71A11.94 11.94 0 0 0 24 12a11.85 11.85 0 0 0-3.5-8.5ZM12.07 21.8a9.8 9.8 0 0 1-5-1.37l-.36-.21-3.86 1.01 1.03-3.75-.23-.38A9.8 9.8 0 1 1 12.07 21.8Zm5.4-7.35c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.21 5.1 4.5.71.31 1.27.49 1.7.62.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.41.25-.69.25-1.28.17-1.41-.07-.12-.27-.2-.57-.35Z"/></svg>
+            Start a WhatsApp conversation
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="contact-section contact-faq">
     <div class="container">
       <div class="contact-section-head">
