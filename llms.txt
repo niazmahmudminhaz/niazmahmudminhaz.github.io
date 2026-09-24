@@ -54,10 +54,7 @@
 
 ## Sitemap discovery
 
-- [Sitemap Index](https://niazmahmudminhaz.github.io/sitemap.xml)
-- [Core Sitemap](https://niazmahmudminhaz.github.io/sitemap-core.xml)
-- [Services Sitemap](https://niazmahmudminhaz.github.io/sitemap-services.xml)
-- [Blog Sitemap](https://niazmahmudminhaz.github.io/sitemap-blog.xml)
+- [XML Sitemap](https://niazmahmudminhaz.github.io/sitemap.xml)
 
 ## Entity and content guidance
 
