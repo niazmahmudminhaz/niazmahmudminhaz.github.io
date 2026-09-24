@@ -21,11 +21,11 @@ def is_redirect_page(text: str) -> bool:
             return True
 
     noindex = False
-    for tag in re.findall(r"<meta\\b[^>]*>", text, re.I):
-        name = re.search(r'\\bname=["\\']([^"\\']+)["\\']', tag, re.I)
-        content = re.search(r'\\bcontent=["\\']([^"\\']+)["\\']', tag, re.I)
+    for tag in re.findall(r"<meta\b[^>]*>", text, re.I):
+        name = re.search(r'\bname=["\']([^"\']+)["\']', tag, re.I)
+        content = re.search(r'\bcontent=["\']([^"\']+)["\']', tag, re.I)
         if name and content and name.group(1).strip().lower() == "robots":
-            if re.search(r"\\bnoindex\\b", content.group(1), re.I):
+            if re.search(r"\bnoindex\b", content.group(1), re.I):
                 noindex = True
                 break
     meta_refresh = bool(re.search(r'''<meta[^>]+http-equiv=["']refresh["']''', text, re.I))
