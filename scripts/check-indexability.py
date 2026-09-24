@@ -1,5 +1,4 @@
 from pathlib import Path
-from html import unescape
 import re
 import xml.etree.ElementTree as ET
 
@@ -22,25 +21,25 @@ def is_redirect_page(text: str) -> bool:
             return True
 
     robots = re.search(
-        r'<meta[^>]+name=["\']robots["\'][^>]+content=["\']([^"\']+)',
+        r'''<meta[^>]+name=["']robots["'][^>]+content=["']([^"']+)''',
         text,
         re.I,
     )
     noindex = bool(robots and re.search(r"\bnoindex\b", robots.group(1), re.I))
-    meta_refresh = bool(re.search(r"<meta[^>]+http-equiv=["\']refresh["\']", text, re.I))
+    meta_refresh = bool(re.search(r'''<meta[^>]+http-equiv=["']refresh["']''', text, re.I))
     js_redirect = bool(re.search(r"window\.location(?:\.replace|\.assign)?\s*\(", text, re.I))
     return noindex and (meta_refresh or js_redirect)
 
 
 def canonical_from(text: str):
     match = re.search(
-        r'<link[^>]+rel=["\']canonical["\'][^>]+href=["\']([^"\']+)',
+        r'''<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)''',
         text,
         re.I,
     )
     if not match:
         match = re.search(
-            r'<link[^>]+href=["\']([^"\']+)["\'][^>]+rel=["\']canonical["\']',
+            r'''<link[^>]+href=["']([^"']+)["'][^>]+rel=["']canonical["']''',
             text,
             re.I,
         )
