@@ -44,7 +44,7 @@ redirect_from:
 .method-row{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(260px,.85fr);gap:28px;align-items:start}.method-panel{padding:22px;border:1px solid var(--line);border-radius:20px;background:var(--surface);box-shadow:0 14px 40px rgba(15,23,42,.05)}.method-panel h3{margin-bottom:10px}.compact-list{display:grid;gap:8px;margin:16px 0;padding:0;list-style:none}.compact-list li{position:relative;padding-left:17px;line-height:1.65;color:var(--muted)}.compact-list li:before{content:"•";position:absolute;left:0;color:var(--accent);font-weight:800}.compact-list strong{color:var(--text)}
 .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:28px}.steps>div{padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--surface);box-shadow:0 12px 34px rgba(15,23,42,.05)}.steps>div strong{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:color-mix(in srgb,var(--accent) 10%,var(--surface));color:var(--accent);font:800 .76rem/1 "Space Grotesk",Arial,sans-serif}.steps h3{margin:13px 0 6px;font-size:1rem}.steps p{margin:0;color:var(--muted);font-size:.82rem;line-height:1.6}
 .service-path{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0 0}.service-path a{display:inline-flex;align-items:center;padding:8px 11px;border:1px solid var(--line);border-radius:10px;background:var(--surface);font-size:.82rem;font-weight:700}.service-path a:hover{text-decoration:none;border-color:color-mix(in srgb,var(--accent) 35%,var(--line));transform:translateY(-1px)}.path-note{margin-top:14px;color:var(--muted);font-size:.84rem}
-.case-final{max-width:820px}.keyword-band{margin:22px 0;padding:17px 19px;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0 14px 14px 0;background:var(--surface2)}.keyword-band p{margin:0;font-size:.86rem}
+.case-after-steps{margin-top:28px}.case-final{max-width:820px}.keyword-band{margin:22px 0;padding:17px 19px;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0 14px 14px 0;background:var(--surface2)}.keyword-band p{margin:0;font-size:.86rem}
 @media(max-width:980px){.case-hero{padding-top:52px}.evidence-card{grid-template-columns:1fr}.evidence-media{position:static;order:2}.evidence-copy{order:1}.client-review-shell,.method-row{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}}
 @media(max-width:680px){.container{width:min(100%,calc(100% - 28px))}.case-page{padding-bottom:62px}.case-hero{padding:42px 0 28px}.case-hero h1{font-size:clamp(2.55rem,12vw,4rem);line-height:.98}.proof-line{gap:7px}.proof-line span{font-size:.78rem;padding:6px 9px}.case-grid{grid-template-columns:1fr;gap:10px;margin-top:22px}.case-card{padding:17px}.case-card span{font-size:.83rem}.evidence-stack{gap:18px;margin-top:24px}.evidence-card{padding:19px;border-radius:19px;gap:19px}.evidence-copy h2{font-size:1.7rem}.evidence-copy p{line-height:1.7}.insight-grid{grid-template-columns:1fr;gap:9px}.insight{padding:15px}.client-review-shell{padding:19px;border-radius:19px}.client-review-copy blockquote{font-size:.98rem;line-height:1.7;padding-left:16px}.client-review-author{align-items:flex-start;flex-direction:column;gap:3px}.steps{grid-template-columns:1fr;gap:10px;margin-top:22px}.method-panel{padding:19px}.service-path{gap:7px}.service-path a{font-size:.78rem;padding:7px 9px}.case-final{max-width:none}}
 @media(prefers-reduced-motion:reduce){.service-path a{transition:none!important}}
@@ -183,7 +183,7 @@ redirect_from:
 <div><strong>03</strong><h3>Clarity</h3><p>Explain the finding in plain language, then connect it to a practical SEO decision.</p></div>
 <div><strong>04</strong><h3>Usefulness</h3><p>Add examples, comparisons, structure or next steps that genuinely help the visitor.</p></div>
 </div>
-<div class="prose" style="margin-top:28px">
+<div class="prose case-after-steps">
 <p>For content work, that can mean strengthening an existing service page instead of producing another article, consolidating overlapping pages, improving internal links, adding missing context, or answering a high-intent question more directly. For technical work, it can mean proving that a crawl, indexing, rendering or architecture issue affects an important URL before recommending a larger change. Good information gain is selective. It improves understanding rather than simply increasing length.</p>
 </div>
 </section>
@@ -207,6 +207,22 @@ redirect_from:
 <p>Link quantity by itself is a weak way to judge authority work. I look at relevance, quality, target-page purpose and the wider authority gap. Where links are genuinely needed, the work should follow a <a href="/services/white-hat-seo/">white-hat SEO</a> approach rather than a volume-first shortcut.</p>
 <h3>Content that is already “long enough” but still thin</h3>
 <p>Length does not create information gain. The better fix may be a sharper answer, stronger examples, first-hand context, better page structure, clearer internal links or consolidation with a more useful existing resource.</p>
+</div>
+</section>
+
+<section class="section">
+<div class="prose">
+<p class="eyebrow">A publishable standard</p>
+<h2>What I need before calling an SEO result a case study</h2>
+<p>A publishable case study needs more than a screenshot. It needs enough context for another person to understand the observation without filling in the missing facts.</p>
+<ul class="compact-list">
+<li><strong>Known source:</strong> the data or observation has a defined origin.</li>
+<li><strong>Clear scope:</strong> the reader can tell what pages, queries or systems were examined.</li>
+<li><strong>Relevant comparison:</strong> the period or baseline makes the change meaningful.</li>
+<li><strong>Reasoned interpretation:</strong> the explanation separates evidence from hypothesis.</li>
+<li><strong>Honest outcome:</strong> the page states what was measured, what was learned and what remains unproven.</li>
+</ul>
+<p>This standard protects the reader and improves the quality of the work itself. It also creates a better consulting conversation because the client can see exactly where the evidence ends and where professional judgment begins.</p>
 </div>
 </section>
 
